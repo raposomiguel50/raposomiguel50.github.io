@@ -23,8 +23,8 @@
         <div class="project-meta project-meta-large"><span>PORT</span><span>ANDROID</span><span>ARM64</span><span>RETROID POCKET 5</span><span>PRE-RELEASE</span></div>
         <h1>System Shock - Android</h1>
         <p class="project-lede">A native Android/ARM64 adaptation of <a class="inline-link" href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer">Shockolate</a>, developed around the Retroid Pocket 5 as the primary reference device. I am using the port both to make the game work naturally on a modern handheld and to document reusable engineering knowledge about Android lifecycle, input, audio, widescreen presentation, legacy assets and reproducible porting.</p>
-        <div class="status-line" aria-label="Project status"><span class="status-badge">ACTIVE DEVELOPMENT</span><span>Current validated baseline: P2.0B + P2.0A Hor+</span><span>Updated 19 August 2026</span></div>
-        <div class="hero-actions"><a class="button" href="reproduce/">Reproduce the port</a><a class="button button-secondary" href="knowledge/">Open knowledge base</a><a class="button button-secondary" href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer">Shockolate upstream</a><a class="button button-secondary" href="#references">References</a></div>
+        <div class="status-line" aria-label="Project status"><span class="status-badge">ACTIVE DEVELOPMENT</span><span>Current validated baseline: P2.0B + P2.0A Hor+</span><span>Public source: v0.1.0-pre.1</span><span>Updated 20 August 2026</span></div>
+        <div class="hero-actions"><a class="button" href="reproduce/">Reproduce the port</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">Source repository</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.1" target="_blank" rel="noopener noreferrer">Latest release</a><a class="button button-secondary" href="knowledge/">Open knowledge base</a><a class="button button-secondary" href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer">Shockolate upstream</a><a class="button button-secondary" href="#references">References</a></div>
       </div>
     </section>
 
@@ -48,6 +48,8 @@
         <div class="project-quick-links" aria-label="Related project pages">
           <a href="reproduce/">Build / reproduction guide →</a>
           <a href="knowledge/">Engineering knowledge base →</a>
+          <a href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">Public source →</a>
+          <a href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.1" target="_blank" rel="noopener noreferrer">v0.1.0-pre.1 →</a>
         </div>
       </div>
     </nav>
@@ -66,13 +68,13 @@
     <section class="section alt project-section" id="reproduce-share">
       <div class="container">
         <div class="section-title-row"><div><p class="section-kicker">02 / REPRODUCE &amp; SHARE</p><h2>From “works on my machine” to a public engineering project</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <p class="section-intro">The project is being reorganized so another person can inspect the source, reproduce the Android build, provide their own game data and understand the decisions behind the result. The public package is deliberately separate from my internal handover/control infrastructure.</p>
+        <p class="section-intro">The project is organized so another person can inspect the source, reproduce the Android build, provide their own game data and understand the decisions behind the result. The public source is deliberately separate from my internal handover/control infrastructure.</p>
         <div class="content-grid">
-          <div class="content-card"><h3>Sanitized source snapshot</h3><p>A public-source candidate has been prepared from the validated handover: Android project, modified Shockolate source, licenses, provenance, portable build helpers and documentation. Private workspace metadata and commercial game data are excluded.</p></div>
+          <div class="content-card"><h3>Published source snapshot</h3><p>The reviewed, sanitized source tree is now public in <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">raposomiguel50/system-shock-android</a>. It includes the Android project, modified Shockolate source, licenses, provenance, portable build helpers and documentation. Private workspace metadata and commercial game data are excluded.</p></div>
           <div class="content-card"><h3>Reproduction guide</h3><p>The <a class="inline-link" href="reproduce/">reproduction page</a> records the pinned dependency baselines, Android/JDK toolchain, build/verification flow, data-import boundary and the clean-clone gate that must pass before I call the public package independently reproduced.</p></div>
-          <div class="content-card"><h3>Public source repository</h3><p>A dedicated repository is the intended long-term home for the source and releases. It is not linked yet because I prefer to publish a clean, reviewed source tree rather than expose the private project workspace or a raw handover archive.</p></div>
+          <div class="content-card"><h3>Public source release</h3><p>The first public source preview is <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.1" target="_blank" rel="noopener noreferrer">v0.1.0-pre.1</a>. You can also <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/archive/refs/tags/v0.1.0-pre.1.zip">download the tagged source as ZIP</a>. No consumer APK is published yet.</p></div>
         </div>
-        <p class="note">Current status: the sanitized package is prepared and audited; independent fresh-clone build/install verification is still pending. That distinction is intentional.</p>
+        <p class="note">Current status: public source and the first source pre-release are published. Independent fresh-clone build/install verification is still pending, so the release is intentionally presented as a source preview rather than a finished Android package.</p>
       </div>
     </section>
 
@@ -142,7 +144,7 @@
         <p class="section-intro">The <a class="inline-link" href="knowledge/">knowledge base</a> publishes more than the final solution. It records root causes, workarounds, unresolved concerns, rejected experiments and rules that became standards during the port.</p>
         <div class="content-grid">
           <div class="content-card"><h3>Resolved problems</h3><p>PowerShell case collisions, Android lifecycle/surface diagnostics, audio-device ownership, Android IME integration, right-stick mode routing and gameplay music timing are preserved as reusable records.</p></div>
-          <div class="content-card"><h3>Open concerns</h3><p>End-user game-data import, broader Android compatibility, WORLD/STATIC HD architecture, font remastering, public release identity and independent fresh-clone proof remain explicitly open.</p></div>
+          <div class="content-card"><h3>Open concerns</h3><p>End-user game-data import, broader Android compatibility, WORLD/STATIC HD architecture, font remastering, stable public release identity and independent fresh-clone proof remain explicitly open.</p></div>
           <div class="content-card"><h3>Standards</h3><p>Platform ownership, reversibility, semantic controller mapping, single audio ownership, artifact-level validation, evidence separation and commercial-data isolation are documented as project standards.</p></div>
         </div>
         <div class="hero-actions"><a class="button" href="knowledge/">Read the knowledge base</a><a class="button button-secondary" href="reproduce/">Reproduce the build</a></div>
@@ -153,10 +155,11 @@
       <div class="container">
         <div class="section-title-row"><div><p class="section-kicker">08 / RELEASE &amp; LICENSING</p><h2>Open code, separate game data</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
         <div class="content-grid">
-          <div class="content-card"><h3>Release status</h3><p>No consumer APK is published yet. The current shareable target is a reviewed source snapshot plus a documented debug/ADB reproduction path. Release signing, stable public versioning and a graphical data importer remain open.</p></div>
+          <div class="content-card"><h3>Release status</h3><p>The first public source preview, <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.1" target="_blank" rel="noopener noreferrer">v0.1.0-pre.1</a>, is published on GitHub. No consumer APK is published yet. Fresh-clone build/install proof, release signing, stable public versioning and a graphical data importer remain open.</p></div>
           <div class="content-card"><h3>Source licensing</h3><p>Shockolate is distributed under the GNU GPL v3.0 or later. Public distribution of this derivative source keeps the applicable upstream copyright/license notices and documents third-party dependencies.</p></div>
           <div class="content-card"><h3>Game ownership</h3><p>The project does not provide System Shock commercial resources. A compatible legally obtained copy is required separately, and public instructions explain how to supply that data without redistributing it.</p></div>
         </div>
+        <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">Source repository</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/archive/refs/tags/v0.1.0-pre.1.zip">Download source (.zip)</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.1" target="_blank" rel="noopener noreferrer">Release notes</a></div>
         <p class="legal-box">This is an independent, unofficial development project. System Shock, its assets and associated trademarks belong to their respective rights holders. Miguel's Game Dev Lab is not affiliated with or endorsed by Looking Glass Studios, Nightdive Studios, Atari, GOG, Retroid, Google or the SDL project.</p>
       </div>
     </section>
