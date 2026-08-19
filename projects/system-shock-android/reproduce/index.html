@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Reproduce the System Shock Android port: source baseline, build requirements, game-data boundary, installation path and validation gates.">
+  <title>Reproduce System Shock Android | Miguel's Game Dev Lab</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+</head>
+<body class="project-page">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../../" aria-label="Miguel's Game Dev Lab home"><span class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a>
+      <nav aria-label="Primary navigation"><a href="../">Project</a><a href="../knowledge/">Knowledge Base</a><a href="../#references">References</a><a href="../../../#about">About</a></nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <div class="container">
+        <p class="breadcrumbs"><a href="../">System Shock — Android</a> / Reproduce</p>
+        <div class="project-meta project-meta-large"><span>REPRODUCTION</span><span>WINDOWS</span><span>POWERSHELL 7</span><span>ANDROID / ARM64</span></div>
+        <h1>Build it yourself</h1>
+        <p class="project-lede">The public-development goal is not only to show that the port runs on my hardware. The source, dependency baselines, build steps, proprietary-data boundary and validation criteria are being documented so another person can reproduce the work without access to my private development workspace.</p>
+        <div class="status-line"><span class="status-badge">SOURCE SNAPSHOT PREPARED</span><span>Fresh-clone independent verification: pending</span><span>Reference target: Retroid Pocket 5</span></div>
+        <div class="hero-actions"><a class="button" href="#build">Build steps</a><a class="button button-secondary" href="#game-data">Supply game data</a><a class="button button-secondary" href="../knowledge/">Engineering knowledge</a></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="section-kicker">01 / REPRODUCIBILITY STATUS</p>
+        <h2>What is public, and what is not</h2>
+        <div class="content-grid">
+          <div class="content-card"><h3>Redistributable source</h3><p>A sanitized public-source snapshot has been prepared from the validated Android handover. It contains the Android project, the modified Shockolate source snapshot, licenses, provenance, build helpers and open knowledge documentation. It contains no System Shock commercial resource data.</p></div>
+          <div class="content-card"><h3>Game data</h3><p>You must supply your own compatible System Shock resources from a legally obtained copy. The source archive deliberately excludes <code>res/data</code>, <code>res/sound</code> and proprietary <code>.res</code> content.</p></div>
+          <div class="content-card"><h3>Evidence boundary</h3><p>The current code has been validated on the Retroid Pocket 5 during development. The new public package still needs a clean-clone build performed independently of the private workspace before I describe it as independently reproduced.</p></div>
+        </div>
+        <p class="note">A separate public source repository is the preferred long-term home. Until that repository is created, the prepared source package is being kept as a release candidate rather than pretending that the website alone is a complete software distribution channel.</p>
+      </div>
+    </section>
+
+    <section class="section alt" id="build">
+      <div class="container">
+        <p class="section-kicker">02 / BUILD</p>
+        <h2>Windows / PowerShell 7 build path</h2>
+        <p class="section-intro">The prepared public package removes dependencies on <code>C:\retroid-pocket-5-native-ports</code> and the private dependency/cache layout. It provides portable helpers for the public dependencies and build.</p>
+        <div class="table-wrap">
+          <table class="spec-table"><tbody>
+            <tr><th>Shockolate baseline</th><td><a class="inline-link" href="https://github.com/Interrupt/systemshock/commit/4cc3d07dfff2d11b6d3a0a9960a51cf4ca253690" target="_blank" rel="noopener noreferrer"><code>4cc3d07dfff2d11b6d3a0a9960a51cf4ca253690</code></a></td></tr>
+            <tr><th>SDL</th><td>2.32.10 — <a class="inline-link" href="https://github.com/libsdl-org/SDL/commit/5d249570393f7a37e037abf22cd6012a4cc56a71" target="_blank" rel="noopener noreferrer"><code>5d249570393f7a37e037abf22cd6012a4cc56a71</code></a></td></tr>
+            <tr><th>SDL_mixer</th><td>2.8.1</td></tr>
+            <tr><th>JDK</th><td>17</td></tr>
+            <tr><th>Gradle</th><td>8.1.1 via the included wrapper</td></tr>
+            <tr><th>Android SDK</th><td>Platform 34 + Build Tools 34.0.0</td></tr>
+            <tr><th>NDK</th><td>29.0.14206865</td></tr>
+            <tr><th>CMake</th><td>3.22.1 from the Android SDK</td></tr>
+            <tr><th>ABI</th><td><code>arm64-v8a</code></td></tr>
+          </tbody></table>
+        </div>
+        <div class="content-grid">
+          <div class="content-card"><h3>1. Bootstrap dependencies</h3><p>From the public-source root, run <code>pwsh -File .\scripts\bootstrap-deps.ps1</code>. The helper obtains the pinned SDL source and official SDL_mixer 2.8.1 source into the ignored <code>.deps</code> directory.</p></div>
+          <div class="content-card"><h3>2. Build</h3><p>Run <code>pwsh -File .\scripts\build.ps1</code>. If the Android SDK is not in the normal Windows location, pass <code>-AndroidSdk</code>. The expected artifact is <code>AndroidProject\app\build\outputs\apk\debug\app-debug.apk</code>.</p></div>
+          <div class="content-card"><h3>3. Verify</h3><p>Run <code>pwsh -File .\scripts\verify-apk.ps1</code>. The verifier checks the expected ARM64 native libraries and rejects obvious System Shock commercial resource data inside the APK.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="game-data">
+      <div class="container">
+        <p class="section-kicker">03 / GAME DATA</p>
+        <h2>Bring your own compatible resources</h2>
+        <p class="section-intro">Shockolate expects a resource layout containing <code>res/data</code> and <code>res/sound</code>. The port preserves this separation instead of repackaging commercial assets into source or APK releases.</p>
+        <div class="content-grid">
+          <div class="content-card"><h3>Expected layout</h3><p>Point the current helper at a local <code>res</code> directory containing both <code>data</code> and <code>sound</code>. The upstream Shockolate documentation states that original CD-ROM or System Shock: Enhanced Edition assets are supported by this source lineage.</p></div>
+          <div class="content-card"><h3>Android storage</h3><p>The native Android entry point changes its working directory to <code>SDL_AndroidGetInternalStoragePath()</code>. The original relative resource paths therefore resolve from the application's private files area.</p></div>
+          <div class="content-card"><h3>Current import method</h3><p>The prepared developer helper uses a debug APK, ADB and Android <code>run-as</code> to copy your own <code>data</code> and <code>sound</code> directories into app-private storage. This is intentionally documented as a developer path, not disguised as a consumer-ready installer.</p></div>
+        </div>
+        <p class="note">A graphical game-data importer is an open release-engineering item. A normal signed consumer APK should let a game owner choose/import their own data through Android storage APIs without requiring ADB.</p>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <p class="section-kicker">04 / INSTALL &amp; TEST</p>
+        <h2>Debug installation path</h2>
+        <div class="content-grid">
+          <div class="content-card"><h3>Connect a device</h3><p>Enable USB debugging and make sure <code>adb get-state</code> reports a device. The current helper assumes a single connected target.</p></div>
+          <div class="content-card"><h3>Install + data</h3><p>Run <code>pwsh -File .\scripts\install-debug.ps1 -GameRes 'D:\Path\To\res'</code>. The helper installs the APK, imports your data into the debug application's private storage and launches the activity.</p></div>
+          <div class="content-card"><h3>Validate behavior</h3><p>Check menu/gameplay, 4:3 or Hor+ presentation, right-stick look/cursor toggle, touchscreen pointer behavior, Android text input and game audio. Record device/OS/controller details when reporting compatibility.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="section-kicker">05 / FRESH-CLONE GATE</p>
+        <h2>When I will call it independently reproducible</h2>
+        <p class="section-intro">The standard is deliberately stricter than “it builds on my machine.” A clean external path must be able to bootstrap dependencies, build, verify, install, import separately owned game data and reach validated gameplay without relying on my internal workspace or caches.</p>
+        <div class="table-wrap"><table class="spec-table"><tbody>
+          <tr><th>Source checkout</th><td>No dependency on the private development tree.</td></tr>
+          <tr><th>Dependency bootstrap</th><td>Public dependency versions/commits resolve and verify.</td></tr>
+          <tr><th>APK build</th><td>Expected debug APK exists and build process returns success.</td></tr>
+          <tr><th>APK semantic gate</th><td>ARM64 libraries present; commercial game data absent.</td></tr>
+          <tr><th>Device install</th><td>APK installs on a documented target.</td></tr>
+          <tr><th>Own-data import</th><td>Compatible data supplied independently by the tester.</td></tr>
+          <tr><th>Runtime QA</th><td>Display, input, text and audio tested separately from machine-only gates.</td></tr>
+        </tbody></table></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-wrap"><span>Miguel's Game Dev Lab</span><span class="legal">Unofficial development project. No proprietary System Shock game data is distributed by this site.</span></div></footer>
+</body>
+</html>
