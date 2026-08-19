@@ -11,7 +11,7 @@
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="../../../" aria-label="Miguel's Game Dev Lab home"><span class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a>
-      <nav aria-label="Primary navigation"><a href="../">Project</a><a href="../reproduce/">Reproduce</a><a href="../#references">References</a><a href="../../../#about">About</a></nav>
+      <nav aria-label="Primary navigation"><a href="../">Project</a><a href="../reproduce/">Reproduce</a><a href="../#feedback-contact">Feedback</a><a href="../#references">References</a><a href="../../../#contact">Contact</a></nav>
     </div>
   </header>
 
@@ -22,8 +22,8 @@
         <div class="project-meta project-meta-large"><span>OPEN KNOWLEDGE</span><span>PROBLEMS</span><span>DECISIONS</span><span>STANDARDS</span><span>LESSONS</span></div>
         <h1>Engineering knowledge base</h1>
         <p class="project-lede">I want the useful output of this port to be more than an APK. This page keeps the operational knowledge: what failed, what was observed, what caused it, what was changed, how it was validated and what should be reused - or avoided - in future ports.</p>
-        <div class="status-line"><span class="status-badge">LIVING DOCUMENT</span><span>Resolved and unresolved work remain visible</span><span>Last consolidated 19 August 2026</span></div>
-        <div class="hero-actions"><a class="button" href="#records">Knowledge records</a><a class="button button-secondary" href="#standards">Engineering standards</a><a class="button button-secondary" href="#open">Open concerns</a><a class="button button-secondary" href="../reproduce/">Reproduce the port</a></div>
+        <div class="status-line"><span class="status-badge">LIVING DOCUMENT</span><span>Resolved and unresolved work remain visible</span><span>Last consolidated 20 August 2026</span></div>
+        <div class="hero-actions"><a class="button" href="#records">Knowledge records</a><a class="button button-secondary" href="#standards">Engineering standards</a><a class="button button-secondary" href="#open">Open concerns</a><a class="button button-secondary" href="../reproduce/">Reproduce the port</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/issues/new/choose" target="_blank" rel="noopener noreferrer">Contribute feedback</a></div>
       </div>
     </section>
 
@@ -128,6 +128,17 @@
           <p><strong>Rule.</strong> The expected artifact must exist and pass semantic checks. APK QA should verify architecture/native libraries and commercial-data exclusion before installation. Runtime machine evidence must remain distinct from manual visual/audio/controller approval.</p>
           <p><strong>Reusable lesson.</strong> Validate the artifact and behavior you actually care about, not merely the process that was supposed to produce them.</p>
         </article>
+
+        <article class="project-card" id="kb-ss-011" style="margin-top:1rem">
+          <div class="project-meta"><span>KB-SS-011</span><span>RESOLVED</span><span>REPRODUCIBILITY</span></div>
+          <h3>A no-tags clone cannot assume a release tag is locally available</h3>
+          <p><strong>Context.</strong> The first independent dependency bootstrap from public source release v0.1.0-pre.1.</p>
+          <p><strong>Symptom.</strong> SDL cloned and pinned correctly, but SDL_mixer failed when the helper tried to check out <code>release-2.8.1</code>.</p>
+          <p><strong>Root cause.</strong> The helper cloned with <code>--no-tags</code> and then referenced a tag it had never explicitly fetched.</p>
+          <p><strong>Resolution.</strong> Test whether the requested ref resolves locally; explicitly fetch the matching tag when needed; pin SDL_mixer release-2.8.1 to commit <code>171eb2d420d5643e4ee11514a06e04a41a463bbd</code>.</p>
+          <p><strong>Validation.</strong> A targeted rerun passed, followed by a completely new v0.1.0-pre.2 clone with no existing dependency cache. SDL and SDL_mixer were downloaded from scratch and the bootstrap completed with <code>FRESH_PRE2_BOOTSTRAP=PASS</code>.</p>
+          <p><strong>Reusable lesson.</strong> Dependency pinning must verify that the pinned object is actually obtainable from a clean repository state.</p>
+        </article>
       </div>
     </section>
 
@@ -159,7 +170,7 @@
           <article class="metric-card"><span class="metric-label">OPEN-SS-003</span><strong>WORLD/STATIC HD</strong><p>The indexed renderer cannot represent bicubic RGB output exactly. Truecolor versus explicit quantization remains an architecture/quality decision.</p></article>
           <article class="metric-card"><span class="metric-label">OPEN-SS-004</span><strong>Font remaster</strong><p>The validated offline dump contains 36 fonts and 5,696 glyphs. Contour/vector candidates remain research until they pass identity, layout and readability gates.</p></article>
           <article class="metric-card"><span class="metric-label">OPEN-SS-005</span><strong>Public release identity</strong><p>Release signing/versioning and a stable public package identity need to replace internal development labels before a consumer release.</p></article>
-          <article class="metric-card"><span class="metric-label">OPEN-SS-006</span><strong>Independent fresh-clone proof</strong><p>The sanitized public source package is prepared, but it still needs a clean external build/install/data-import run before being labelled independently reproduced.</p></article>
+          <article class="metric-card"><span class="metric-label">OPEN-SS-006</span><strong>Independent fresh-clone proof</strong><p>v0.1.0-pre.2 source checkout and dependency bootstrap passed from a new clean path. APK build, semantic APK verification, device installation, separate data import and fresh RP5 runtime QA remain open.</p></article>
         </div>
       </div>
     </section>
@@ -180,6 +191,15 @@
           <tr><th>Reusable lesson</th><td>The rule future work should follow because of this evidence.</td></tr>
           <tr><th>References</th><td>Relevant source files, commits, external documentation and rejected experiments.</td></tr>
         </tbody></table></div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <p class="section-kicker">06 / CONTRIBUTE KNOWLEDGE</p>
+        <h2>External evidence is welcome</h2>
+        <p class="section-intro">If you reproduce a problem, test another Android device, find a documentation error or have a technical suggestion, use the structured public feedback forms. Useful external evidence can become part of this knowledge base.</p>
+        <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/system-shock-android/issues/new/choose" target="_blank" rel="noopener noreferrer">Open feedback forms</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/issues/new?template=compatibility_report.yml" target="_blank" rel="noopener noreferrer">Compatibility report</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/pulls" target="_blank" rel="noopener noreferrer">Contribute code or docs</a></div>
       </div>
     </section>
   </main>
