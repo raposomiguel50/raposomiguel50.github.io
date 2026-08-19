@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Open engineering knowledge base for the System Shock Android port: resolved problems, open concerns, standards, rejected experiments and reusable lessons.">
+  <title>System Shock Android Knowledge Base | Miguel's Game Dev Lab</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+</head>
+<body class="project-page">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../../" aria-label="Miguel's Game Dev Lab home"><span class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a>
+      <nav aria-label="Primary navigation"><a href="../">Project</a><a href="../reproduce/">Reproduce</a><a href="../#references">References</a><a href="../../../#about">About</a></nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <div class="container">
+        <p class="breadcrumbs"><a href="../">System Shock — Android</a> / Knowledge Base</p>
+        <div class="project-meta project-meta-large"><span>OPEN KNOWLEDGE</span><span>PROBLEMS</span><span>DECISIONS</span><span>STANDARDS</span><span>LESSONS</span></div>
+        <h1>Engineering knowledge base</h1>
+        <p class="project-lede">I want the useful output of this port to be more than an APK. This page keeps the operational knowledge: what failed, what was observed, what caused it, what was changed, how it was validated and what should be reused—or avoided—in future ports.</p>
+        <div class="status-line"><span class="status-badge">LIVING DOCUMENT</span><span>Resolved and unresolved work remain visible</span><span>Last consolidated 19 August 2026</span></div>
+        <div class="hero-actions"><a class="button" href="#records">Knowledge records</a><a class="button button-secondary" href="#standards">Engineering standards</a><a class="button button-secondary" href="#open">Open concerns</a><a class="button button-secondary" href="../reproduce/">Reproduce the port</a></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="section-kicker">01 / METHOD</p>
+        <h2>Knowledge as an engineering deliverable</h2>
+        <p class="section-intro">Each record follows an operational structure similar to a technical knowledge or communication cell: context, observation, impact, proven cause, resolution or workaround, validation and reusable lesson. Direct observation is kept separate from inference, and failed experiments are not rewritten out of the history.</p>
+        <div class="content-grid">
+          <div class="content-card"><h3>Evidence before narrative</h3><p>A machine pass, a screenshot, a real-device observation and a hypothesis are different kinds of evidence. They are recorded separately so one cannot silently replace another.</p></div>
+          <div class="content-card"><h3>Resolved does not mean forgotten</h3><p>A resolved problem remains useful if its root cause can prevent the same failure in another port. The record stays public instead of disappearing when the bug is closed.</p></div>
+          <div class="content-card"><h3>Rejected work is knowledge</h3><p>An experiment that fails a fidelity or architecture gate is preserved as a negative result. This prevents future work from repeating a superficially attractive approach that has already been disproven.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="records">
+      <div class="container">
+        <p class="section-kicker">02 / KNOWLEDGE RECORDS</p>
+        <h2>Resolved problems and reusable findings</h2>
+
+        <article class="project-card" id="kb-ss-001">
+          <div class="project-meta"><span>KB-SS-001</span><span>RESOLVED</span><span>POWERSHELL</span></div>
+          <h3>Case-insensitive variable collision corrupted Android launch automation</h3>
+          <p><strong>Context.</strong> A valid Android build reached the point where automation should launch the activity, but the component string became corrupted.</p>
+          <p><strong>Root cause.</strong> PowerShell variable names are case-insensitive. Two semantically different values had been named <code>$Activity</code> and <code>$activity</code>, so one overwrote the other.</p>
+          <p><strong>Resolution.</strong> Remove case-only variable distinctions and validate critical runners against automatic/reserved variables and casing collisions before mutation or execution.</p>
+          <p><strong>Reusable lesson.</strong> In PowerShell, casing is presentation rather than identity. Naming standards are a correctness control, not merely style.</p>
+        </article>
+
+        <article class="project-card" id="kb-ss-002" style="margin-top:1rem">
+          <div class="project-meta"><span>KB-SS-002</span><span>DIAGNOSTIC STANDARD</span><span>ANDROID LIFECYCLE</span></div>
+          <h3>Surface loss can be a platform/lifecycle problem rather than a renderer failure</h3>
+          <p><strong>Observation.</strong> During RP5 bring-up, Android/Retroid UI layers could take foreground focus around native startup and affect the SDL surface.</p>
+          <p><strong>Resolution.</strong> Treat Android focus, surface lifecycle, keyguard and OEM Game Assistant/notification overlays as a separate platform subsystem. Capture focus/surface evidence before redesigning rendering code.</p>
+          <p><strong>Reusable lesson.</strong> Prove ownership and lifecycle state at the platform boundary before attributing a visible failure to the renderer.</p>
+        </article>
+
+        <article class="project-card" id="kb-ss-003" style="margin-top:1rem">
+          <div class="project-meta"><span>KB-SS-003</span><span>RESOLVED</span><span>AUDIO</span></div>
+          <h3>One physical audio-device owner</h3>
+          <p><strong>Symptom.</strong> Intro/raw audio could be audible while SDL_mixer reported the audio device as already open, leaving gameplay mixer behavior ambiguous.</p>
+          <p><strong>Root cause.</strong> More than one subsystem could compete for physical audio-device ownership.</p>
+          <p><strong>Resolution.</strong> The stable Android architecture uses one SDL_mixer-owned physical device and routes music, SFX and auxiliary streams through mixer/postmix paths.</p>
+          <p><strong>Reusable lesson.</strong> Shared platform resources need one explicit owner. Parallel physical devices are not a substitute for proper mixing.</p>
+        </article>
+
+        <article class="project-card" id="kb-ss-004" style="margin-top:1rem">
+          <div class="project-meta"><span>KB-SS-004</span><span>RESOLVED</span><span>ANDROID IME</span></div>
+          <h3>Committed text is not a synthetic controller key</h3>
+          <p><strong>Problem.</strong> The original player-name editor assumes desktop keyboard input, while Android presents text through an IME.</p>
+          <p><strong>Resolution.</strong> Consume committed characters from <code>SDL_TEXTINPUT</code>; leave navigation/editing keys on the key-event path. The implementation also avoids logging the entered name itself.</p>
+          <p><strong>Reusable lesson.</strong> Text and key buttons are different input domains. Reconstructing IME text from fake key presses creates state and encoding problems.</p>
+        </article>
+
+        <article class="project-card" id="kb-ss-005" style="margin-top:1rem">
+          <div class="project-meta"><span>KB-SS-005</span><span>VALIDATED</span><span>CONTROLS</span></div>
+          <h3>Right stick must serve camera look and legacy pointer interaction</h3>
+          <p><strong>Problem.</strong> System Shock benefits from modern free-look controls but still depends on a mouse-oriented MFD/UI.</p>
+          <p><strong>Resolution.</strong> Right-stick camera look is the default. View/Select explicitly toggles the right stick into fine cursor mode and back. Touchscreen input remains an optional pointer path rather than a requirement.</p>
+          <p><strong>Reusable lesson.</strong> Preserve distinct gameplay and UI interaction models when a legacy interface genuinely needs both.</p>
+        </article>
+
+        <article class="project-card" id="kb-ss-006" style="margin-top:1rem">
+          <div class="project-meta"><span>KB-SS-006</span><span>RESOLVED</span><span>MUSIC CLOCK</span></div>
+          <h3>Do not replay scheduler lateness as fast music</h3>
+          <p><strong>Symptom.</strong> Gameplay music could transiently accelerate or lose layer timing after a host scheduling stall.</p>
+          <p><strong>Root cause.</strong> Overdue XMI events were able to drain rapidly against an absolute millisecond track clock.</p>
+          <p><strong>Resolution.</strong> Use SDL's monotonic high-resolution performance counter and, after abnormal lateness, shift the origins of all active XMI layers together instead of bursting overdue events.</p>
+          <p><strong>Validation.</strong> Gameplay-music manual QA passed after this policy.</p>
+          <p><strong>Reusable lesson.</strong> Real-time media clocks should preserve future intervals after stalls rather than “catch up” at maximum speed.</p>
+        </article>
+
+        <article class="project-card" id="kb-ss-007" style="margin-top:1rem">
+          <div class="project-meta"><span>KB-SS-007</span><span>VALIDATED BASELINE</span><span>WIDESCREEN</span></div>
+          <h3>Hor+ instead of stretching 4:3</h3>
+          <p><strong>Problem.</strong> Filling a 16:9 display must not horizontally distort the original scene and UI.</p>
+          <p><strong>Resolution.</strong> The 1366×768 Hor+ prototype widens world coverage while retaining a centered 1024×768 legacy UI safe area at x=171. The original 4:3 presentation remains independently reversible.</p>
+          <p><strong>Validation.</strong> Geometry, UI, input and 4:3 fallback passed RP5 QA.</p>
+          <p><strong>Reusable lesson.</strong> Preserve a known reference presentation and make widescreen reversible before optimizing it.</p>
+        </article>
+
+        <article class="project-card" id="kb-ss-008" style="margin-top:1rem">
+          <div class="project-meta"><span>KB-SS-008</span><span>PARTIAL / OPEN</span><span>HD ASSETS</span></div>
+          <h3>The remaster algorithm must fit the runtime color model</h3>
+          <p><strong>Finding.</strong> The Android game renderer remains indexed 8-bit software rendering. Scale4x on sprite/UI material can select existing source colors exactly, while bicubic WORLD/STATIC output creates intermediate RGB colors that require lossy palette quantization.</p>
+          <p><strong>Decision.</strong> Original resources remain authoritative. WORLD/STATIC HD is blocked until a truecolor-versus-quantized path is explicitly evaluated. A sprite/UI runtime experiment was also rejected after manual quality QA and is not part of the canonical baseline.</p>
+          <p><strong>Reusable lesson.</strong> Offline image quality is insufficient evidence if the runtime renderer cannot represent the result faithfully.</p>
+        </article>
+
+        <article class="project-card" id="kb-ss-009" style="margin-top:1rem">
+          <div class="project-meta"><span>KB-SS-009</span><span>RESOLVED RULE</span><span>RESOURCE IDENTITY</span></div>
+          <h3>A resource ID is only unique inside the scope where uniqueness was proven</h3>
+          <p><strong>Problem.</strong> Compound references can collide across separate System Shock resource namespaces. The same class of issue appears in font analysis when resource IDs are considered without the source resource file.</p>
+          <p><strong>Resolution.</strong> Use composite identity: relevant resource namespace/file plus reference or ID, and where necessary geometry/type/flags. Ambiguous runtime matches fall back to the original resource.</p>
+          <p><strong>Reusable lesson.</strong> Never promote a convenient identifier to a global primary key without testing its uniqueness domain.</p>
+        </article>
+
+        <article class="project-card" id="kb-ss-010" style="margin-top:1rem">
+          <div class="project-meta"><span>KB-SS-010</span><span>STANDARD</span><span>VALIDATION</span></div>
+          <h3>A zero exit code is not a build-quality gate</h3>
+          <p><strong>Rule.</strong> The expected artifact must exist and pass semantic checks. APK QA should verify architecture/native libraries and commercial-data exclusion before installation. Runtime machine evidence must remain distinct from manual visual/audio/controller approval.</p>
+          <p><strong>Reusable lesson.</strong> Validate the artifact and behavior you actually care about, not merely the process that was supposed to produce them.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="standards">
+      <div class="container">
+        <p class="section-kicker">03 / ENGINEERING STANDARDS</p>
+        <h2>Rules promoted from experience</h2>
+        <div class="content-grid">
+          <div class="content-card"><h3>Platform ownership</h3><p>Android physical surface is platform-owned; logical render size is engine-owned. Treat OEM overlays/lifecycle as platform evidence before renderer diagnosis.</p></div>
+          <div class="content-card"><h3>Reversibility</h3><p>Keep a known-good baseline. Widescreen, HD and other experiments should be independently disableable until they pass their own quality gates.</p></div>
+          <div class="content-card"><h3>Controller semantics</h3><p>Map SDL GameController actions rather than raw Android/Linux event codes, and document any action whose semantics differ from the original engine.</p></div>
+          <div class="content-card"><h3>Text-input separation</h3><p>Committed text belongs on <code>SDL_TEXTINPUT</code>; navigation/editing keys stay on key events. Do not log personally entered text when diagnostic counts are sufficient.</p></div>
+          <div class="content-card"><h3>Single audio owner</h3><p>One physical mixer device owns the platform audio endpoint; subsystems mix through it instead of opening competing devices.</p></div>
+          <div class="content-card"><h3>Source and asset boundary</h3><p>Redistributable code and user-owned commercial data remain separate. Source archives, APKs and public knowledge must not silently absorb proprietary resources.</p></div>
+          <div class="content-card"><h3>Build evidence</h3><p>Pin source baselines, validate scripts before mutation, verify produced artifacts semantically and keep generated build trees out of controlled source.</p></div>
+          <div class="content-card"><h3>Target evidence</h3><p>Real-device measurements and manual QA are authoritative for target-specific behavior. Host simulation cannot certify physical-device presentation or controls.</p></div>
+          <div class="content-card"><h3>Negative knowledge</h3><p>Rejected experiments remain documented with the reason for rejection, so future work starts from accumulated evidence rather than repeating history.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="open">
+      <div class="container">
+        <p class="section-kicker">04 / OPEN CONCERNS</p>
+        <h2>Problems not hidden by the working baseline</h2>
+        <div class="project-grid">
+          <article class="metric-card"><span class="metric-label">OPEN-SS-001</span><strong>End-user data importer</strong><p>The current reproducible developer workflow uses debug APK + ADB + <code>run-as</code>. A normal public release still needs a user-facing Android import flow for separately owned game data.</p></article>
+          <article class="metric-card"><span class="metric-label">OPEN-SS-002</span><strong>Broad Android compatibility</strong><p>RP5 is the validated reference target. Other Android handhelds may differ in controller maps, lifecycle/OEM overlays and display behavior.</p></article>
+          <article class="metric-card"><span class="metric-label">OPEN-SS-003</span><strong>WORLD/STATIC HD</strong><p>The indexed renderer cannot represent bicubic RGB output exactly. Truecolor versus explicit quantization remains an architecture/quality decision.</p></article>
+          <article class="metric-card"><span class="metric-label">OPEN-SS-004</span><strong>Font remaster</strong><p>The validated offline dump contains 36 fonts and 5,696 glyphs. Contour/vector candidates remain research until they pass identity, layout and readability gates.</p></article>
+          <article class="metric-card"><span class="metric-label">OPEN-SS-005</span><strong>Public release identity</strong><p>Release signing/versioning and a stable public package identity need to replace internal development labels before a consumer release.</p></article>
+          <article class="metric-card"><span class="metric-label">OPEN-SS-006</span><strong>Independent fresh-clone proof</strong><p>The sanitized public source package is prepared, but it still needs a clean external build/install/data-import run before being labelled independently reproduced.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container narrow-wide">
+        <p class="section-kicker">05 / TEMPLATE</p>
+        <h2>Future knowledge-record format</h2>
+        <div class="table-wrap"><table class="spec-table"><tbody>
+          <tr><th>Status</th><td>Open · Monitoring · Workaround · Resolved · Rejected · Standard</td></tr>
+          <tr><th>Environment</th><td>Device, OS, source baseline and dependency versions relevant to the observation.</td></tr>
+          <tr><th>Context</th><td>What was being attempted and why.</td></tr>
+          <tr><th>Observation</th><td>What was actually seen or measured, without silently converting inference into fact.</td></tr>
+          <tr><th>Impact</th><td>What the problem blocks, degrades or puts at risk.</td></tr>
+          <tr><th>Root cause</th><td>Only proven cause; otherwise explicitly “Unknown” with hypotheses kept separate.</td></tr>
+          <tr><th>Resolution / workaround</th><td>Change, decision or safe temporary path.</td></tr>
+          <tr><th>Validation</th><td>Machine gates and manual target QA recorded separately.</td></tr>
+          <tr><th>Reusable lesson</th><td>The rule future work should follow because of this evidence.</td></tr>
+          <tr><th>References</th><td>Relevant source files, commits, external documentation and rejected experiments.</td></tr>
+        </tbody></table></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-wrap"><span>Miguel's Game Dev Lab</span><span class="legal">Open engineering notes from an unofficial development project. Commercial System Shock game data is not distributed.</span></div></footer>
+</body>
+</html>
