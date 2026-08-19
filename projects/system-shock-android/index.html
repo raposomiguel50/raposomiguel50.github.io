@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="System Shock Android — a native Android/ARM64 port based on Shockolate, developed and tested with the Retroid Pocket 5 as the primary reference device.">
+  <title>System Shock — Android | Miguel's Game Dev Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body class="project-page">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../" aria-label="Miguel's Game Dev Lab home">
+        <span class="brand-mark">M&gt;</span>
+        <span>Miguel's Game Dev Lab</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="../../#home">Home</a>
+        <a href="../../#projects">Projects</a>
+        <a href="../../#platforms">Platforms</a>
+        <a href="../../#dev-notes">Dev Notes</a>
+        <a href="../../#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <div class="container">
+        <p class="breadcrumbs"><a href="../../#projects">Projects</a> / System Shock — Android</p>
+        <div class="project-meta project-meta-large">
+          <span>PORT</span>
+          <span>ANDROID</span>
+          <span>ARM64</span>
+          <span>RETROID POCKET 5</span>
+          <span>BETA</span>
+        </div>
+        <h1>System Shock — Android</h1>
+        <p class="project-lede">
+          A native Android/ARM64 adaptation of <a class="inline-link" href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer">Shockolate</a>,
+          developed around the Retroid Pocket 5 as the primary reference device. The goal is to preserve the structure and feel of the 1994 game while making its desktop-era presentation, input and audio systems work naturally on a modern Android handheld.
+        </p>
+        <div class="status-line" aria-label="Project status">
+          <span class="status-badge">ACTIVE DEVELOPMENT</span>
+          <span>Canonical internal baseline: P2.0B + P2.0A Hor+</span>
+          <span>Updated 19 August 2026</span>
+        </div>
+        <div class="hero-actions">
+          <a class="button" href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer">Shockolate upstream</a>
+          <a class="button button-secondary" href="https://github.com/Interrupt/systemshock/commit/4cc3d07dfff2d11b6d3a0a9960a51cf4ca253690" target="_blank" rel="noopener noreferrer">Baseline commit</a>
+          <a class="button button-secondary" href="#references">References</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="section-kicker">01 / OVERVIEW</p>
+        <h2>What this port is</h2>
+        <div class="content-grid">
+          <div class="content-card">
+            <h3>Source-port foundation</h3>
+            <p>
+              The port uses <strong>Shockolate</strong> as its code foundation. Shockolate is a cross-platform System Shock source port built around SDL2 and itself traces back to source released by Nightdive Studios. The Android work is based on upstream commit <code>4cc3d07dfff2d11b6d3a0a9960a51cf4ca253690</code>.
+            </p>
+          </div>
+          <div class="content-card">
+            <h3>Hardware-led development</h3>
+            <p>
+              The Retroid Pocket 5 is treated as a real target rather than a generic Android endpoint. Display behavior, controller routing, Android lifecycle, audio timing, text input and widescreen presentation are validated against the handheld itself.
+            </p>
+          </div>
+          <div class="content-card">
+            <h3>Commercial data stays external</h3>
+            <p>
+              No proprietary System Shock game data is stored in the public project, handovers or distributable packages. Development uses legally obtained game data supplied separately by the user; future public builds will follow the same separation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <p class="section-kicker">02 / CURRENT STATE</p>
+        <h2>Implemented and validated</h2>
+        <div class="project-grid">
+          <article class="metric-card">
+            <span class="metric-label">PLATFORM</span>
+            <strong>Android / ARM64</strong>
+            <p>Native C/C++ game code packaged through the Android toolchain rather than desktop emulation.</p>
+          </article>
+          <article class="metric-card">
+            <span class="metric-label">DISPLAY</span>
+            <strong>4:3 + Hor+</strong>
+            <p>Original 1024×768 logical presentation retained as a no-stretch baseline, with a validated 1366×768 Hor+ mode and centered 1024×768 UI safe area.</p>
+          </article>
+          <article class="metric-card">
+            <span class="metric-label">INPUT</span>
+            <strong>Handheld-first controls</strong>
+            <p>Right-stick camera look is the default. A View/Select toggle switches the right stick into fine cursor mode for the original interface.</p>
+          </article>
+          <article class="metric-card">
+            <span class="metric-label">AUDIO</span>
+            <strong>SDL_mixer + ADLMIDI</strong>
+            <p>A single mixer device handles game audio, while the music scheduler has been adjusted to avoid catch-up bursts after host stalls.</p>
+          </article>
+          <article class="metric-card">
+            <span class="metric-label">TEXT ENTRY</span>
+            <strong>Android IME</strong>
+            <p>The Android on-screen keyboard is integrated for player names and other text-entry paths that were designed around a desktop keyboard.</p>
+          </article>
+          <article class="metric-card">
+            <span class="metric-label">STATUS</span>
+            <strong>Beta / active R&amp;D</strong>
+            <p>The core port is playable; graphics and font remaster work remains research-driven and is not treated as complete until it passes fidelity gates.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="section-kicker">03 / CONTROLS</p>
+        <h2>Desktop interaction translated to a handheld</h2>
+        <p class="section-intro">
+          System Shock combines free-look movement with a mouse-driven interface. The port therefore keeps both interaction models available instead of forcing one control scheme to do everything.
+        </p>
+        <div class="table-wrap">
+          <table class="spec-table">
+            <thead>
+              <tr>
+                <th>Input</th>
+                <th>Default behavior</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Left stick</td>
+                <td>Player movement.</td>
+              </tr>
+              <tr>
+                <td>Right stick</td>
+                <td>Camera rotation / look by default.</td>
+              </tr>
+              <tr>
+                <td>View / Select</td>
+                <td>Toggles the right stick between camera-look and fine cursor/mouse mode.</td>
+              </tr>
+              <tr>
+                <td>L2</td>
+                <td>Left-mouse style selection, interaction and drag behavior for the original UI.</td>
+              </tr>
+              <tr>
+                <td>R2</td>
+                <td>Right-mouse path used by the original control model.</td>
+              </tr>
+              <tr>
+                <td>Touchscreen</td>
+                <td>Optional pointer-style interaction; it can be used as a mouse rather than being mandatory.</td>
+              </tr>
+              <tr>
+                <td>Android keyboard</td>
+                <td>Text entry for player names and other keyboard-oriented fields.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">
+          SDL's Android layer supports touch input and synthetic mouse behavior, which provides a useful bridge for software whose original interface assumes a mouse. See the SDL Android documentation in the references below.
+        </p>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <p class="section-kicker">04 / PRESENTATION</p>
+        <h2>Preserve first, extend second</h2>
+        <div class="content-grid">
+          <div class="content-card">
+            <h3>4:3 baseline</h3>
+            <p>
+              The original game rendering remains logically 1024×768. On Android, the physical display surface is kept platform-owned while the game is presented without non-uniform stretching.
+            </p>
+          </div>
+          <div class="content-card">
+            <h3>Hor+ widescreen</h3>
+            <p>
+              A 1366×768 logical mode expands the world horizontally while retaining a centered 1024×768 safe area for the original UI. The 4:3 mode remains available as a reversible fallback.
+            </p>
+          </div>
+          <div class="content-card">
+            <h3>HD research</h3>
+            <p>
+              Private extraction tooling has catalogued 8,870 supported image frames. Indexed sprite/UI scaling can remain exact, but world/static imagery requires more careful reconstruction than a simple upscale or late overlay.
+            </p>
+          </div>
+          <div class="content-card">
+            <h3>Font reconstruction</h3>
+            <p>
+              The current research focus is an offline remaster of the original font resources. The validated dataset contains 36 fonts and 5,696 glyphs; contour/vector candidates are being evaluated before any runtime integration.
+            </p>
+          </div>
+        </div>
+        <p class="note">
+          Several experimental HD/font approaches have deliberately been rejected. They remain research history, not the shipping baseline. A visual change is not promoted simply because it is sharper; it must preserve layout, readability and original asset identity.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="section-kicker">05 / TECHNICAL STACK</p>
+        <h2>Build and runtime foundation</h2>
+        <div class="table-wrap">
+          <table class="spec-table">
+            <tbody>
+              <tr>
+                <th>Game/source-port base</th>
+                <td>Shockolate 0.7.8 lineage, upstream baseline commit <a class="inline-link" href="https://github.com/Interrupt/systemshock/commit/4cc3d07dfff2d11b6d3a0a9960a51cf4ca253690" target="_blank" rel="noopener noreferrer"><code>4cc3d07…</code></a>.</td>
+              </tr>
+              <tr>
+                <th>Primary languages</th>
+                <td>C/C++ game code with Java/JNI Android integration.</td>
+              </tr>
+              <tr>
+                <th>SDL</th>
+                <td>SDL 2.32.10, release commit <a class="inline-link" href="https://github.com/libsdl-org/SDL/commit/5d249570393f7a37e037abf22cd6012a4cc56a71" target="_blank" rel="noopener noreferrer"><code>5d249570…</code></a>.</td>
+              </tr>
+              <tr>
+                <th>Audio</th>
+                <td>SDL_mixer 2.8.1 plus Shockolate's ADLMIDI/OPL3 path.</td>
+              </tr>
+              <tr>
+                <th>Android build</th>
+                <td>Android SDK/NDK, Gradle 8.1.1, CMake/ndk-build integration and JDK 17.</td>
+              </tr>
+              <tr>
+                <th>Reference hardware</th>
+                <td>Retroid Pocket 5 — Android 13, Adreno 650, 8 GB RAM, 5.5-inch 1080p/60 Hz AMOLED according to Retroid's product specification.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <p class="section-kicker">06 / RELEASE &amp; LICENSING</p>
+        <h2>Open code, separate game data</h2>
+        <div class="content-grid">
+          <div class="content-card">
+            <h3>Port status</h3>
+            <p>
+              No public APK is published from this page yet. Development is still active and current work is focused on presentation fidelity rather than declaring a final release prematurely.
+            </p>
+          </div>
+          <div class="content-card">
+            <h3>Source licensing</h3>
+            <p>
+              Shockolate is distributed under the GNU GPL v3.0. Any public distribution of this derivative work will preserve the applicable upstream and third-party license obligations.
+            </p>
+          </div>
+          <div class="content-card">
+            <h3>Game ownership</h3>
+            <p>
+              The project does not provide System Shock's proprietary resources. A legally obtained copy of compatible game data is required separately. The development copy used for testing is external to the source tree and handover packages.
+            </p>
+          </div>
+        </div>
+        <p class="legal-box">
+          This is an independent, unofficial development project. System Shock, its assets and associated trademarks belong to their respective rights holders. Miguel's Game Dev Lab is not affiliated with or endorsed by Looking Glass Studios, Nightdive Studios, Atari, GOG, Retroid, Google or the SDL project.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="references">
+      <div class="container narrow-wide">
+        <p class="section-kicker">07 / REFERENCES</p>
+        <h2>Sources and acknowledgements</h2>
+        <p class="section-intro">
+          References are formatted in APA style as closely as practical for software repositories, source-code commits, product pages and continuously updated technical documentation. Author and source links are included where an authoritative public page is available.
+        </p>
+        <ol class="reference-list">
+          <li>
+            <a href="https://github.com/Interrupt" target="_blank" rel="noopener noreferrer">Interrupt</a>. (2025). <a href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer"><em>Shockolate: A minimalist and cross-platform System Shock source port</em></a> [Computer software]. GitHub.
+          </li>
+          <li>
+            <a href="https://github.com/Interrupt" target="_blank" rel="noopener noreferrer">Cuddigan, C. [Interrupt]</a>. (2025, October 1). <a href="https://github.com/Interrupt/systemshock/commit/4cc3d07dfff2d11b6d3a0a9960a51cf4ca253690" target="_blank" rel="noopener noreferrer"><em>Fix building with gcc14</em></a> [Git commit, 4cc3d07dfff2d11b6d3a0a9960a51cf4ca253690]. <em>Interrupt/systemshock</em>. GitHub.
+          </li>
+          <li>
+            <a href="https://nightdivestudios.com/about/" target="_blank" rel="noopener noreferrer">Nightdive Studios</a>. (n.d.). <a href="https://nightdivestudios.com/system-shock-enhanced-edition/" target="_blank" rel="noopener noreferrer"><em>System Shock: Enhanced Edition</em></a>.
+          </li>
+          <li>
+            Looking Glass Studios. (1994). <a href="https://www.gog.com/en/game/system_shock_enhanced_edition" target="_blank" rel="noopener noreferrer"><em>System Shock</em></a> [Video game]. Origin Systems. Digital edition and product information available through GOG.com.
+          </li>
+          <li>
+            <a href="https://github.com/libsdl-org" target="_blank" rel="noopener noreferrer">SDL contributors</a>. (n.d.). <a href="https://wiki.libsdl.org/SDL2/README-android" target="_blank" rel="noopener noreferrer"><em>SDL2 README: Android</em></a>. SDL Wiki.
+          </li>
+          <li>
+            <a href="https://github.com/slouken" target="_blank" rel="noopener noreferrer">Lantinga, S.</a> (2025, September 1). <a href="https://github.com/libsdl-org/SDL/commit/5d249570393f7a37e037abf22cd6012a4cc56a71" target="_blank" rel="noopener noreferrer"><em>Updated to version 2.32.10 for release</em></a> [Git commit]. <em>libsdl-org/SDL</em>. GitHub.
+          </li>
+          <li>
+            <a href="https://github.com/slouken" target="_blank" rel="noopener noreferrer">Lantinga, S.</a> (2025, February 7). <a href="https://github.com/libsdl-org/SDL_mixer/releases/tag/release-2.8.1" target="_blank" rel="noopener noreferrer"><em>SDL_mixer 2.8.1</em></a> [Computer software release]. GitHub.
+          </li>
+          <li>
+            <a href="https://github.com/Wohlstand" target="_blank" rel="noopener noreferrer">Novichkov, V.</a>, &amp; <a href="https://bisqwit.iki.fi/" target="_blank" rel="noopener noreferrer">Yliluoma, J.</a> (n.d.). <a href="https://github.com/Wohlstand/libADLMIDI" target="_blank" rel="noopener noreferrer"><em>libADLMIDI: A software MIDI synthesizer library with OPL3 emulation</em></a> [Computer software]. GitHub.
+          </li>
+          <li>
+            <a href="https://developer.android.com/" target="_blank" rel="noopener noreferrer">Android Developers</a>. (2026, March 6). <a href="https://developer.android.com/ndk/guides/" target="_blank" rel="noopener noreferrer"><em>Get started with the NDK</em></a>. Google.
+          </li>
+          <li>
+            <a href="https://www.goretroid.com/" target="_blank" rel="noopener noreferrer">Retroid</a>. (n.d.). <a href="https://www.goretroid.com/products/retroid-pocket-5" target="_blank" rel="noopener noreferrer"><em>Retroid Pocket 5</em></a> [Product specifications].
+          </li>
+          <li>
+            <a href="https://www.fsf.org/" target="_blank" rel="noopener noreferrer">Free Software Foundation</a>. (2007, June 29). <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank" rel="noopener noreferrer"><em>GNU General Public License, version 3</em></a>. GNU Project.
+          </li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-wrap">
+      <span>Miguel's Game Dev Lab</span>
+      <span class="legal">Unofficial development projects. No proprietary game data is distributed by this site.</span>
+    </div>
+  </footer>
+</body>
+</html>
