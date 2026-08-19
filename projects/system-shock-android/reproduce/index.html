@@ -11,7 +11,7 @@
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="../../../" aria-label="Miguel's Game Dev Lab home"><span class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a>
-      <nav aria-label="Primary navigation"><a href="../">Project</a><a href="../knowledge/">Knowledge Base</a><a href="../#references">References</a><a href="../../../#about">About</a></nav>
+      <nav aria-label="Primary navigation"><a href="../">Project</a><a href="../knowledge/">Knowledge Base</a><a href="../#feedback-contact">Feedback</a><a href="../#references">References</a><a href="../../../#contact">Contact</a></nav>
     </div>
   </header>
 
@@ -22,8 +22,8 @@
         <div class="project-meta project-meta-large"><span>REPRODUCTION</span><span>WINDOWS</span><span>POWERSHELL 7</span><span>ANDROID / ARM64</span></div>
         <h1>Build it yourself</h1>
         <p class="project-lede">The public-development goal is not only to show that the port runs on my hardware. The source, dependency baselines, build steps, proprietary-data boundary and validation criteria are being documented so another person can reproduce the work without access to my private development workspace.</p>
-        <div class="status-line"><span class="status-badge">PUBLIC SOURCE AVAILABLE</span><span>Release: v0.1.0-pre.1</span><span>Fresh-clone independent verification: pending</span><span>Reference target: Retroid Pocket 5</span></div>
-        <div class="hero-actions"><a class="button" href="#build">Build steps</a><a class="button button-secondary" href="#game-data">Supply game data</a><a class="button button-secondary" href="../knowledge/">Engineering knowledge</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">Source repository</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.1" target="_blank" rel="noopener noreferrer">Latest release</a></div>
+        <div class="status-line"><span class="status-badge">PUBLIC SOURCE AVAILABLE</span><span>Release: v0.1.0-pre.2</span><span>Fresh source checkout: PASS</span><span>Fresh dependency bootstrap: PASS</span><span>APK build gate: pending</span><span>Reference target: Retroid Pocket 5</span></div>
+        <div class="hero-actions"><a class="button" href="#build">Build steps</a><a class="button button-secondary" href="#game-data">Supply game data</a><a class="button button-secondary" href="../knowledge/">Engineering knowledge</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">Source repository</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.2" target="_blank" rel="noopener noreferrer">Latest release</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/issues/new/choose" target="_blank" rel="noopener noreferrer">Feedback</a></div>
       </div>
     </section>
 
@@ -32,11 +32,11 @@
         <p class="section-kicker">01 / REPRODUCIBILITY STATUS</p>
         <h2>What is public, and what is not</h2>
         <div class="content-grid">
-          <div class="content-card"><h3>Redistributable source</h3><p>The sanitized public source tree is now published at <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">raposomiguel50/system-shock-android</a>. The first source preview is tagged <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.1" target="_blank" rel="noopener noreferrer">v0.1.0-pre.1</a>. It contains the Android project, the modified Shockolate source snapshot, licenses, provenance, build helpers and open knowledge documentation.</p></div>
+          <div class="content-card"><h3>Redistributable source</h3><p>The sanitized public source tree is published at <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">raposomiguel50/system-shock-android</a>. The corrected source preview is tagged <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.2" target="_blank" rel="noopener noreferrer">v0.1.0-pre.2</a>. It contains the Android project, modified Shockolate source snapshot, licenses, provenance, build helpers and open knowledge documentation.</p></div>
           <div class="content-card"><h3>Game data</h3><p>You must supply your own compatible System Shock resources from a legally obtained copy. The public source deliberately excludes <code>res/data</code>, <code>res/sound</code> and proprietary <code>.res</code> content.</p></div>
-          <div class="content-card"><h3>Evidence boundary</h3><p>The current code has been validated on the Retroid Pocket 5 during development. The public package still needs a clean-clone build performed independently of the private workspace before I describe it as independently reproduced.</p></div>
+          <div class="content-card"><h3>Evidence boundary</h3><p>A completely new clone of v0.1.0-pre.2 and a from-scratch dependency bootstrap have passed on Windows 11 / PowerShell 7.6.4. APK build, semantic verification, device installation, separate game-data import and fresh RP5 runtime QA remain pending.</p></div>
         </div>
-        <p class="note">The public repository and source pre-release are now available. This is still a source preview rather than a consumer-ready Android release: no APK is being presented as validated until the fresh-clone build, installation, separate game-data import and RP5 runtime checks pass.</p>
+        <p class="note">v0.1.0-pre.1 remains historical evidence of the SDL_mixer tag-bootstrap defect found by the first clean-clone attempt. v0.1.0-pre.2 contains the corrected helper and passed a new clean dependency bootstrap.</p>
       </div>
     </section>
 
@@ -44,13 +44,13 @@
       <div class="container">
         <p class="section-kicker">02 / BUILD</p>
         <h2>Windows / PowerShell 7 build path</h2>
-        <p class="section-intro">Clone the <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">public repository</a> or download the <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/archive/refs/tags/v0.1.0-pre.1.zip">v0.1.0-pre.1 source ZIP</a>. The public tree removes dependencies on the private development workspace and provides portable helpers for public dependencies and build.</p>
+        <p class="section-intro">Clone the <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">public repository</a> or download the <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/archive/refs/tags/v0.1.0-pre.2.zip">v0.1.0-pre.2 source ZIP</a>. The public tree removes dependencies on the private development workspace and provides portable helpers for public dependencies and build.</p>
         <div class="table-wrap">
           <table class="spec-table"><tbody>
-            <tr><th>Public source release</th><td><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.1" target="_blank" rel="noopener noreferrer"><code>v0.1.0-pre.1</code></a></td></tr>
+            <tr><th>Public source release</th><td><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.2" target="_blank" rel="noopener noreferrer"><code>v0.1.0-pre.2</code></a></td></tr>
             <tr><th>Shockolate baseline</th><td><a class="inline-link" href="https://github.com/Interrupt/systemshock/commit/4cc3d07dfff2d11b6d3a0a9960a51cf4ca253690" target="_blank" rel="noopener noreferrer"><code>4cc3d07dfff2d11b6d3a0a9960a51cf4ca253690</code></a></td></tr>
             <tr><th>SDL</th><td>2.32.10 - <a class="inline-link" href="https://github.com/libsdl-org/SDL/commit/5d249570393f7a37e037abf22cd6012a4cc56a71" target="_blank" rel="noopener noreferrer"><code>5d249570393f7a37e037abf22cd6012a4cc56a71</code></a></td></tr>
-            <tr><th>SDL_mixer</th><td>2.8.1</td></tr>
+            <tr><th>SDL_mixer</th><td>2.8.1 - <a class="inline-link" href="https://github.com/libsdl-org/SDL_mixer/commit/171eb2d420d5643e4ee11514a06e04a41a463bbd" target="_blank" rel="noopener noreferrer"><code>171eb2d420d5643e4ee11514a06e04a41a463bbd</code></a></td></tr>
             <tr><th>JDK</th><td>17</td></tr>
             <tr><th>Gradle</th><td>8.1.1 via the included wrapper</td></tr>
             <tr><th>Android SDK</th><td>Platform 34 + Build Tools 34.0.0</td></tr>
@@ -60,8 +60,8 @@
           </tbody></table>
         </div>
         <div class="content-grid">
-          <div class="content-card"><h3>1. Get the source</h3><p>Clone <code>https://github.com/raposomiguel50/system-shock-android.git</code> or download the tagged source ZIP above. For the first public reproduction test, use the exact <code>v0.1.0-pre.1</code> tag so the source being tested does not change during validation.</p></div>
-          <div class="content-card"><h3>2. Bootstrap dependencies</h3><p>From the public-source root, run <code>pwsh -File .\scripts\bootstrap-deps.ps1</code>. The helper obtains the pinned SDL source and official SDL_mixer 2.8.1 source into the ignored <code>.deps</code> directory.</p></div>
+          <div class="content-card"><h3>1. Get the source</h3><p>Clone <code>https://github.com/raposomiguel50/system-shock-android.git</code> or download the tagged source ZIP above. Use the exact <code>v0.1.0-pre.2</code> tag when reproducing this public preview.</p></div>
+          <div class="content-card"><h3>2. Bootstrap dependencies</h3><p>From the public-source root, run <code>pwsh -File .\scripts\bootstrap-deps.ps1</code>. The helper obtains SDL at the pinned 2.32.10 commit and SDL_mixer release-2.8.1 at its validated commit into the ignored <code>.deps</code> directory. This step has passed from a new clean path.</p></div>
           <div class="content-card"><h3>3. Build</h3><p>Run <code>pwsh -File .\scripts\build.ps1</code>. If the Android SDK is not in the normal Windows location, pass <code>-AndroidSdk</code>. The expected artifact is <code>AndroidProject\app\build\outputs\apk\debug\app-debug.apk</code>.</p></div>
           <div class="content-card"><h3>4. Verify</h3><p>Run <code>pwsh -File .\scripts\verify-apk.ps1</code>. The verifier checks the expected ARM64 native libraries and rejects obvious System Shock commercial resource data inside the APK.</p></div>
         </div>
@@ -100,14 +100,23 @@
         <h2>When I will call it independently reproducible</h2>
         <p class="section-intro">The standard is deliberately stricter than “it builds on my machine.” A clean external path must be able to bootstrap dependencies, build, verify, install, import separately owned game data and reach validated gameplay without relying on my internal workspace or caches.</p>
         <div class="table-wrap"><table class="spec-table"><tbody>
-          <tr><th>Source checkout</th><td>No dependency on the private development tree.</td></tr>
-          <tr><th>Dependency bootstrap</th><td>Public dependency versions/commits resolve and verify.</td></tr>
-          <tr><th>APK build</th><td>Expected debug APK exists and build process returns success.</td></tr>
-          <tr><th>APK semantic gate</th><td>ARM64 libraries present; commercial game data absent.</td></tr>
-          <tr><th>Device install</th><td>APK installs on a documented target.</td></tr>
-          <tr><th>Own-data import</th><td>Compatible data supplied independently by the tester.</td></tr>
-          <tr><th>Runtime QA</th><td>Display, input, text and audio tested separately from machine-only gates.</td></tr>
+          <tr><th>Source checkout</th><td><strong>PASS on v0.1.0-pre.2.</strong> New path, exact tagged commit.</td></tr>
+          <tr><th>Dependency bootstrap</th><td><strong>PASS on v0.1.0-pre.2.</strong> SDL and SDL_mixer downloaded from scratch and verified to pinned commits.</td></tr>
+          <tr><th>APK build</th><td>Pending. Expected debug APK must exist and build process must return success.</td></tr>
+          <tr><th>APK semantic gate</th><td>Pending. ARM64 libraries present; commercial game data absent.</td></tr>
+          <tr><th>Device install</th><td>Pending fresh-clone test on a documented target.</td></tr>
+          <tr><th>Own-data import</th><td>Pending fresh-clone test with compatible data supplied independently.</td></tr>
+          <tr><th>Runtime QA</th><td>Pending fresh-clone target QA for display, input, text and audio.</td></tr>
         </tbody></table></div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <p class="section-kicker">06 / FEEDBACK</p>
+        <h2>Report what you find</h2>
+        <p class="section-intro">External reproduction results are useful even when everything works. Use the structured GitHub forms for bugs, suggestions, compatibility reports, documentation corrections or general questions.</p>
+        <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/system-shock-android/issues/new/choose" target="_blank" rel="noopener noreferrer">Open feedback forms</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/issues/new?template=compatibility_report.yml" target="_blank" rel="noopener noreferrer">Compatibility report</a><a class="button button-secondary" href="../#feedback-contact">All feedback options</a></div>
       </div>
     </section>
   </main>
