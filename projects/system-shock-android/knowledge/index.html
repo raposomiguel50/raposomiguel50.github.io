@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Engineering knowledge from porting System Shock to Android: SDL, ARM64, controls, audio, Hor+ widescreen, reproducible builds, failures, fixes and reusable lessons.">
+  <meta name="description" content="Engineering knowledge from porting System Shock to Android: SDL, ARM64, controls, audio, 4:3 presentation, reproducible builds, failures, fixes and reusable lessons.">
   <title>System Shock Android Port - Engineering Knowledge | Miguel's Game Dev Lab</title>
   <!-- SEO metadata -->
   <link rel="canonical" href="https://raposomiguel50.github.io/projects/system-shock-android/knowledge/">
@@ -11,11 +11,11 @@
   <meta property="og:site_name" content="Miguel's Game Dev Lab">
   <meta property="og:type" content="article">
   <meta property="og:title" content="System Shock Android Port - Engineering Knowledge | Miguel's Game Dev Lab">
-  <meta property="og:description" content="Engineering knowledge from porting System Shock to Android: SDL, ARM64, controls, audio, Hor+ widescreen, reproducible builds, failures, fixes and reusable lessons.">
+  <meta property="og:description" content="Engineering knowledge from porting System Shock to Android: SDL, ARM64, controls, audio, 4:3 presentation, reproducible builds, failures, fixes and reusable lessons.">
   <meta property="og:url" content="https://raposomiguel50.github.io/projects/system-shock-android/knowledge/">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="System Shock Android Port - Engineering Knowledge | Miguel's Game Dev Lab">
-  <meta name="twitter:description" content="Engineering knowledge from porting System Shock to Android: SDL, ARM64, controls, audio, Hor+ widescreen, reproducible builds, failures, fixes and reusable lessons.">
+  <meta name="twitter:description" content="Engineering knowledge from porting System Shock to Android: SDL, ARM64, controls, audio, 4:3 presentation, reproducible builds, failures, fixes and reusable lessons.">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -131,12 +131,12 @@
         </article>
 
         <article class="project-card" id="kb-ss-007" style="margin-top:1rem">
-          <div class="project-meta"><span>KB-SS-007</span><span>VALIDATED BASELINE</span><span>WIDESCREEN</span></div>
-          <h3>Hor+ instead of stretching 4:3</h3>
-          <p><strong>Problem.</strong> Filling a 16:9 display must not horizontally distort the original scene and UI.</p>
-          <p><strong>Resolution.</strong> The 1366×768 Hor+ prototype widens world coverage while retaining a centered 1024×768 legacy UI safe area at x=171. The original 4:3 presentation remains independently reversible.</p>
-          <p><strong>Validation.</strong> Geometry, UI, input and 4:3 fallback passed RP5 QA.</p>
-          <p><strong>Reusable lesson.</strong> Preserve a known reference presentation and make widescreen reversible before optimizing it.</p>
+          <div class="project-meta"><span>KB-SS-007</span><span>CURRENT DECISION</span><span>PRESENTATION</span></div>
+          <h3>4:3 presentation retained as the current baseline</h3>
+          <p><strong>Context.</strong> A 16:9 expansion prototype was evaluated during development.</p>
+          <p><strong>Decision.</strong> The current port does not expose a switchable widescreen mode. It retains the original-style 1024x768 4:3 no-stretch presentation as the only public presentation mode.</p>
+          <p><strong>Visual boundary.</strong> The Android IME keyboard shown during text entry is the only platform-specific visual addition to the original game presentation.</p>
+          <p><strong>Reusable lesson.</strong> A technically workable presentation experiment does not need to become a shipped feature when visual consistency and fidelity are better served by the reference format.</p>
         </article>
 
         <article class="project-card" id="kb-ss-008" style="margin-top:1rem">
@@ -181,7 +181,7 @@
         <h2>Rules promoted from experience</h2>
         <div class="content-grid">
           <div class="content-card"><h3>Platform ownership</h3><p>Android physical surface is platform-owned; logical render size is engine-owned. Treat OEM overlays/lifecycle as platform evidence before renderer diagnosis.</p></div>
-          <div class="content-card"><h3>Reversibility</h3><p>Keep a known-good baseline. Widescreen, HD and other experiments should be independently disableable until they pass their own quality gates.</p></div>
+          <div class="content-card"><h3>Reversibility</h3><p>Keep a known-good baseline. Presentation, HD and other experiments should remain isolated until they pass their own quality gates.</p></div>
           <div class="content-card"><h3>Controller semantics</h3><p>Map SDL GameController actions rather than raw Android/Linux event codes, and document any action whose semantics differ from the original engine.</p></div>
           <div class="content-card"><h3>Text-input separation</h3><p>Committed text belongs on <code>SDL_TEXTINPUT</code>; navigation/editing keys stay on key events. Do not log personally entered text when diagnostic counts are sufficient.</p></div>
           <div class="content-card"><h3>Single audio owner</h3><p>One physical mixer device owns the platform audio endpoint; subsystems mix through it instead of opening competing devices.</p></div>

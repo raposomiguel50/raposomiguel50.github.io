@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Native System Shock Android ARM64 port based on Shockolate, developed for Retroid Pocket 5 with source code, Hor+ widescreen, controls, build guide and engineering notes.">
+  <meta name="description" content="Native System Shock Android ARM64 port based on Shockolate, developed for Retroid Pocket 5 with source code, preserved 4:3 presentation, controls, build guide and engineering notes.">
   <title>System Shock Android Port - Retroid Pocket 5 | Miguel's Game Dev Lab</title>
   <!-- SEO metadata -->
   <link rel="canonical" href="https://raposomiguel50.github.io/projects/system-shock-android/">
@@ -11,11 +11,11 @@
   <meta property="og:site_name" content="Miguel's Game Dev Lab">
   <meta property="og:type" content="website">
   <meta property="og:title" content="System Shock Android Port - Retroid Pocket 5 | Miguel's Game Dev Lab">
-  <meta property="og:description" content="Native System Shock Android ARM64 port based on Shockolate, developed for Retroid Pocket 5 with source code, Hor+ widescreen, controls, build guide and engineering notes.">
+  <meta property="og:description" content="Native System Shock Android ARM64 port based on Shockolate, developed for Retroid Pocket 5 with source code, preserved 4:3 presentation, controls, build guide and engineering notes.">
   <meta property="og:url" content="https://raposomiguel50.github.io/projects/system-shock-android/">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="System Shock Android Port - Retroid Pocket 5 | Miguel's Game Dev Lab">
-  <meta name="twitter:description" content="Native System Shock Android ARM64 port based on Shockolate, developed for Retroid Pocket 5 with source code, Hor+ widescreen, controls, build guide and engineering notes.">
+  <meta name="twitter:description" content="Native System Shock Android ARM64 port based on Shockolate, developed for Retroid Pocket 5 with source code, preserved 4:3 presentation, controls, build guide and engineering notes.">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -57,8 +57,8 @@
         <p class="breadcrumbs"><a href="../../#projects">Projects</a> / System Shock - Android</p>
         <div class="project-meta project-meta-large"><span>PORT</span><span>ANDROID</span><span>ARM64</span><span>RETROID POCKET 5</span><span>PRE-RELEASE</span></div>
         <h1>System Shock - Android</h1>
-        <p class="project-lede">A native Android/ARM64 adaptation of <a class="inline-link" href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer">Shockolate</a>, developed around the Retroid Pocket 5 as the primary reference device. I am using the port both to make the game work naturally on a modern handheld and to document reusable engineering knowledge about Android lifecycle, input, audio, widescreen presentation, legacy assets and reproducible porting.</p>
-        <div class="status-line" aria-label="Project status"><span class="status-badge">ACTIVE DEVELOPMENT</span><span>Current validated baseline: P2.0B + P2.0A Hor+</span><span>Public source: v0.1.0-pre.2</span><span>Fresh source + dependency bootstrap: PASS</span><span>Updated 20 August 2026</span></div>
+        <p class="project-lede">A native Android/ARM64 adaptation of <a class="inline-link" href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer">Shockolate</a>, developed around the Retroid Pocket 5 as the primary reference device. I am using the port both to make the game work naturally on a modern handheld and to document reusable engineering knowledge about Android lifecycle, input, audio, presentation, legacy assets and reproducible porting.</p>
+        <div class="status-line" aria-label="Project status"><span class="status-badge">ACTIVE DEVELOPMENT</span><span>Presentation: 1024x768 4:3 only</span><span>Public source: v0.1.0-pre.2</span><span>Fresh source + dependency bootstrap: PASS</span><span>Updated 20 August 2026</span></div>
         <div class="hero-actions"><a class="button" href="reproduce/">Reproduce the port</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">Source repository</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.2" target="_blank" rel="noopener noreferrer">Latest release</a><a class="button button-secondary" href="knowledge/">Open knowledge base</a><a class="button button-secondary" href="#feedback-contact">Feedback</a><a class="button button-secondary" href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer">Shockolate upstream</a><a class="button button-secondary" href="#references">References</a></div>
       </div>
     </section>
@@ -120,7 +120,7 @@
         <div class="section-title-row"><div><p class="section-kicker">03 / CURRENT STATE</p><h2>Implemented and validated</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
         <div class="project-grid">
           <article class="metric-card"><span class="metric-label">PLATFORM</span><strong>Android / ARM64</strong><p>Native C/C++ game code packaged through the Android toolchain rather than desktop emulation.</p></article>
-          <article class="metric-card"><span class="metric-label">DISPLAY</span><strong>4:3 + Hor+</strong><p>1024×768 no-stretch reference presentation, plus a validated reversible 1366×768 Hor+ path with a centered 1024×768 UI safe area.</p></article>
+          <article class="metric-card"><span class="metric-label">DISPLAY</span><strong>4:3 preserved</strong><p>1024x768 no-stretch presentation remains the current and only public presentation mode.</p></article>
           <article class="metric-card"><span class="metric-label">INPUT</span><strong>Handheld-first controls</strong><p>Right-stick camera look is the default. View/Select switches the stick into fine cursor mode for the original interface.</p></article>
           <article class="metric-card"><span class="metric-label">AUDIO</span><strong>SDL_mixer + ADLMIDI</strong><p>A single mixer-owned physical device handles the audio endpoint, while the gameplay music scheduler rebases after abnormal host stalls instead of bursting overdue events.</p></article>
           <article class="metric-card"><span class="metric-label">TEXT ENTRY</span><strong>Android IME</strong><p>Committed text uses the SDL/Android text-input path for the player-name workflow instead of synthetic printable controller keys.</p></article>
@@ -148,10 +148,10 @@
 
     <section class="section project-section" id="presentation">
       <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">05 / PRESENTATION</p><h2>Preserve first, extend second</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <div class="section-title-row"><div><p class="section-kicker">05 / PRESENTATION</p><h2>Preserve the original presentation</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
         <div class="content-grid">
           <div class="content-card"><h3>4:3 reference</h3><p>The original logical 1024×768 presentation remains the known-good reference. Android owns the physical surface while the game owns its logical render geometry.</p></div>
-          <div class="content-card"><h3>Hor+ widescreen</h3><p>A 1366×768 logical mode expands the world horizontally while retaining a centered 1024×768 safe area for legacy UI. 4:3 remains a reversible fallback.</p></div>
+          <div class="content-card"><h3>Current presentation decision</h3><p>The port retains the original-style 1024x768 4:3 no-stretch presentation as its only public presentation mode. The Android IME keyboard shown during text entry is the only platform-specific visual addition.</p></div>
           <div class="content-card"><h3>Graphics extraction</h3><p>The validated private extraction pipeline identified and extracted 8,870 supported image frames using the engine's proven legacy decoders. Those commercial-derived outputs remain private; only methodology and metadata are shared.</p></div>
           <div class="content-card"><h3>Indexed-renderer boundary</h3><p>Sprite/UI Scale4x can preserve indexed source colors exactly. Bicubic WORLD/STATIC output creates RGB colors the current 8-bit renderer cannot represent without quantization, so that path remains blocked pending an explicit architecture/quality decision.</p></div>
           <div class="content-card"><h3>Font reconstruction</h3><p>The validated offline dataset contains 36 fonts and 5,696 glyphs. Composite resource identity is required, and contour/vector candidates remain offline research until they pass layout and readability gates.</p></div>
