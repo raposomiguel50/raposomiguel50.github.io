@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Native System Shock Android ARM64 port based on Shockolate, developed for Retroid Pocket 5 with source code, preserved 4:3 presentation, controls, build guide and engineering notes.">
+  <meta name="description" content="Native System Shock Android ARM64 port based on Shockolate, developed for Retroid Pocket 5 with a signed pre-release APK, first-run game-data importer, preserved 4:3 presentation, controls, build guide and engineering notes.">
   <title>System Shock Android Port - Retroid Pocket 5 | Miguel's Game Dev Lab</title>
   <!-- SEO metadata -->
   <link rel="canonical" href="https://raposomiguel50.github.io/projects/system-shock-android/">
@@ -11,11 +11,11 @@
   <meta property="og:site_name" content="Miguel's Game Dev Lab">
   <meta property="og:type" content="website">
   <meta property="og:title" content="System Shock Android Port - Retroid Pocket 5 | Miguel's Game Dev Lab">
-  <meta property="og:description" content="Native System Shock Android ARM64 port based on Shockolate, developed for Retroid Pocket 5 with source code, preserved 4:3 presentation, controls, build guide and engineering notes.">
+  <meta property="og:description" content="Native System Shock Android ARM64 port based on Shockolate, developed for Retroid Pocket 5 with a signed pre-release APK, first-run game-data importer and preserved 4:3 presentation.">
   <meta property="og:url" content="https://raposomiguel50.github.io/projects/system-shock-android/">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="System Shock Android Port - Retroid Pocket 5 | Miguel's Game Dev Lab">
-  <meta name="twitter:description" content="Native System Shock Android ARM64 port based on Shockolate, developed for Retroid Pocket 5 with source code, preserved 4:3 presentation, controls, build guide and engineering notes.">
+  <meta name="twitter:description" content="Native System Shock Android ARM64 port based on Shockolate, developed for Retroid Pocket 5 with a signed pre-release APK, first-run game-data importer and preserved 4:3 presentation.">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -58,8 +58,8 @@
         <div class="project-meta project-meta-large"><span>PORT</span><span>ANDROID</span><span>ARM64</span><span>RETROID POCKET 5</span><span>PRE-RELEASE</span></div>
         <h1>System Shock - Android</h1>
         <p class="project-lede">A native Android/ARM64 adaptation of <a class="inline-link" href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer">Shockolate</a>, developed around the Retroid Pocket 5 as the primary reference device. I am using the port both to make the game work naturally on a modern handheld and to document reusable engineering knowledge about Android lifecycle, input, audio, presentation, legacy assets and reproducible porting.</p>
-        <div class="status-line" aria-label="Project status"><span class="status-badge">ACTIVE DEVELOPMENT</span><span>Presentation: 1024x768 4:3 only</span><span>Public source: v0.1.0-pre.2</span><span>Fresh source + dependency bootstrap: PASS</span><span>Updated 20 August 2026</span></div>
-        <div class="hero-actions"><a class="button" href="reproduce/">Reproduce the port</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">Source repository</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.2" target="_blank" rel="noopener noreferrer">Latest release</a><a class="button button-secondary" href="knowledge/">Open knowledge base</a><a class="button button-secondary" href="#feedback-contact">Feedback</a><a class="button button-secondary" href="https://www.moddb.com/mods/system-shock-android" target="_blank" rel="noopener noreferrer">ModDB</a><a class="button button-secondary" href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer">Shockolate upstream</a><a class="button button-secondary" href="#references">References</a></div>
+        <div class="status-line" aria-label="Project status"><span class="status-badge">ACTIVE DEVELOPMENT</span><span>Presentation: 1024x768 4:3 only</span><span>Public release: v0.1.0-pre.3</span><span>Signed APK + first-run importer: PASS</span><span>Updated 20 August 2026</span></div>
+        <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/system-shock-android/releases/download/v0.1.0-pre.3/SystemShock-Android-v0.1.0-pre.3-arm64-v8a.apk" target="_blank" rel="noopener noreferrer">Download APK</a><a class="button button-secondary" href="reproduce/">Reproduce the port</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">Source repository</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.3" target="_blank" rel="noopener noreferrer">Latest release</a><a class="button button-secondary" href="knowledge/">Open knowledge base</a><a class="button button-secondary" href="#feedback-contact">Feedback</a><a class="button button-secondary" href="https://www.moddb.com/mods/system-shock-android" target="_blank" rel="noopener noreferrer">ModDB</a><a class="button button-secondary" href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer">Shockolate upstream</a><a class="button button-secondary" href="#references">References</a></div>
       </div>
     </section>
 
@@ -85,7 +85,7 @@
           <a href="reproduce/">Build / reproduction guide →</a>
           <a href="knowledge/">Engineering knowledge base →</a>
           <a href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">Public source →</a>
-          <a href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.2" target="_blank" rel="noopener noreferrer">v0.1.0-pre.2 →</a>
+          <a href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.3" target="_blank" rel="noopener noreferrer">v0.1.0-pre.3 →</a>
           <a href="https://github.com/raposomiguel50/system-shock-android/issues/new/choose" target="_blank" rel="noopener noreferrer">Feedback →</a>
           <a href="https://www.moddb.com/mods/system-shock-android" target="_blank" rel="noopener noreferrer">ModDB →</a>
         </div>
@@ -98,7 +98,7 @@
         <div class="content-grid">
           <div class="content-card"><h3>Source-port foundation</h3><p>I use <strong>Shockolate</strong> as the code foundation. The Android work starts from upstream commit <a class="inline-link" href="https://github.com/Interrupt/systemshock/commit/4cc3d07dfff2d11b6d3a0a9960a51cf4ca253690" target="_blank" rel="noopener noreferrer"><code>4cc3d07d…</code></a>, a merge of pull request #421 by <a class="inline-link" href="https://github.com/oreo639" target="_blank" rel="noopener noreferrer">oreo639</a>.</p></div>
           <div class="content-card"><h3>Hardware-led development</h3><p>I treat the Retroid Pocket 5 as a real target rather than a generic Android endpoint. Display behavior, controller routing, Android lifecycle, audio timing, text input and 4:3 presentation are validated against the handheld itself.</p></div>
-          <div class="content-card"><h3>Commercial data stays external</h3><p>I do not put proprietary System Shock game data in the public source tree, APKs or redistributable source packages. Anyone reproducing the port must supply their own compatible game data from a legally obtained copy.</p></div>
+          <div class="content-card"><h3>Commercial data stays external</h3><p>I do not put proprietary System Shock game data in the public source tree, APKs or redistributable source packages. The signed pre-release asks the user to select their own compatible <code>res</code> folder on first run and copies it into private app storage.</p></div>
         </div>
       </div>
     </section>
@@ -110,9 +110,9 @@
         <div class="content-grid">
           <div class="content-card"><h3>Published source snapshot</h3><p>The reviewed, sanitized source tree is public in <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">raposomiguel50/system-shock-android</a>. It includes the Android project, modified Shockolate source, licenses, provenance, portable build helpers and documentation. Private workspace metadata and commercial game data are excluded.</p></div>
           <div class="content-card"><h3>Reproduction guide</h3><p>The <a class="inline-link" href="reproduce/">reproduction page</a> records the pinned dependency baselines, Android/JDK toolchain, build/verification flow, data-import boundary and the clean-clone gate.</p></div>
-          <div class="content-card"><h3>Current public source release</h3><p>The corrected source preview is <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.2" target="_blank" rel="noopener noreferrer">v0.1.0-pre.2</a>. You can also <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/archive/refs/tags/v0.1.0-pre.2.zip">download the tagged source as ZIP</a>. A completely new clone and dependency bootstrap have passed; APK build and device validation are still pending.</p></div>
+          <div class="content-card"><h3>Current public release</h3><p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.3" target="_blank" rel="noopener noreferrer">v0.1.0-pre.3</a> publishes the validated source and signed ARM64 APK. You can also <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/archive/refs/tags/v0.1.0-pre.3.zip">download the tagged source as ZIP</a>. Fresh-clone build and verification, side-by-side RP5 QA, first-run folder import and final signed release verification all passed before publication.</p></div>
         </div>
-        <p class="note">v0.1.0-pre.1 remains available as historical evidence of the SDL_mixer tag-bootstrap defect found by the first clean-clone reproduction attempt. v0.1.0-pre.2 contains the validated correction.</p>
+        <p class="note">v0.1.0-pre.1 remains historical evidence of the first clean-bootstrap defect. v0.1.0-pre.2 preserved the validated bootstrap correction. v0.1.0-pre.3 is the first APK-bearing public pre-release.</p>
       </div>
     </section>
 
@@ -125,7 +125,7 @@
           <article class="metric-card"><span class="metric-label">INPUT</span><strong>Handheld-first controls</strong><p>Right-stick camera look is the default. View/Select switches the stick into fine cursor mode for the original interface.</p></article>
           <article class="metric-card"><span class="metric-label">AUDIO</span><strong>SDL_mixer + ADLMIDI</strong><p>A single mixer-owned physical device handles the audio endpoint, while the gameplay music scheduler rebases after abnormal host stalls instead of bursting overdue events.</p></article>
           <article class="metric-card"><span class="metric-label">TEXT ENTRY</span><strong>Android IME</strong><p>Committed text uses the SDL/Android text-input path for the player-name workflow instead of synthetic printable controller keys.</p></article>
-          <article class="metric-card"><span class="metric-label">PUBLIC SOURCE</span><strong>Fresh checkout + dependencies passed</strong><p>v0.1.0-pre.2 cloned cleanly from a new path and bootstrapped pinned SDL and SDL_mixer dependencies from scratch.</p></article>
+          <article class="metric-card"><span class="metric-label">PUBLIC RELEASE</span><strong>Signed APK + importer validated</strong><p>v0.1.0-pre.3 is non-debuggable, ARM64-only, signed with the stable release certificate and validated on the Retroid Pocket 5 with first-run user-data import.</p></article>
         </div>
       </div>
     </section>
@@ -181,8 +181,8 @@
         <div class="section-title-row"><div><p class="section-kicker">07 / OPEN KNOWLEDGE</p><h2>The port as a public technical article</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
         <p class="section-intro">The <a class="inline-link" href="knowledge/">knowledge base</a> publishes more than the final solution. It records root causes, workarounds, unresolved concerns, rejected experiments and rules that became standards during the port.</p>
         <div class="content-grid">
-          <div class="content-card"><h3>Resolved problems</h3><p>PowerShell case collisions, Android lifecycle/surface diagnostics, audio-device ownership, Android IME integration, right-stick mode routing, gameplay music timing and the first public dependency-bootstrap defect are preserved as reusable records.</p></div>
-          <div class="content-card"><h3>Open concerns</h3><p>End-user game-data import, broader Android compatibility, WORLD/STATIC HD architecture, font remastering, consumer release identity and the remaining APK/device clean-reproduction gates remain explicitly open.</p></div>
+          <div class="content-card"><h3>Resolved problems</h3><p>PowerShell case collisions, Android lifecycle/surface diagnostics, audio-device ownership, Android IME integration, right-stick mode routing, gameplay music timing, dependency-bootstrap failures, release signing and first-run data import are preserved as reusable records.</p></div>
+          <div class="content-card"><h3>Open concerns</h3><p>Broader Android compatibility, WORLD/STATIC HD architecture and font remastering remain explicitly open. The public release/importer and fresh-clone release gates have been completed for the Retroid Pocket 5 reference path.</p></div>
           <div class="content-card"><h3>Standards</h3><p>Platform ownership, reversibility, semantic controller mapping, single audio ownership, artifact-level validation, evidence separation and commercial-data isolation are documented as project standards.</p></div>
         </div>
         <div class="hero-actions"><a class="button" href="knowledge/">Read the knowledge base</a><a class="button button-secondary" href="reproduce/">Reproduce the build</a></div>
@@ -193,11 +193,11 @@
       <div class="container">
         <div class="section-title-row"><div><p class="section-kicker">08 / RELEASE &amp; LICENSING</p><h2>Open code, separate game data</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
         <div class="content-grid">
-          <div class="content-card"><h3>Release status</h3><p>The corrected public source preview, <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.2" target="_blank" rel="noopener noreferrer">v0.1.0-pre.2</a>, is published on GitHub. A new clean clone and dependency bootstrap passed. No consumer APK is published yet; APK build/verification, device installation, separate game-data import and fresh runtime QA remain before that step.</p></div>
+          <div class="content-card"><h3>Release status</h3><p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.3" target="_blank" rel="noopener noreferrer">v0.1.0-pre.3</a> is published as a GitHub pre-release with the tagged source, a signed non-debuggable ARM64 APK, SHA-256 sidecar, release manifest and public signing certificate. The first-run folder importer was validated on the Retroid Pocket 5 before publication.</p></div>
           <div class="content-card"><h3>Source licensing</h3><p>Shockolate is distributed under the GNU GPL v3.0 or later. Public distribution of this derivative source keeps the applicable upstream copyright/license notices and documents third-party dependencies.</p></div>
-          <div class="content-card"><h3>Game ownership</h3><p>The project does not provide System Shock commercial resources. A compatible legally obtained copy is required separately, and public instructions explain how to supply that data without redistributing it.</p></div>
+          <div class="content-card"><h3>Game ownership</h3><p>The project does not provide System Shock commercial resources. A compatible legally obtained copy is required separately. On first run, the release APK lets the user choose the required <code>res</code> folder without ADB.</p></div>
         </div>
-        <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">Source repository</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/archive/refs/tags/v0.1.0-pre.2.zip">Download source (.zip)</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.2" target="_blank" rel="noopener noreferrer">Release notes</a></div>
+        <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/system-shock-android/releases/download/v0.1.0-pre.3/SystemShock-Android-v0.1.0-pre.3-arm64-v8a.apk" target="_blank" rel="noopener noreferrer">Download APK</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">Source repository</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/archive/refs/tags/v0.1.0-pre.3.zip">Download source (.zip)</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.3" target="_blank" rel="noopener noreferrer">Release notes</a></div>
         <p class="legal-box">This is an independent, unofficial development project. System Shock, its assets and associated trademarks belong to their respective rights holders. Miguel's Game Dev Lab is not affiliated with or endorsed by Looking Glass Studios, Nightdive Studios, Atari, GOG, Retroid, Google or the SDL project.</p>
       </div>
     </section>
