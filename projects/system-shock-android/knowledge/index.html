@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Engineering knowledge from porting System Shock to Android: SDL, ARM64, controls, audio, 4:3 presentation, reproducible builds, failures, fixes and reusable lessons.">
+  <meta name="description" content="Engineering knowledge from porting System Shock to Android: SDL, ARM64, controls, audio, 4:3 presentation, reproducible builds, release signing, first-run data import, failures, fixes and reusable lessons.">
   <title>System Shock Android Port - Engineering Knowledge | Miguel's Game Dev Lab</title>
   <!-- SEO metadata -->
   <link rel="canonical" href="https://raposomiguel50.github.io/projects/system-shock-android/knowledge/">
@@ -11,11 +11,11 @@
   <meta property="og:site_name" content="Miguel's Game Dev Lab">
   <meta property="og:type" content="article">
   <meta property="og:title" content="System Shock Android Port - Engineering Knowledge | Miguel's Game Dev Lab">
-  <meta property="og:description" content="Engineering knowledge from porting System Shock to Android: SDL, ARM64, controls, audio, 4:3 presentation, reproducible builds, failures, fixes and reusable lessons.">
+  <meta property="og:description" content="Engineering knowledge from porting System Shock to Android: SDL, ARM64, controls, audio, 4:3 presentation, release signing, first-run data import and reproducible builds.">
   <meta property="og:url" content="https://raposomiguel50.github.io/projects/system-shock-android/knowledge/">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="System Shock Android Port - Engineering Knowledge | Miguel's Game Dev Lab">
-  <meta name="twitter:description" content="Engineering knowledge from porting System Shock to Android: SDL, ARM64, controls, audio, 4:3 presentation, reproducible builds, failures, fixes and reusable lessons.">
+  <meta name="twitter:description" content="Engineering knowledge from porting System Shock to Android: SDL, ARM64, controls, audio, 4:3 presentation, release signing, first-run data import and reproducible builds.">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -55,7 +55,7 @@
         <div class="project-meta project-meta-large"><span>OPEN KNOWLEDGE</span><span>PROBLEMS</span><span>DECISIONS</span><span>STANDARDS</span><span>LESSONS</span></div>
         <h1>Engineering knowledge base</h1>
         <p class="project-lede">I want the useful output of this port to be more than an APK. This page keeps the operational knowledge: what failed, what was observed, what caused it, what was changed, how it was validated and what should be reused - or avoided - in future ports.</p>
-        <div class="status-line"><span class="status-badge">LIVING DOCUMENT</span><span>Resolved and unresolved work remain visible</span><span>Last consolidated 20 August 2026</span></div>
+        <div class="status-line"><span class="status-badge">LIVING DOCUMENT</span><span>v0.1.0-pre.3 release/importer gates resolved</span><span>Resolved and unresolved work remain visible</span><span>Last consolidated 20 August 2026</span></div>
         <div class="hero-actions"><a class="button" href="#records">Knowledge records</a><a class="button button-secondary" href="#standards">Engineering standards</a><a class="button button-secondary" href="#open">Open concerns</a><a class="button button-secondary" href="../reproduce/">Reproduce the port</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/issues/new/choose" target="_blank" rel="noopener noreferrer">Contribute feedback</a></div>
       </div>
     </section>
@@ -127,7 +127,7 @@
           <p><strong>Root cause.</strong> Overdue XMI events were able to drain rapidly against an absolute millisecond track clock.</p>
           <p><strong>Resolution.</strong> Use SDL's monotonic high-resolution performance counter and, after abnormal lateness, shift the origins of all active XMI layers together instead of bursting overdue events.</p>
           <p><strong>Validation.</strong> Gameplay-music manual QA passed after this policy.</p>
-          <p><strong>Reusable lesson.</strong> Real-time media clocks should preserve future intervals after stalls rather than “catch up” at maximum speed.</p>
+          <p><strong>Reusable lesson.</strong> Real-time media clocks should preserve future intervals after stalls rather than "catch up" at maximum speed.</p>
         </article>
 
         <article class="project-card" id="kb-ss-007" style="margin-top:1rem">
@@ -172,6 +172,16 @@
           <p><strong>Validation.</strong> A targeted rerun passed, followed by a completely new v0.1.0-pre.2 clone with no existing dependency cache. SDL and SDL_mixer were downloaded from scratch and the bootstrap completed with <code>FRESH_PRE2_BOOTSTRAP=PASS</code>.</p>
           <p><strong>Reusable lesson.</strong> Dependency pinning must verify that the pinned object is actually obtainable from a clean repository state.</p>
         </article>
+
+        <article class="project-card" id="kb-ss-012" style="margin-top:1rem">
+          <div class="project-meta"><span>KB-SS-012</span><span>RESOLVED</span><span>RELEASE ENGINEERING</span></div>
+          <h3>A public signed APK needs an end-user data path, not a debug-only deployment path</h3>
+          <p><strong>Context.</strong> The first signed non-debuggable v0.1.0-pre.3 candidate passed build, package, ABI and signing verification, but the existing data-copy workflow depended on Android <code>run-as</code>.</p>
+          <p><strong>Impact.</strong> A release APK that requires debug-only <code>run-as</code> cannot provide a normal end-user installation path even if the game binary itself is valid.</p>
+          <p><strong>Resolution.</strong> Add a first-run launcher that uses Android's Storage Access Framework to let the user select a compatible <code>res</code> folder containing <code>data</code> and <code>sound</code>. Copy through a staging directory into app-private storage and keep rollback behavior if activation fails.</p>
+          <p><strong>Validation.</strong> A separate non-debuggable release-QA package, signed with the stable release certificate, imported 56 data files and 96 sound files on the Retroid Pocket 5, launched the game, passed the smoke test, removed its temporary package/data afterward and preserved the baseline installation. The final signed release was rebuilt from the merged source and published as v0.1.0-pre.3.</p>
+          <p><strong>Reusable lesson.</strong> Distribution architecture is part of runtime architecture. A release gate must validate how legitimate user-owned data reaches a non-debuggable build, not only whether the APK compiles and signs.</p>
+        </article>
       </div>
     </section>
 
@@ -187,6 +197,8 @@
           <div class="content-card"><h3>Single audio owner</h3><p>One physical mixer device owns the platform audio endpoint; subsystems mix through it instead of opening competing devices.</p></div>
           <div class="content-card"><h3>Source and asset boundary</h3><p>Redistributable code and user-owned commercial data remain separate. Source archives, APKs and public knowledge must not silently absorb proprietary resources.</p></div>
           <div class="content-card"><h3>Build evidence</h3><p>Pin source baselines, validate scripts before mutation, verify produced artifacts semantically and keep generated build trees out of controlled source.</p></div>
+          <div class="content-card"><h3>Release signing</h3><p>Public APKs use a stable private signing key kept outside Git. Record the certificate digest, reject generic Android debug certificates and preserve the key for future compatible upgrades.</p></div>
+          <div class="content-card"><h3>Release data path</h3><p>Validate a real user-facing path for separately owned game data on the actual non-debuggable build. Developer-only ADB or <code>run-as</code> workflows are not a consumer release path.</p></div>
           <div class="content-card"><h3>Target evidence</h3><p>Real-device measurements and manual QA are authoritative for target-specific behavior. Host simulation cannot certify physical-device presentation or controls.</p></div>
           <div class="content-card"><h3>Negative knowledge</h3><p>Rejected experiments remain documented with the reason for rejection, so future work starts from accumulated evidence rather than repeating history.</p></div>
         </div>
@@ -198,13 +210,11 @@
         <p class="section-kicker">04 / OPEN CONCERNS</p>
         <h2>Problems not hidden by the working baseline</h2>
         <div class="project-grid">
-          <article class="metric-card"><span class="metric-label">OPEN-SS-001</span><strong>End-user data importer</strong><p>The current reproducible developer workflow uses debug APK + ADB + <code>run-as</code>. A normal public release still needs a user-facing Android import flow for separately owned game data.</p></article>
-          <article class="metric-card"><span class="metric-label">OPEN-SS-002</span><strong>Broad Android compatibility</strong><p>RP5 is the validated reference target. Other Android handhelds may differ in controller maps, lifecycle/OEM overlays and display behavior.</p></article>
+          <article class="metric-card"><span class="metric-label">OPEN-SS-002</span><strong>Broad Android compatibility</strong><p>RP5 is the validated reference target. Other Android handhelds and phones may differ in controller maps, lifecycle/OEM overlays, storage providers and display behavior.</p></article>
           <article class="metric-card"><span class="metric-label">OPEN-SS-003</span><strong>WORLD/STATIC HD</strong><p>The indexed renderer cannot represent bicubic RGB output exactly. Truecolor versus explicit quantization remains an architecture/quality decision.</p></article>
           <article class="metric-card"><span class="metric-label">OPEN-SS-004</span><strong>Font remaster</strong><p>The validated offline dump contains 36 fonts and 5,696 glyphs. Contour/vector candidates remain research until they pass identity, layout and readability gates.</p></article>
-          <article class="metric-card"><span class="metric-label">OPEN-SS-005</span><strong>Public release identity</strong><p>Release signing/versioning and a stable public package identity need to replace internal development labels before a consumer release.</p></article>
-          <article class="metric-card"><span class="metric-label">OPEN-SS-006</span><strong>Independent fresh-clone proof</strong><p>v0.1.0-pre.2 source checkout and dependency bootstrap passed from a new clean path. APK build, semantic APK verification, device installation, separate data import and fresh RP5 runtime QA remain open.</p></article>
         </div>
+        <p class="note">The previous end-user importer, public release identity/signing and final fresh-clone/release gates were resolved during the v0.1.0-pre.3 release process and are retained in the resolved records rather than listed as open work.</p>
       </div>
     </section>
 
@@ -218,7 +228,7 @@
           <tr><th>Context</th><td>What was being attempted and why.</td></tr>
           <tr><th>Observation</th><td>What was actually seen or measured, without silently converting inference into fact.</td></tr>
           <tr><th>Impact</th><td>What the problem blocks, degrades or puts at risk.</td></tr>
-          <tr><th>Root cause</th><td>Only proven cause; otherwise explicitly “Unknown” with hypotheses kept separate.</td></tr>
+          <tr><th>Root cause</th><td>Only proven cause; otherwise explicitly "Unknown" with hypotheses kept separate.</td></tr>
           <tr><th>Resolution / workaround</th><td>Change, decision or safe temporary path.</td></tr>
           <tr><th>Validation</th><td>Machine gates and manual target QA recorded separately.</td></tr>
           <tr><th>Reusable lesson</th><td>The rule future work should follow because of this evidence.</td></tr>
