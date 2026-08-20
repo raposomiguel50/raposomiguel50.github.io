@@ -59,7 +59,7 @@
         <h1>System Shock - Android</h1>
         <p class="project-lede">A native Android/ARM64 adaptation of <a class="inline-link" href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer">Shockolate</a>, developed around the Retroid Pocket 5 as the primary reference device. I am using the port both to make the game work naturally on a modern handheld and to document reusable engineering knowledge about Android lifecycle, input, audio, presentation, legacy assets and reproducible porting.</p>
         <div class="status-line" aria-label="Project status"><span class="status-badge">ACTIVE DEVELOPMENT</span><span>Presentation: 1024x768 4:3 only</span><span>Public source: v0.1.0-pre.2</span><span>Fresh source + dependency bootstrap: PASS</span><span>Updated 20 August 2026</span></div>
-        <div class="hero-actions"><a class="button" href="reproduce/">Reproduce the port</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">Source repository</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.2" target="_blank" rel="noopener noreferrer">Latest release</a><a class="button button-secondary" href="knowledge/">Open knowledge base</a><a class="button button-secondary" href="#feedback-contact">Feedback</a><a class="button button-secondary" href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer">Shockolate upstream</a><a class="button button-secondary" href="#references">References</a></div>
+        <div class="hero-actions"><a class="button" href="reproduce/">Reproduce the port</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">Source repository</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.2" target="_blank" rel="noopener noreferrer">Latest release</a><a class="button button-secondary" href="knowledge/">Open knowledge base</a><a class="button button-secondary" href="#feedback-contact">Feedback</a><a class="button button-secondary" href="https://www.moddb.com/mods/system-shock-android" target="_blank" rel="noopener noreferrer">ModDB</a><a class="button button-secondary" href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer">Shockolate upstream</a><a class="button button-secondary" href="#references">References</a></div>
       </div>
     </section>
 
@@ -87,6 +87,7 @@
           <a href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">Public source →</a>
           <a href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.2" target="_blank" rel="noopener noreferrer">v0.1.0-pre.2 →</a>
           <a href="https://github.com/raposomiguel50/system-shock-android/issues/new/choose" target="_blank" rel="noopener noreferrer">Feedback →</a>
+          <a href="https://www.moddb.com/mods/system-shock-android" target="_blank" rel="noopener noreferrer">ModDB →</a>
         </div>
       </div>
     </nav>
@@ -96,7 +97,7 @@
         <div class="section-title-row"><div><p class="section-kicker">01 / OVERVIEW</p><h2>What this port is</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
         <div class="content-grid">
           <div class="content-card"><h3>Source-port foundation</h3><p>I use <strong>Shockolate</strong> as the code foundation. The Android work starts from upstream commit <a class="inline-link" href="https://github.com/Interrupt/systemshock/commit/4cc3d07dfff2d11b6d3a0a9960a51cf4ca253690" target="_blank" rel="noopener noreferrer"><code>4cc3d07d…</code></a>, a merge of pull request #421 by <a class="inline-link" href="https://github.com/oreo639" target="_blank" rel="noopener noreferrer">oreo639</a>.</p></div>
-          <div class="content-card"><h3>Hardware-led development</h3><p>I treat the Retroid Pocket 5 as a real target rather than a generic Android endpoint. Display behavior, controller routing, Android lifecycle, audio timing, text input and widescreen presentation are validated against the handheld itself.</p></div>
+          <div class="content-card"><h3>Hardware-led development</h3><p>I treat the Retroid Pocket 5 as a real target rather than a generic Android endpoint. Display behavior, controller routing, Android lifecycle, audio timing, text input and 4:3 presentation are validated against the handheld itself.</p></div>
           <div class="content-card"><h3>Commercial data stays external</h3><p>I do not put proprietary System Shock game data in the public source tree, APKs or redistributable source packages. Anyone reproducing the port must supply their own compatible game data from a legally obtained copy.</p></div>
         </div>
       </div>
