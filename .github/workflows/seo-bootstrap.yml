@@ -1,0 +1,219 @@
+name: SEO bootstrap
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/seo-bootstrap.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  seo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out site
+        uses: actions/checkout@v4
+
+      - name: Apply SEO metadata and discovery files
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          import re
+
+          pages = {
+              'index.html': {
+                  'title': "Miguel's Game Dev Lab | Game Ports, Retro Development & Hardware",
+                  'description': "Native game ports, retro development and hardware-focused engineering. Follow System Shock on Android, Retroid Pocket 5 experiments, source code and technical notes.",
+                  'canonical': 'https://raposomiguel50.github.io/',
+                  'og_type': 'website',
+                  'schema': {
+                      '@context': 'https://schema.org',
+                      '@type': 'WebSite',
+                      'name': "Miguel's Game Dev Lab",
+                      'url': 'https://raposomiguel50.github.io/',
+                      'description': 'Native game ports, retro development and hardware-focused engineering, with public source, reproduction notes and technical knowledge.'
+                  }
+              },
+              'projects/system-shock-android/index.html': {
+                  'title': "System Shock Android Port - Retroid Pocket 5 | Miguel's Game Dev Lab",
+                  'description': "Native System Shock Android ARM64 port based on Shockolate, developed for Retroid Pocket 5 with source code, Hor+ widescreen, controls, build guide and engineering notes.",
+                  'canonical': 'https://raposomiguel50.github.io/projects/system-shock-android/',
+                  'og_type': 'website',
+                  'schema': {
+                      '@context': 'https://schema.org',
+                      '@type': 'SoftwareSourceCode',
+                      'name': 'System Shock - Android',
+                      'description': 'Native Android/ARM64 adaptation of Shockolate developed around the Retroid Pocket 5.',
+                      'url': 'https://raposomiguel50.github.io/projects/system-shock-android/',
+                      'codeRepository': 'https://github.com/raposomiguel50/system-shock-android',
+                      'programmingLanguage': ['C', 'C++', 'Java'],
+                      'runtimePlatform': 'Android ARM64',
+                      'license': 'https://www.gnu.org/licenses/gpl-3.0.html',
+                      'isBasedOn': 'https://github.com/Interrupt/systemshock',
+                      'author': {
+                          '@type': 'Person',
+                          'name': 'Miguel Raposo',
+                          'url': 'https://raposomiguel50.github.io/'
+                      }
+                  }
+              },
+              'projects/system-shock-android/reproduce/index.html': {
+                  'title': "Build System Shock on Android - Source and Guide | Miguel's Game Dev Lab",
+                  'description': "Build the System Shock Android ARM64 port from public source with pinned SDL dependencies, JDK 17, Android NDK, APK verification and separately owned game data.",
+                  'canonical': 'https://raposomiguel50.github.io/projects/system-shock-android/reproduce/',
+                  'og_type': 'article',
+                  'schema': {
+                      '@context': 'https://schema.org',
+                      '@type': 'TechArticle',
+                      'headline': 'Build the System Shock Android port from public source',
+                      'description': 'Reproduction guide for the System Shock Android ARM64 port, including pinned dependencies, Android toolchain, APK verification and game-data separation.',
+                      'url': 'https://raposomiguel50.github.io/projects/system-shock-android/reproduce/',
+                      'mainEntityOfPage': 'https://raposomiguel50.github.io/projects/system-shock-android/reproduce/',
+                      'dateModified': '2026-08-20',
+                      'author': {
+                          '@type': 'Person',
+                          'name': 'Miguel Raposo',
+                          'url': 'https://raposomiguel50.github.io/'
+                      },
+                      'about': {
+                          '@type': 'SoftwareSourceCode',
+                          'name': 'System Shock - Android',
+                          'url': 'https://raposomiguel50.github.io/projects/system-shock-android/'
+                      }
+                  }
+              },
+              'projects/system-shock-android/knowledge/index.html': {
+                  'title': "System Shock Android Port - Engineering Knowledge | Miguel's Game Dev Lab",
+                  'description': "Engineering knowledge from porting System Shock to Android: SDL, ARM64, controls, audio, Hor+ widescreen, reproducible builds, failures, fixes and reusable lessons.",
+                  'canonical': 'https://raposomiguel50.github.io/projects/system-shock-android/knowledge/',
+                  'og_type': 'article',
+                  'schema': {
+                      '@context': 'https://schema.org',
+                      '@type': 'TechArticle',
+                      'headline': 'System Shock Android port engineering knowledge base',
+                      'description': 'Resolved problems, open concerns, failed experiments, standards and reusable engineering lessons from the System Shock Android port.',
+                      'url': 'https://raposomiguel50.github.io/projects/system-shock-android/knowledge/',
+                      'mainEntityOfPage': 'https://raposomiguel50.github.io/projects/system-shock-android/knowledge/',
+                      'dateModified': '2026-08-20',
+                      'author': {
+                          '@type': 'Person',
+                          'name': 'Miguel Raposo',
+                          'url': 'https://raposomiguel50.github.io/'
+                      },
+                      'about': {
+                          '@type': 'SoftwareSourceCode',
+                          'name': 'System Shock - Android',
+                          'url': 'https://raposomiguel50.github.io/projects/system-shock-android/'
+                      }
+                  }
+              }
+          }
+
+          block_re = re.compile(r'\n\s*<!-- SEO metadata -->.*?<!-- /SEO metadata -->\s*\n', re.S)
+
+          for filename, meta in pages.items():
+              path = Path(filename)
+              text = path.read_text(encoding='utf-8')
+              text = block_re.sub('\n', text)
+              text, n_desc = re.subn(
+                  r'<meta name="description" content="[^"]*">',
+                  f'<meta name="description" content="{meta["description"]}">',
+                  text,
+                  count=1
+              )
+              if n_desc != 1:
+                  raise SystemExit(f'description replacement failed: {filename}')
+              text, n_title = re.subn(
+                  r'<title>.*?</title>',
+                  f'<title>{meta["title"]}</title>',
+                  text,
+                  count=1,
+                  flags=re.S
+              )
+              if n_title != 1:
+                  raise SystemExit(f'title replacement failed: {filename}')
+
+              schema = json.dumps(meta['schema'], ensure_ascii=False, indent=2)
+              seo = f'''\n  <!-- SEO metadata -->
+  <link rel="canonical" href="{meta['canonical']}">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta property="og:site_name" content="Miguel's Game Dev Lab">
+  <meta property="og:type" content="{meta['og_type']}">
+  <meta property="og:title" content="{meta['title']}">
+  <meta property="og:description" content="{meta['description']}">
+  <meta property="og:url" content="{meta['canonical']}">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{meta['title']}">
+  <meta name="twitter:description" content="{meta['description']}">
+  <script type="application/ld+json">
+{schema}
+  </script>
+  <!-- /SEO metadata -->'''
+              text = text.replace(f'<title>{meta["title"]}</title>', f'<title>{meta["title"]}</title>{seo}', 1)
+
+              if '\u2014' in text:
+                  raise SystemExit(f'em dash found after SEO update: {filename}')
+              if text.count('rel="canonical"') != 1:
+                  raise SystemExit(f'canonical count invalid: {filename}')
+              if meta['canonical'] not in text:
+                  raise SystemExit(f'canonical URL missing: {filename}')
+              path.write_text(text, encoding='utf-8', newline='\n')
+
+          sitemap_urls = [
+              'https://raposomiguel50.github.io/',
+              'https://raposomiguel50.github.io/projects/system-shock-android/',
+              'https://raposomiguel50.github.io/projects/system-shock-android/reproduce/',
+              'https://raposomiguel50.github.io/projects/system-shock-android/knowledge/'
+          ]
+          sitemap = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+          for url in sitemap_urls:
+              sitemap.extend([
+                  '  <url>',
+                  f'    <loc>{url}</loc>',
+                  '    <lastmod>2026-08-20</lastmod>',
+                  '  </url>'
+              ])
+          sitemap.append('</urlset>')
+          Path('sitemap.xml').write_text('\n'.join(sitemap) + '\n', encoding='utf-8', newline='\n')
+
+          robots = '''User-agent: *
+Allow: /
+
+Sitemap: https://raposomiguel50.github.io/sitemap.xml
+'''
+          Path('robots.txt').write_text(robots, encoding='utf-8', newline='\n')
+
+          for filename in list(pages) + ['sitemap.xml', 'robots.txt']:
+              data = Path(filename).read_text(encoding='utf-8')
+              if '\u2014' in data:
+                  raise SystemExit(f'em dash found: {filename}')
+
+          print('SEO_BOOTSTRAP=PASS')
+          PY
+
+      - name: Validate diff
+        shell: bash
+        run: |
+          git diff --check
+          test -f sitemap.xml
+          test -f robots.txt
+          grep -q 'rel="canonical"' index.html
+          grep -q 'application/ld+json' projects/system-shock-android/index.html
+          echo 'SEO_VALIDATION=PASS'
+
+      - name: Commit SEO changes
+        shell: bash
+        run: |
+          if git diff --quiet && [ -z "$(git status --porcelain)" ]; then
+            echo 'SEO_NO_CHANGES=PASS'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html projects/system-shock-android/index.html projects/system-shock-android/reproduce/index.html projects/system-shock-android/knowledge/index.html sitemap.xml robots.txt
+          git commit -m 'Add SEO metadata and Google discovery files'
+          git push origin HEAD:main
