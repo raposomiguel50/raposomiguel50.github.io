@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How Miguel's Game Dev Lab separates human design, critical judgment and hardware validation from ChatGPT-assisted programming, automation, calculations and repetitive technical work.">
+  <title>Development Method and AI Assistance | Miguel's Game Dev Lab</title>
+  <link rel="canonical" href="https://raposomiguel50.github.io/method/">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta property="og:site_name" content="Miguel's Game Dev Lab">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Development Method and AI Assistance | Miguel's Game Dev Lab">
+  <meta property="og:description" content="Human-directed, AI-assisted development: design, decisions, handovers, evidence, recovery, programming, automation and real-hardware validation.">
+  <meta property="og:url" content="https://raposomiguel50.github.io/method/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Development Method and AI Assistance | Miguel's Game Dev Lab">
+  <meta name="twitter:description" content="Human-directed, AI-assisted development with explicit separation between creative judgment and implementation assistance.">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Development method and AI assistance",
+  "description": "How Miguel's Game Dev Lab uses ChatGPT for programming, automation, calculations and repetitive technical work while keeping design direction, critical judgment, process decisions and final validation under human control.",
+  "url": "https://raposomiguel50.github.io/method/",
+  "mainEntityOfPage": "https://raposomiguel50.github.io/method/",
+  "dateModified": "2026-08-20",
+  "author": {
+    "@type": "Person",
+    "name": "Miguel Raposo",
+    "url": "https://raposomiguel50.github.io/"
+  }
+}
+  </script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="../" aria-label="Miguel's Game Dev Lab home"><span class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a>
+      <nav aria-label="Primary navigation"><a href="../">Home</a><a href="../#projects">Projects</a><a href="../#dev-notes">Dev Notes</a><a href="../#about">About</a><a href="../#contact">Contact</a></nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">METHOD / ATTRIBUTION / AI ASSISTANCE</p>
+        <h1>Human-directed, AI-assisted development</h1>
+        <p class="tagline">Design and judgment remain human. ChatGPT accelerates implementation.</p>
+        <p class="intro">Miguel's Game Dev Lab uses ChatGPT extensively, but not as an autonomous designer or project owner. The workflow deliberately separates human intent, creative and critical decisions, real-hardware validation and final approval from AI-assisted programming, calculations, automation, analysis, documentation and repetitive technical work.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="section-kicker">01 / RESPONSIBILITY</p>
+        <h2>Who does what</h2>
+        <div class="content-grid">
+          <div class="content-card"><h3>Miguel Raposo</h3><p>Defines project goals, design, scope, target hardware, constraints, feature priorities, interaction models, presentation choices, project organization, acceptance criteria and final decisions. Creative direction, critical evaluation, physical-device observations and approval remain human responsibilities.</p></div>
+          <div class="content-card"><h3>ChatGPT</h3><p>Provides substantial assistance with calculations, code drafting and modification, refactoring, debugging support, PowerShell and build automation, technical comparisons, documentation, data transformation, reproducibility work, repository maintenance and other repetitive technical tasks.</p></div>
+          <div class="content-card"><h3>The boundary</h3><p>AI output is not accepted automatically. A technically plausible result can still be rejected because it conflicts with the intended design, visual standard, interaction model, architecture or evidence. ChatGPT helps execute decisions; it does not own the authority to make the final project decisions.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <p class="section-kicker">02 / PROCESS DESIGN</p>
+        <h2>The workflow is part of the human contribution</h2>
+        <p class="section-intro">The method is designed around known limitations of long-running AI-assisted work rather than assuming that conversation history is a reliable project database.</p>
+        <div class="content-grid">
+          <div class="content-card"><h3>Explicit checkpoints</h3><p>Important changes are reviewed against explicit goals and acceptance criteria. Miguel can approve, reject or redirect a change before it becomes part of the baseline.</p></div>
+          <div class="content-card"><h3>Incremental interaction</h3><p>Risky or stateful work is often performed one confirmed step at a time. This limits the impact of incorrect assumptions and makes intermediate results inspectable before the next mutation.</p></div>
+          <div class="content-card"><h3>Evidence before confidence</h3><p>Build artifacts, hashes, dependency commits, logs, semantic checks, clean-clone tests and physical-device observations are stronger evidence than an assistant's confidence or a successful process exit code.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="section-kicker">03 / CONTINUITY</p>
+        <h2>Handovers, backups and recovery</h2>
+        <div class="content-grid">
+          <div class="content-card"><h3>Project state lives outside the chat</h3><p>Durable state is externalized into source control, documentation, versioned handovers, evidence files, release tags and checksums where appropriate. Conversation memory is not treated as the authoritative copy of the project.</p></div>
+          <div class="content-card"><h3>Handovers</h3><p>A handover records the current baseline, approved decisions, passed and failed gates, relevant evidence, rejected experiments, open concerns and the exact next step. This reduces the risk that a later AI session reconstructs the project from incomplete context.</p></div>
+          <div class="content-card"><h3>Layered recovery</h3><p>Git history, release tags, versioned handovers, evidence bundles and checksums provide complementary recovery paths. Private or commercial material remains separate from redistributable public source.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <p class="section-kicker">04 / AI LIMITATIONS</p>
+        <h2>How the workflow handles model errors</h2>
+        <p class="section-intro">ChatGPT can accelerate development and still be wrong. The process therefore assumes fallibility.</p>
+        <div class="content-grid">
+          <div class="content-card"><h3>Context loss</h3><p>Long or separate sessions can lose important decisions. Handovers, source-controlled documentation and exact baselines preserve continuity outside the conversation.</p></div>
+          <div class="content-card"><h3>Incorrect assumptions</h3><p>The assistant can infer a feature, design choice or technical state that was never approved. Explicit constraints, human correction and one-step checkpoints stop those assumptions from silently becoming project decisions.</p></div>
+          <div class="content-card"><h3>Repeated mistakes</h3><p>Useful negative results and rejected approaches are kept in the knowledge base. This reduces the chance that the same plausible but disproven idea is proposed again after context has changed.</p></div>
+          <div class="content-card"><h3>Physical reality</h3><p>ChatGPT cannot independently see, hear or control the target hardware. Logs and calculations can support diagnosis, but real-device behavior and final quality approval require human observation.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="section-kicker">05 / TIME SAVED</p>
+        <h2>Automate repetition, keep judgment human</h2>
+        <p class="section-intro">ChatGPT is used heavily because it can remove a large amount of grind work from development.</p>
+        <div class="content-grid">
+          <div class="content-card"><h3>What is accelerated</h3><p>Calculations, code generation and modification, script writing, repetitive repository operations, build automation, evidence comparison, documentation drafting, formatting and similar deterministic work can be completed much faster with AI assistance.</p></div>
+          <div class="content-card"><h3>What is not delegated</h3><p>The time saved is redirected toward design, trade-offs, critical review, hardware testing, identifying when an apparently reasonable solution is wrong for the project and deciding what the project should actually become.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <p class="section-kicker">06 / ATTRIBUTION</p>
+        <h2>What this means for authorship</h2>
+        <p class="section-intro">The projects should be understood as Miguel Raposo's design, direction, process and engineering judgment implemented with substantial AI assistance.</p>
+        <div class="content-grid">
+          <div class="content-card"><h3>Not autonomous AI development</h3><p>ChatGPT cannot autonomously carry these specific projects from concept to validated result. It does not possess Miguel's accumulated project intent, creative priorities, physical-device observations or authority to decide what counts as correct.</p></div>
+          <div class="content-card"><h3>Substantial implementation assistance</h3><p>It would also be inaccurate to hide the role of AI. ChatGPT performs substantial programming, calculations, automation, analysis, documentation and repetitive technical work under Miguel's direction.</p></div>
+          <div class="content-card"><h3>Concise attribution</h3><p><strong>Human-directed, AI-assisted.</strong> Miguel Raposo owns the design direction, process decisions, critical evaluation and final approval. ChatGPT provides substantial assistance with calculations, programming, automation, analysis, documentation and grind work.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="section-kicker">07 / EXAMPLE</p>
+        <h2>Project-level documentation</h2>
+        <p class="section-intro">The System Shock Android repository contains a more detailed project-level account of this method, including handovers, evidence, recovery and reproducibility.</p>
+        <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/system-shock-android/blob/main/docs/DEVELOPMENT_METHOD.md" target="_blank" rel="noopener noreferrer">Open development method</a><a class="button button-secondary" href="../projects/system-shock-android/">System Shock project</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-wrap"><span>Miguel's Game Dev Lab</span><span class="legal">Human-directed, AI-assisted development. No proprietary game data is distributed by this site.</span></div></footer>
+</body>
+</html>
