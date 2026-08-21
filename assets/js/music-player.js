@@ -76,7 +76,6 @@
 
   const audio = document.createElement('audio');
   audio.preload = 'metadata';
-  audio.crossOrigin = 'anonymous';
   shell.appendChild(audio);
   document.body.appendChild(shell);
 
