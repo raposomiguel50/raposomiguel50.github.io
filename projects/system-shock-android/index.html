@@ -3,32 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Native System Shock Android ARM64 port based on Shockolate, developed for Retroid Pocket 5 with a signed pre-release APK, first-run game-data importer, preserved 4:3 presentation, controls, build guide and engineering notes.">
-  <title>System Shock Android Port - Retroid Pocket 5 | Miguel's Game Dev Lab</title>
-  <!-- SEO metadata -->
+  <meta name="description" content="System Shock - Android v1.0.0: stable native Android/ARM64 preservation port based on Shockolate, validated on Retroid Pocket 5 with signed APK and first-run game-data importer.">
+  <title>System Shock - Android v1.0.0 | Miguel's Game Dev Lab</title>
   <link rel="canonical" href="https://raposomiguel50.github.io/projects/system-shock-android/">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta property="og:site_name" content="Miguel's Game Dev Lab">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="System Shock Android Port - Retroid Pocket 5 | Miguel's Game Dev Lab">
-  <meta property="og:description" content="Native System Shock Android ARM64 port based on Shockolate, developed for Retroid Pocket 5 with a signed pre-release APK, first-run game-data importer and preserved 4:3 presentation.">
+  <meta property="og:title" content="System Shock - Android v1.0.0 | Miguel's Game Dev Lab">
+  <meta property="og:description" content="Stable native Android/ARM64 preservation port based on Shockolate, with signed APK, preserved 4:3 presentation and user-supplied game-data importer.">
   <meta property="og:url" content="https://raposomiguel50.github.io/projects/system-shock-android/">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="System Shock Android Port - Retroid Pocket 5 | Miguel's Game Dev Lab">
-  <meta name="twitter:description" content="Native System Shock Android ARM64 port based on Shockolate, developed for Retroid Pocket 5 with a signed pre-release APK, first-run game-data importer and preserved 4:3 presentation.">
+  <meta name="twitter:title" content="System Shock - Android v1.0.0 | Miguel's Game Dev Lab">
+  <meta name="twitter:description" content="Stable native Android/ARM64 preservation port based on Shockolate, validated on Retroid Pocket 5.">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareSourceCode",
   "name": "System Shock - Android",
-  "description": "Native Android/ARM64 adaptation of Shockolate developed around the Retroid Pocket 5.",
+  "version": "1.0.0",
+  "description": "Stable native Android/ARM64 preservation adaptation of Shockolate, validated on the Retroid Pocket 5.",
   "url": "https://raposomiguel50.github.io/projects/system-shock-android/",
   "codeRepository": "https://github.com/raposomiguel50/system-shock-android",
-  "programmingLanguage": [
-    "C",
-    "C++",
-    "Java"
-  ],
+  "downloadUrl": "https://github.com/raposomiguel50/system-shock-android/releases/download/v1.0.0/SystemShock-Android-v1.0.0-arm64-v8a.apk",
+  "programmingLanguage": ["C", "C++", "Java"],
   "runtimePlatform": "Android ARM64",
   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
   "isBasedOn": "https://github.com/Interrupt/systemshock",
@@ -39,7 +36,6 @@
   }
 }
   </script>
-  <!-- /SEO metadata -->
   <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="stylesheet" href="../../assets/css/project-nav.css">
 </head>
@@ -47,7 +43,7 @@
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="../../" aria-label="Miguel's Game Dev Lab home"><span class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a>
-      <nav aria-label="Primary navigation"><a href="../../#home">Home</a><a href="../../#projects">Projects</a><a href="reproduce/">Reproduce</a><a href="knowledge/">Knowledge Base</a><a href="#feedback-contact">Feedback</a><a href="#references">References</a></nav>
+      <nav aria-label="Primary navigation"><a href="../../#home">Home</a><a href="../../#projects">Projects</a><a href="reproduce/">Reproduce</a><a href="knowledge/">Knowledge Base</a><a href="#release">Release</a><a href="#references">References</a></nav>
     </div>
   </header>
 
@@ -55,193 +51,129 @@
     <section class="project-hero">
       <div class="container">
         <p class="breadcrumbs"><a href="../../#projects">Projects</a> / System Shock - Android</p>
-        <div class="project-meta project-meta-large"><span>PORT</span><span>ANDROID</span><span>ARM64</span><span>RETROID POCKET 5</span><span>PRE-RELEASE</span></div>
+        <div class="project-meta project-meta-large"><span>PORT</span><span>ANDROID</span><span>ARM64</span><span>RETROID POCKET 5</span><span>STABLE v1.0.0</span></div>
         <h1>System Shock - Android</h1>
-        <p class="project-lede">A native Android/ARM64 adaptation of <a class="inline-link" href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer">Shockolate</a>, developed around the Retroid Pocket 5 as the primary reference device. I am using the port both to make the game work naturally on a modern handheld and to document reusable engineering knowledge about Android lifecycle, input, audio, presentation, legacy assets and reproducible porting.</p>
-        <div class="status-line" aria-label="Project status"><span class="status-badge">ACTIVE DEVELOPMENT</span><span>Presentation: 1024x768 4:3 only</span><span>Public release: v0.1.0-pre.3</span><span>Signed APK + first-run importer: PASS</span><span>Updated 20 August 2026</span></div>
-        <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/system-shock-android/releases/download/v0.1.0-pre.3/SystemShock-Android-v0.1.0-pre.3-arm64-v8a.apk" target="_blank" rel="noopener noreferrer">Download APK</a><a class="button button-secondary" href="reproduce/">Reproduce the port</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">Source repository</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.3" target="_blank" rel="noopener noreferrer">Latest release</a><a class="button button-secondary" href="knowledge/">Open knowledge base</a><a class="button button-secondary" href="#feedback-contact">Feedback</a><a class="button button-secondary" href="https://www.moddb.com/mods/system-shock-android" target="_blank" rel="noopener noreferrer">ModDB</a><a class="button button-secondary" href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer">Shockolate upstream</a><a class="button button-secondary" href="#references">References</a></div>
+        <p class="project-lede">A native Android/ARM64 preservation adaptation of <a class="inline-link" href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer">Shockolate</a>. The stable line keeps the original System Shock content and 4:3 presentation authoritative while adapting installation, controls, text entry, audio and platform integration for Android.</p>
+        <div class="status-line" aria-label="Project status"><span class="status-badge">STABLE RELEASE</span><span>Version: v1.0.0</span><span>Presentation: 1024x768 4:3</span><span>Reference target: Retroid Pocket 5</span><span>Updated 24 August 2026</span></div>
+        <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/system-shock-android/releases/download/v1.0.0/SystemShock-Android-v1.0.0-arm64-v8a.apk" target="_blank" rel="noopener noreferrer">Download v1.0.0 APK</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v1.0.0" target="_blank" rel="noopener noreferrer">Release &amp; checksums</a><a class="button button-secondary" href="reproduce/">Reproduce the port</a><a class="button button-secondary" href="knowledge/">Knowledge base</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">Source repository</a><a class="button button-secondary" href="https://www.moddb.com/mods/system-shock-android" target="_blank" rel="noopener noreferrer">ModDB</a></div>
       </div>
     </section>
 
     <nav class="project-section-nav" aria-label="System Shock project sections" id="project-index">
       <div class="container">
-        <div class="project-section-nav-heading">
-          <span class="section-kicker">ON THIS PAGE</span>
-          <span class="project-section-nav-hint">Jump directly to a section</span>
-        </div>
-        <div class="project-section-links">
-          <a href="#overview"><span>01</span>Overview</a>
-          <a href="#reproduce-share"><span>02</span>Reproduce &amp; share</a>
-          <a href="#current-state"><span>03</span>Current state</a>
-          <a href="#controls"><span>04</span>Controls</a>
-          <a href="#presentation"><span>05</span>Presentation</a>
-          <a href="#technical-stack"><span>06</span>Technical stack</a>
-          <a href="#open-knowledge"><span>07</span>Open knowledge</a>
-          <a href="#release-licensing"><span>08</span>Release &amp; licensing</a>
-          <a href="#feedback-contact"><span>09</span>Feedback</a>
-          <a href="#references"><span>10</span>References</a>
-        </div>
-        <div class="project-quick-links" aria-label="Related project pages">
-          <a href="reproduce/">Build / reproduction guide →</a>
-          <a href="knowledge/">Engineering knowledge base →</a>
-          <a href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">Public source →</a>
-          <a href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.3" target="_blank" rel="noopener noreferrer">v0.1.0-pre.3 →</a>
-          <a href="https://github.com/raposomiguel50/system-shock-android/issues/new/choose" target="_blank" rel="noopener noreferrer">Feedback →</a>
-          <a href="https://www.moddb.com/mods/system-shock-android" target="_blank" rel="noopener noreferrer">ModDB →</a>
-        </div>
+        <div class="project-section-nav-heading"><span class="section-kicker">ON THIS PAGE</span><span class="project-section-nav-hint">Stable v1.0.0 overview and evidence</span></div>
+        <div class="project-section-links"><a href="#overview"><span>01</span>Overview</a><a href="#release"><span>02</span>Release</a><a href="#controls"><span>03</span>Controls</a><a href="#preservation"><span>04</span>Preservation</a><a href="#install"><span>05</span>Install</a><a href="#validation"><span>06</span>Validation</a><a href="#engineering"><span>07</span>Engineering</a><a href="#references"><span>08</span>References</a></div>
       </div>
     </nav>
 
     <section class="section project-section" id="overview">
       <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">01 / OVERVIEW</p><h2>What this port is</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <div class="section-title-row"><div><p class="section-kicker">01 / OVERVIEW</p><h2>What the stable port is</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
         <div class="content-grid">
-          <div class="content-card"><h3>Source-port foundation</h3><p>I use <strong>Shockolate</strong> as the code foundation. The Android work starts from upstream commit <a class="inline-link" href="https://github.com/Interrupt/systemshock/commit/4cc3d07dfff2d11b6d3a0a9960a51cf4ca253690" target="_blank" rel="noopener noreferrer"><code>4cc3d07d…</code></a>, a merge of pull request #421 by <a class="inline-link" href="https://github.com/oreo639" target="_blank" rel="noopener noreferrer">oreo639</a>.</p></div>
-          <div class="content-card"><h3>Hardware-led development</h3><p>I treat the Retroid Pocket 5 as a real target rather than a generic Android endpoint. Display behavior, controller routing, Android lifecycle, audio timing, text input and 4:3 presentation are validated against the handheld itself.</p></div>
-          <div class="content-card"><h3>Commercial data stays external</h3><p>I do not put proprietary System Shock game data in the public source tree, APKs or redistributable source packages. The signed pre-release asks the user to select their own compatible <code>res</code> folder on first run and copies it into private app storage.</p></div>
+          <div class="content-card"><h3>Source-port foundation</h3><p>The code foundation is Shockolate, using upstream commit <a class="inline-link" href="https://github.com/Interrupt/systemshock/commit/4cc3d07dfff2d11b6d3a0a9960a51cf4ca253690" target="_blank" rel="noopener noreferrer"><code>4cc3d07d…</code></a>. The Android work is published separately in <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">raposomiguel50/system-shock-android</a>.</p></div>
+          <div class="content-card"><h3>Hardware-led validation</h3><p>The Retroid Pocket 5 is the validated reference device. The accepted baseline covers display behavior, handheld controls, text entry, audio, first-run data import and a complete start-to-finish playthrough.</p></div>
+          <div class="content-card"><h3>Commercial data stays external</h3><p>The source repository and public APK contain no commercial System Shock game data. On first run, users select their own compatible <code>res</code> folder from a legally obtained copy.</p></div>
         </div>
       </div>
     </section>
 
-    <section class="section alt project-section" id="reproduce-share">
+    <section class="section alt project-section" id="release">
       <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">02 / REPRODUCE &amp; SHARE</p><h2>From “works on my machine” to a public engineering project</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <p class="section-intro">The project is organized so another person can inspect the source, reproduce the Android build, provide their own game data and understand the decisions behind the result. The public source is deliberately separate from my internal handover/control infrastructure.</p>
-        <div class="content-grid">
-          <div class="content-card"><h3>Published source snapshot</h3><p>The reviewed, sanitized source tree is public in <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">raposomiguel50/system-shock-android</a>. It includes the Android project, modified Shockolate source, licenses, provenance, portable build helpers and documentation. Private workspace metadata and commercial game data are excluded.</p></div>
-          <div class="content-card"><h3>Reproduction guide</h3><p>The <a class="inline-link" href="reproduce/">reproduction page</a> records the pinned dependency baselines, Android/JDK toolchain, build/verification flow, data-import boundary and the clean-clone gate.</p></div>
-          <div class="content-card"><h3>Current public release</h3><p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.3" target="_blank" rel="noopener noreferrer">v0.1.0-pre.3</a> publishes the validated source and signed ARM64 APK. You can also <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/archive/refs/tags/v0.1.0-pre.3.zip">download the tagged source as ZIP</a>. Fresh-clone build and verification, side-by-side RP5 QA, first-run folder import and final signed release verification all passed before publication.</p></div>
-        </div>
-        <p class="note">v0.1.0-pre.1 remains historical evidence of the first clean-bootstrap defect. v0.1.0-pre.2 preserved the validated bootstrap correction. v0.1.0-pre.3 is the first APK-bearing public pre-release.</p>
-      </div>
-    </section>
-
-    <section class="section project-section" id="current-state">
-      <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">03 / CURRENT STATE</p><h2>Implemented and validated</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <div class="section-title-row"><div><p class="section-kicker">02 / RELEASE</p><h2>v1.0.0 verified stable identity</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
         <div class="project-grid">
-          <article class="metric-card"><span class="metric-label">PLATFORM</span><strong>Android / ARM64</strong><p>Native C/C++ game code packaged through the Android toolchain rather than desktop emulation.</p></article>
-          <article class="metric-card"><span class="metric-label">DISPLAY</span><strong>4:3 preserved</strong><p>1024x768 no-stretch presentation remains the current and only public presentation mode.</p></article>
-          <article class="metric-card"><span class="metric-label">INPUT</span><strong>Handheld-first controls</strong><p>Right-stick camera look is the default. View/Select switches the stick into fine cursor mode for the original interface.</p></article>
-          <article class="metric-card"><span class="metric-label">AUDIO</span><strong>SDL_mixer + ADLMIDI</strong><p>A single mixer-owned physical device handles the audio endpoint, while the gameplay music scheduler rebases after abnormal host stalls instead of bursting overdue events.</p></article>
-          <article class="metric-card"><span class="metric-label">TEXT ENTRY</span><strong>Android IME</strong><p>Committed text uses the SDL/Android text-input path for the player-name workflow instead of synthetic printable controller keys.</p></article>
-          <article class="metric-card"><span class="metric-label">PUBLIC RELEASE</span><strong>Signed APK + importer validated</strong><p>v0.1.0-pre.3 is non-debuggable, ARM64-only, signed with the stable release certificate and validated on the Retroid Pocket 5 with first-run user-data import.</p></article>
+          <article class="metric-card"><span class="metric-label">VERSION</span><strong>1.0.0</strong><p><code>versionCode 10000</code></p></article>
+          <article class="metric-card"><span class="metric-label">PACKAGE</span><strong>Stable line</strong><p><code>io.github.raposomiguel50.systemshock</code></p></article>
+          <article class="metric-card"><span class="metric-label">ABI</span><strong>ARM64</strong><p><code>arm64-v8a</code> only.</p></article>
+          <article class="metric-card"><span class="metric-label">SOURCE</span><strong>d40e02b00e5e</strong><p>Exact tagged release source commit.</p></article>
+        </div>
+        <div class="content-card">
+          <h3>Machine-verifiable release evidence</h3>
+          <p><strong>APK SHA-256</strong><br><code>a6dcb7f76374dd7d4f7e39f0ecc08446f2956a33bda7655d699d5ba639b8526f</code></p>
+          <p><strong>Signing certificate SHA-256</strong><br><code>806d9cb061de67aa6953cdac573bd917da6aa17625964c2898d23e226bd5323b</code></p>
+          <p>The GitHub release publishes the signed APK together with its <code>.sha256</code> file, JSON release manifest and final-gate report. The public APK was re-downloaded after publication and reproduced the expected SHA-256.</p>
+          <p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v1.0.0" target="_blank" rel="noopener noreferrer">Open the v1.0.0 release and evidence files</a></p>
         </div>
       </div>
     </section>
 
-    <section class="section alt project-section" id="controls">
+    <section class="section project-section" id="controls">
       <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">04 / CONTROLS</p><h2>Desktop interaction translated to a handheld</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <p class="section-intro">System Shock combines free-look movement with a mouse-driven interface. The port keeps both interaction models available instead of forcing one control scheme to do everything.</p>
-        <div class="table-wrap"><table class="spec-table"><thead><tr><th>Input</th><th>Default behavior</th></tr></thead><tbody>
-          <tr><td>Left stick</td><td>Player movement / menu navigation.</td></tr>
+        <div class="section-title-row"><div><p class="section-kicker">03 / CONTROLS</p><h2>Desktop interaction translated to a handheld</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <div class="table-wrap"><table class="spec-table"><thead><tr><th>Input</th><th>Stable behavior</th></tr></thead><tbody>
+          <tr><td>Left stick</td><td>Player movement and menu navigation.</td></tr>
           <tr><td>Right stick</td><td>Camera rotation / look by default.</td></tr>
-          <tr><td>View / Select</td><td>Toggles the right stick between camera-look and fine cursor/mouse mode.</td></tr>
-          <tr><td>L2</td><td>Left-mouse style selection, interaction and drag behavior for the original UI.</td></tr>
-          <tr><td>R2</td><td>Right-mouse / attack path according to the active game state.</td></tr>
-          <tr><td>Touchscreen</td><td>Optional pointer-style interaction; it can be used as a mouse but is not mandatory.</td></tr>
-          <tr><td>Android keyboard</td><td>Text entry for player names and other keyboard-oriented fields.</td></tr>
-        </tbody></table></div>
-        <p class="note">The controller boundary uses SDL GameController semantics rather than hard-coded Android/Linux event codes. Detailed reasoning is documented in <a class="inline-link" href="knowledge/#kb-ss-005">KB-SS-005</a>.</p>
-      </div>
-    </section>
-
-    <section class="section project-section" id="presentation">
-      <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">05 / PRESENTATION</p><h2>Preserve the original presentation</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <div class="content-grid">
-          <div class="content-card"><h3>4:3 reference</h3><p>The original logical 1024×768 presentation remains the known-good reference. Android owns the physical surface while the game owns its logical render geometry.</p></div>
-          <div class="content-card"><h3>Current presentation decision</h3><p>The port retains the original-style 1024x768 4:3 no-stretch presentation as its only public presentation mode. The Android IME keyboard shown during text entry is the only platform-specific visual addition.</p></div>
-          <div class="content-card"><h3>Graphics extraction</h3><p>The validated private extraction pipeline identified and extracted 8,870 supported image frames using the engine's proven legacy decoders. Those commercial-derived outputs remain private; only methodology and metadata are shared.</p></div>
-          <div class="content-card"><h3>Indexed-renderer boundary</h3><p>Sprite/UI Scale4x can preserve indexed source colors exactly. Bicubic WORLD/STATIC output creates RGB colors the current 8-bit renderer cannot represent without quantization, so that path remains blocked pending an explicit architecture/quality decision.</p></div>
-          <div class="content-card"><h3>Font reconstruction</h3><p>The validated offline dataset contains 36 fonts and 5,696 glyphs. Composite resource identity is required, and contour/vector candidates remain offline research until they pass layout and readability gates.</p></div>
-          <div class="content-card"><h3>Rejected experiments</h3><p>Several HD/font stages failed their manual or architectural gates. They are preserved as negative knowledge in the <a class="inline-link" href="knowledge/">knowledge base</a> rather than silently discarded.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section alt project-section" id="technical-stack">
-      <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">06 / TECHNICAL STACK</p><h2>Build and runtime foundation</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <div class="table-wrap"><table class="spec-table"><tbody>
-          <tr><th>Game/source-port base</th><td>Shockolate 0.7.8 lineage, upstream baseline <a class="inline-link" href="https://github.com/Interrupt/systemshock/commit/4cc3d07dfff2d11b6d3a0a9960a51cf4ca253690" target="_blank" rel="noopener noreferrer"><code>4cc3d07…</code></a>.</td></tr>
-          <tr><th>Primary languages</th><td>C/C++ game code with Java/JNI Android integration.</td></tr>
-          <tr><th>SDL</th><td>SDL 2.32.10, release commit <a class="inline-link" href="https://github.com/libsdl-org/SDL/commit/5d249570393f7a37e037abf22cd6012a4cc56a71" target="_blank" rel="noopener noreferrer"><code>5d249570…</code></a>.</td></tr>
-          <tr><th>Audio</th><td>SDL_mixer 2.8.1 at validated commit <a class="inline-link" href="https://github.com/libsdl-org/SDL_mixer/commit/171eb2d420d5643e4ee11514a06e04a41a463bbd" target="_blank" rel="noopener noreferrer"><code>171eb2d4…</code></a>, plus Shockolate's ADLMIDI/OPL3 path.</td></tr>
-          <tr><th>Android build</th><td>compileSdk 34, target/min SDK 33, Build Tools 34.0.0, NDK 29.0.14206865, CMake 3.22.1, Gradle 8.1.1 and JDK 17.</td></tr>
-          <tr><th>Architecture</th><td><code>arm64-v8a</code>.</td></tr>
-          <tr><th>Reference hardware</th><td>Retroid Pocket 5 - Android 13, Adreno 650, 8 GB RAM, 5.5-inch 1080p/60 Hz AMOLED according to Retroid's product specification.</td></tr>
+          <tr><td>View / Select</td><td>Toggles the right stick between camera-look and fine cursor mode.</td></tr>
+          <tr><td>L2</td><td>Left-mouse style selection, interaction and drag behavior.</td></tr>
+          <tr><td>R2</td><td>Right-mouse / attack path according to game state.</td></tr>
+          <tr><td>Touchscreen</td><td>Optional pointer-style interaction.</td></tr>
+          <tr><td>Android IME</td><td>Text entry for player names and other keyboard-oriented fields.</td></tr>
         </tbody></table></div>
       </div>
     </section>
 
-    <section class="section project-section" id="open-knowledge">
+    <section class="section alt project-section" id="preservation">
       <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">07 / OPEN KNOWLEDGE</p><h2>The port as a public technical article</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <p class="section-intro">The <a class="inline-link" href="knowledge/">knowledge base</a> publishes more than the final solution. It records root causes, workarounds, unresolved concerns, rejected experiments and rules that became standards during the port.</p>
+        <div class="section-title-row"><div><p class="section-kicker">04 / PRESERVATION</p><h2>Stable v1.0 is not a remaster</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <p class="section-intro">The product boundary is deliberately conservative. Android-specific adaptations exist to preserve access to the original experience rather than replace it.</p>
         <div class="content-grid">
-          <div class="content-card"><h3>Resolved problems</h3><p>PowerShell case collisions, Android lifecycle/surface diagnostics, audio-device ownership, Android IME integration, right-stick mode routing, gameplay music timing, dependency-bootstrap failures, release signing and first-run data import are preserved as reusable records.</p></div>
-          <div class="content-card"><h3>Open concerns</h3><p>Broader Android compatibility, WORLD/STATIC HD architecture and font remastering remain explicitly open. The public release/importer and fresh-clone release gates have been completed for the Retroid Pocket 5 reference path.</p></div>
-          <div class="content-card"><h3>Standards</h3><p>Platform ownership, reversibility, semantic controller mapping, single audio ownership, artifact-level validation, evidence separation and commercial-data isolation are documented as project standards.</p></div>
+          <div class="content-card"><h3>Preserved</h3><p>Original game logic and content remain authoritative. The public presentation stays at 1024x768 4:3 without non-uniform stretching.</p></div>
+          <div class="content-card"><h3>Not part of v1.0</h3><p>No widescreen/Hor+, HD replacement graphics, truecolor conversion, font remaster, replacement music or sound, gameplay rebalance, new maps or new story content.</p></div>
+          <div class="content-card"><h3>Android adaptations</h3><p>Native ARM64 packaging, lifecycle integration, controller mapping, fine cursor input, optional touch pointer, Android text entry, audio platform fixes, first-run data import and release/reproducibility tooling.</p></div>
         </div>
-        <div class="hero-actions"><a class="button" href="knowledge/">Read the knowledge base</a><a class="button button-secondary" href="reproduce/">Reproduce the build</a></div>
       </div>
     </section>
 
-    <section class="section alt project-section" id="release-licensing">
+    <section class="section project-section" id="install">
       <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">08 / RELEASE &amp; LICENSING</p><h2>Open code, separate game data</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <div class="content-grid">
-          <div class="content-card"><h3>Release status</h3><p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.3" target="_blank" rel="noopener noreferrer">v0.1.0-pre.3</a> is published as a GitHub pre-release with the tagged source, a signed non-debuggable ARM64 APK, SHA-256 sidecar, release manifest and public signing certificate. The first-run folder importer was validated on the Retroid Pocket 5 before publication.</p></div>
-          <div class="content-card"><h3>Source licensing</h3><p>Shockolate is distributed under the GNU GPL v3.0 or later. Public distribution of this derivative source keeps the applicable upstream copyright/license notices and documents third-party dependencies.</p></div>
-          <div class="content-card"><h3>Game ownership</h3><p>The project does not provide System Shock commercial resources. A compatible legally obtained copy is required separately. On first run, the release APK lets the user choose the required <code>res</code> folder without ADB.</p></div>
-        </div>
-        <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/system-shock-android/releases/download/v0.1.0-pre.3/SystemShock-Android-v0.1.0-pre.3-arm64-v8a.apk" target="_blank" rel="noopener noreferrer">Download APK</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">Source repository</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/archive/refs/tags/v0.1.0-pre.3.zip">Download source (.zip)</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v0.1.0-pre.3" target="_blank" rel="noopener noreferrer">Release notes</a></div>
-        <p class="legal-box">This is an independent, unofficial development project. System Shock, its assets and associated trademarks belong to their respective rights holders. Miguel's Game Dev Lab is not affiliated with or endorsed by Looking Glass Studios, Nightdive Studios, Atari, GOG, Retroid, Google or the SDL project.</p>
-      </div>
-    </section>
-
-    <section class="section project-section" id="feedback-contact">
-      <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">09 / FEEDBACK &amp; CONTACT</p><h2>Found a problem, have an idea or tested another device?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <p class="section-intro">Public technical feedback goes through structured GitHub forms so reports remain searchable and can become reusable project knowledge. Professional contact is available through LinkedIn.</p>
-        <div class="content-grid">
-          <div class="content-card"><h3>Report a bug</h3><p>Use the bug form for reproducible build, installation or runtime problems. Include exact errors and observed evidence.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/issues/new?template=bug_report.yml" target="_blank" rel="noopener noreferrer">Open bug report</a></p></div>
-          <div class="content-card"><h3>Suggest an improvement</h3><p>Ideas about controls, presentation, audio, build tooling, Android integration or documentation are welcome.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/issues/new?template=feature_request.yml" target="_blank" rel="noopener noreferrer">Suggest an improvement</a></p></div>
-          <div class="content-card"><h3>Report compatibility</h3><p>Tested another Android handheld or phone? Successful reports are useful too. Record device, Android version and each runtime area separately.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/issues/new?template=compatibility_report.yml" target="_blank" rel="noopener noreferrer">Submit compatibility report</a></p></div>
-          <div class="content-card"><h3>Documentation</h3><p>Report unclear or incorrect documentation and include the source or evidence supporting the correction.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/issues/new?template=documentation.yml" target="_blank" rel="noopener noreferrer">Correct documentation</a></p></div>
-          <div class="content-card"><h3>General feedback</h3><p>For questions or comments that do not fit another category, use the general public feedback form.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/issues/new?template=general_feedback.yml" target="_blank" rel="noopener noreferrer">Leave feedback or ask a question</a></p></div>
-          <div class="content-card"><h3>Contribute or contact</h3><p>Code contributions can be proposed through pull requests. For professional networking or private professional enquiries, use LinkedIn.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/pulls" target="_blank" rel="noopener noreferrer">Pull requests</a> · <a class="inline-link" href="https://www.linkedin.com/in/miguel-raposo-7192a251/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p></div>
-        </div>
-        <p class="note">Do not attach proprietary System Shock game data, credentials or private information to public GitHub issues.</p>
-      </div>
-    </section>
-
-    <section class="section project-section" id="references">
-      <div class="container narrow-wide">
-        <div class="section-title-row"><div><p class="section-kicker">10 / REFERENCES</p><h2>Sources and acknowledgements</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <p class="section-intro">References are formatted in APA style as closely as practical for software repositories, pull requests, source-code commits, products and continuously updated technical documentation. Author and source links are included where an authoritative public page is available.</p>
-        <ol class="reference-list">
-          <li><a href="https://github.com/Interrupt" target="_blank" rel="noopener noreferrer">Interrupt</a>. (n.d.). <a href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer"><em>Shockolate: A minimalist and cross-platform System Shock source port</em></a> [Computer software]. GitHub.</li>
-          <li><a href="https://github.com/oreo639" target="_blank" rel="noopener noreferrer">oreo639</a>. (2025, October 1). <a href="https://github.com/Interrupt/systemshock/pull/421" target="_blank" rel="noopener noreferrer"><em>Fix building with gcc14</em></a> [Pull request #421]. <em>Interrupt/systemshock</em>. GitHub.</li>
-          <li><a href="https://github.com/Interrupt" target="_blank" rel="noopener noreferrer">Cuddigan, C. [Interrupt]</a>. (2025, October 1). <a href="https://github.com/Interrupt/systemshock/commit/4cc3d07dfff2d11b6d3a0a9960a51cf4ca253690" target="_blank" rel="noopener noreferrer"><em>Merge pull request #421 from oreo639/fix-gcc14</em></a> [Git commit, 4cc3d07dfff2d11b6d3a0a9960a51cf4ca253690]. <em>Interrupt/systemshock</em>. GitHub.</li>
-          <li>Looking Glass Studios. (1994). <em>System Shock</em> [Video game]. Origin Systems. <a href="https://www.gog.com/en/game/system_shock_enhanced_edition" target="_blank" rel="noopener noreferrer">Digital product information: GOG.com</a>.</li>
-          <li><a href="https://nightdivestudios.com/about/" target="_blank" rel="noopener noreferrer">Nightdive Studios</a>. (n.d.). <a href="https://nightdivestudios.com/system-shock-enhanced-edition/" target="_blank" rel="noopener noreferrer"><em>System Shock: Enhanced Edition</em></a>.</li>
-          <li><a href="https://github.com/libsdl-org" target="_blank" rel="noopener noreferrer">SDL contributors</a>. (n.d.). <a href="https://wiki.libsdl.org/SDL2/README-android" target="_blank" rel="noopener noreferrer"><em>SDL2 README: Android</em></a>. SDL Wiki.</li>
-          <li><a href="https://github.com/slouken" target="_blank" rel="noopener noreferrer">Lantinga, S.</a> (2025, September 1). <a href="https://github.com/libsdl-org/SDL/commit/5d249570393f7a37e037abf22cd6012a4cc56a71" target="_blank" rel="noopener noreferrer"><em>Updated to version 2.32.10 for release</em></a> [Git commit]. <em>libsdl-org/SDL</em>. GitHub.</li>
-          <li><a href="https://github.com/slouken" target="_blank" rel="noopener noreferrer">Lantinga, S.</a>, &amp; SDL contributors. (2025). <a href="https://github.com/libsdl-org/SDL_mixer" target="_blank" rel="noopener noreferrer"><em>SDL_mixer 2.8.1</em></a> [Computer software]. GitHub.</li>
-          <li><a href="https://github.com/Wohlstand" target="_blank" rel="noopener noreferrer">Novichkov, V.</a>, <a href="https://bisqwit.iki.fi/" target="_blank" rel="noopener noreferrer">Yliluoma, J.</a>, &amp; contributors. (n.d.). <a href="https://github.com/Wohlstand/libADLMIDI" target="_blank" rel="noopener noreferrer"><em>libADLMIDI: A software MIDI synthesizer library with OPL3 emulation</em></a> [Computer software]. GitHub.</li>
-          <li><a href="https://developer.android.com/" target="_blank" rel="noopener noreferrer">Android Developers</a>. (n.d.). <a href="https://developer.android.com/ndk/guides/" target="_blank" rel="noopener noreferrer"><em>Get started with the NDK</em></a>. Google.</li>
-          <li><a href="https://www.goretroid.com/" target="_blank" rel="noopener noreferrer">Retroid</a>. (n.d.). <a href="https://www.goretroid.com/products/retroid-pocket-5" target="_blank" rel="noopener noreferrer"><em>Retroid Pocket 5</em></a> [Product specifications].</li>
-          <li><a href="https://www.fsf.org/" target="_blank" rel="noopener noreferrer">Free Software Foundation</a>. (2007, June 29). <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank" rel="noopener noreferrer"><em>GNU General Public License, version 3</em></a>. GNU Project.</li>
+        <div class="section-title-row"><div><p class="section-kicker">05 / INSTALL</p><h2>No ADB required for normal users</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <ol>
+          <li>Download and install the signed <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/releases/download/v1.0.0/SystemShock-Android-v1.0.0-arm64-v8a.apk">v1.0.0 APK</a>.</li>
+          <li>Make your legally obtained compatible System Shock <code>res</code> folder available on the Android device.</li>
+          <li>Launch <strong>System Shock - Android</strong>.</li>
+          <li>Choose <strong>Select res folder</strong>.</li>
+          <li>Select the folder containing both <code>data</code> and <code>sound</code>.</li>
+          <li>Approve access; the importer copies the required files into private app storage and launches the game.</li>
         </ol>
-        <div class="page-end-nav"><a href="#project-index">↑ Back to project index</a><a href="#top">↑ Back to top</a></div>
+        <p class="note">The historical pre-release used package <code>com.rp5np.systemshock</code>. Stable v1 uses <code>io.github.raposomiguel50.systemshock</code>, so both may coexist and maintain separate app-private storage.</p>
+      </div>
+    </section>
+
+    <section class="section alt project-section" id="validation">
+      <div class="container">
+        <div class="section-title-row"><div><p class="section-kicker">06 / VALIDATION</p><h2>What v1.0.0 claims</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <div class="content-grid">
+          <div class="content-card"><h3>Reference hardware</h3><p>Retroid Pocket 5 is the validated target for the stable release.</p></div>
+          <div class="content-card"><h3>Manual acceptance</h3><p>A complete start-to-finish playthrough was accepted before the stable source freeze.</p></div>
+          <div class="content-card"><h3>Machine gates</h3><p>Fresh dependency bootstrap, QA build, APK semantic verification, signed release build, certificate pinning, release-manifest consistency and public APK hash verification passed.</p></div>
+        </div>
+        <p class="note">Other Android 13+ ARM64 devices may work, but are not described as validated until independently tested.</p>
+      </div>
+    </section>
+
+    <section class="section project-section" id="engineering">
+      <div class="container">
+        <div class="section-title-row"><div><p class="section-kicker">07 / ENGINEERING</p><h2>Open knowledge, reproducibility and history</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <div class="content-grid">
+          <div class="content-card"><h3>Reproduce</h3><p>The <a class="inline-link" href="reproduce/">reproduction guide</a> documents toolchain requirements, pinned dependencies, QA/release gates and the commercial-data boundary.</p></div>
+          <div class="content-card"><h3>Knowledge base</h3><p>The <a class="inline-link" href="knowledge/">engineering knowledge base</a> records root causes, rejected approaches, resolved problems, reusable rules and open concerns.</p></div>
+          <div class="content-card"><h3>Human-directed, AI-assisted</h3><p>Project goals, constraints, product decisions, hardware interpretation, testing and acceptance are human-directed. ChatGPT assists with programming, analysis, automation, debugging, documentation and repetitive engineering work.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt project-section" id="references">
+      <div class="container">
+        <div class="section-title-row"><div><p class="section-kicker">08 / REFERENCES</p><h2>Primary project references</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <div class="content-grid">
+          <div class="content-card"><h3>Public source</h3><p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">System Shock - Android repository</a></p></div>
+          <div class="content-card"><h3>Upstream</h3><p><a class="inline-link" href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer">Shockolate / Interrupt</a></p></div>
+          <div class="content-card"><h3>External coverage</h3><p><a class="inline-link" href="https://www.generationamiga.com/2026/08/21/system-shock-android-port-brings-the-1994-classic-to-handhelds/" target="_blank" rel="noopener noreferrer">GenerationAmiga, 21 August 2026</a></p></div>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer><div class="container footer-wrap"><span>Miguel's Game Dev Lab</span><span class="legal">Unofficial development projects. No proprietary game data is distributed by this site.</span></div></footer>
+  <footer><div class="container footer-wrap"><span>Miguel's Game Dev Lab</span><span class="legal">Human-directed, AI-assisted development. No proprietary System Shock game data is distributed by this site.</span></div></footer>
   <script src="/assets/js/music-player.js" defer></script>
 </body>
 </html>
