@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Engineering knowledge from The Minish Cap RG34XX/H700 port: preservation philosophy, timing, audio, benchmarking, rejected experiments and reusable lessons.">
+  <title>The Minish Cap RG34XX - Knowledge | Miguel's Game Dev Lab</title>
+  <link rel="canonical" href="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/knowledge/">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta property="og:site_name" content="Miguel's Game Dev Lab">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="The Minish Cap RG34XX - Engineering Knowledge">
+  <meta property="og:description" content="Problems, experiments, rejected approaches, measurements and reusable lessons from the RG34XX/H700 integration.">
+  <meta property="og:url" content="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/knowledge/">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <link rel="stylesheet" href="../../../assets/css/project-nav.css">
+</head>
+<body class="project-page">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../../" aria-label="Miguel's Game Dev Lab home"><span class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a>
+      <nav aria-label="Primary navigation"><a href="../">Project</a><a href="../reproduce/">Reproduce</a><a href="../../../method/">Method</a><a href="https://github.com/raposomiguel50/minish-cap-rg34xx" target="_blank" rel="noopener noreferrer">Source</a></nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="project-hero">
+      <div class="container">
+        <p class="breadcrumbs"><a href="../">The Minish Cap - RG34XX</a> / Knowledge</p>
+        <div class="project-meta project-meta-large"><span>KNOWLEDGE</span><span>H700</span><span>EVIDENCE</span><span>LESSONS</span></div>
+        <h1>Engineering knowledge</h1>
+        <p class="project-lede">The useful output is not only the working port. This page preserves the reasoning: what was measured, what failed, what was rejected, what was retained and what can be reused elsewhere.</p>
+        <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/KNOWLEDGE_BASE.md" target="_blank" rel="noopener noreferrer">Full knowledge base</a><a class="button button-secondary" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PHILOSOPHY.md" target="_blank" rel="noopener noreferrer">Project philosophy</a></div>
+      </div>
+    </section>
+
+    <nav class="project-section-nav" aria-label="Knowledge sections" id="project-index">
+      <div class="container">
+        <div class="project-section-nav-heading"><span class="section-kicker">ON THIS PAGE</span><span class="project-section-nav-hint">Reusable engineering lessons</span></div>
+        <div class="project-section-links"><a href="#philosophy"><span>01</span>Philosophy</a><a href="#timing"><span>02</span>Timing</a><a href="#audio"><span>03</span>Audio</a><a href="#benchmarking"><span>04</span>Benchmarking</a><a href="#negative"><span>05</span>Negative results</a><a href="#publication"><span>06</span>Publication lessons</a></div>
+      </div>
+    </nav>
+
+    <section class="section project-section" id="philosophy">
+      <div class="container">
+        <div class="section-title-row"><div><p class="section-kicker">01 / PHILOSOPHY</p><h2>Minimal intervention, visible knowledge</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <p class="section-intro">Preservation, containment, focus, restoration and minimalism are engineering constraints here, not branding. The original experience remains the reference while platform work is kept as small and inspectable as practical.</p>
+        <div class="content-grid">
+          <div class="content-card"><h3>Preserve identity</h3><p>Art, music, SFX, UI, cadence and control identity remain authoritative. A port can improve infrastructure without visually rewriting the game.</p></div>
+          <div class="content-card"><h3>Contain the change</h3><p>Fix the demonstrated problem inside the smallest useful boundary. Do not turn every timing, build or audio issue into a whole-engine redesign.</p></div>
+          <div class="content-card"><h3>Explain more than you change</h3><p>Minimalism applies to intervention, not documentation. A small patch can deserve a detailed account of evidence, alternatives and limitations.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt project-section" id="timing">
+      <div class="container">
+        <div class="section-title-row"><div><p class="section-kicker">02 / TIMING</p><h2>A 120 Hz panel is not 120 FPS game logic</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <p>The high-refresh investigation separated logical cadence, explicit presentation calls and panel refresh. The retained direction kept game logic around <strong>59.7275 Hz</strong>, used the panel around <strong>119.455 Hz</strong>, and adopted <strong>one explicit presentation per logical tick</strong>.</p>
+        <p>In the recorded comparison, tick-lateness p95 moved from approximately <strong>5.791 ms</strong> to <strong>0.028 ms</strong> under the tested conditions.</p>
+        <p>The important lesson is not the marketing number. It is that instrumentation was allowed to reject the original hypothesis and preserve the original game cadence while improving presentation behaviour.</p>
+      </div>
+    </section>
+
+    <section class="section project-section" id="audio">
+      <div class="container">
+        <div class="section-title-row"><div><p class="section-kicker">03 / AUDIO</p><h2>Measure timing, then listen</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <p>Audio work on Cortex-A53/H700 combined callback/timing evidence with human listening. Later retained configuration evidence uses audio <strong>1600</strong>; the project record discusses a nominal interval change from roughly 40 ms to 33.333 ms.</p>
+        <p>A remaining callback-gap/outlier warning was kept in the record rather than hidden.</p>
+        <p><strong>Reusable lesson:</strong> a heuristic underrun/callback counter is not a literal count of audible defects. Instrumentation and listening answer different questions.</p>
+      </div>
+    </section>
+
+    <section class="section alt project-section" id="benchmarking">
+      <div class="container">
+        <div class="section-title-row"><div><p class="section-kicker">04 / BENCHMARKING</p><h2>Validate the context before the number</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <p>Early AutoLab measurements taken through direct SSH were rejected because frontend/background state did not represent a normal Ports launch.</p>
+        <p>The improved method used a normal Ports-session context, deterministic replay and CPU/GPU restoration between variants.</p>
+        <p><strong>Reusable lesson:</strong> before optimising a benchmark, prove that its environment represents how the software is actually used.</p>
+      </div>
+    </section>
+
+    <section class="section project-section" id="negative">
+      <div class="container">
+        <div class="section-title-row"><div><p class="section-kicker">05 / NEGATIVE RESULTS</p><h2>Rejected experiments remain useful</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <div class="content-grid">
+          <div class="content-card"><h3>GPU backend</h3><p>An experimental GPU renderer failed and was not promoted. It remains useful as a warning against blindly retrying a plausible idea after context loss.</p></div>
+          <div class="content-card"><h3>Fullscreen clear</h3><p>A fullscreen-clear experiment existed but was not adopted into the retained V1 line.</p></div>
+          <div class="content-card"><h3>Mixed optimisation data</h3><p>The record keeps unfavourable observations too, including higher maximum temperature in one comparison and slightly higher RSS.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt project-section" id="publication">
+      <div class="container">
+        <div class="section-title-row"><div><p class="section-kicker">06 / PUBLICATION</p><h2>Publication failures are engineering lessons too</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <p>The first public Minish Cap publication correctly excluded private/proprietary material but also hid too much safe engineering context. The correction is explicit: sanitise what cannot be shared; publish the reasoning that can.</p>
+        <p>Later site work added further reusable lessons: local QA is not the same as production deployment; existing artifacts should be checked before asking the operator to recreate them; and automation should be smaller than the problem it is meant to solve.</p>
+        <p><strong>Reusable lesson:</strong> minimal public risk does not require minimal public knowledge.</p>
+      </div>
+    </section>
+
+    <section class="section project-section">
+      <div class="container">
+        <p class="section-kicker">FULL RECORD</p>
+        <h2>Read the complete knowledge base</h2>
+        <p>The repository contains a longer set of structured entries covering upstream choice, host/target boundaries, lifecycle, timing, audio, AutoLab, optimisation, licensing, reproducibility and publication.</p>
+        <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/KNOWLEDGE_BASE.md" target="_blank" rel="noopener noreferrer">Open KNOWLEDGE_BASE.md</a><a class="button button-secondary" href="../reproduce/">Reconstruction status</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-wrap"><span>Miguel's Game Dev Lab</span><span class="legal">Human-directed, AI-assisted development. No proprietary game data is distributed by this site.</span></div></footer>
+  <script src="/assets/js/music-player.js" defer></script>
+</body>
+</html>
