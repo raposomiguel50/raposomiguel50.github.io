@@ -10,17 +10,17 @@
   <meta property="og:site_name" content="Miguel's Game Dev Lab">
   <meta property="og:type" content="website">
   <meta property="og:title" content="The Minish Cap - RG34XX | Miguel's Game Dev Lab">
-  <meta property="og:description" content="Preservation-led RG34XX/H700 integration work for Project Picori, with public source, engineering knowledge and reconstruction boundaries.">
+  <meta property="og:description" content="RG34XX/H700 integration work for Project Picori, with public source, engineering knowledge and reconstruction documentation.">
   <meta property="og:url" content="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="The Minish Cap - RG34XX | Miguel's Game Dev Lab">
-  <meta name="twitter:description" content="Project Picori integration validated on ANBERNIC RG34XX-H with muOS, documented as both a port and a learning resource.">
+  <meta name="twitter:description" content="Project Picori integration validated on ANBERNIC RG34XX-H with muOS, with public source and engineering documentation.">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareSourceCode",
   "name": "The Minish Cap - RG34XX",
-  "description": "Preservation-led RG34XX/H700 native-port integration work for Project Picori, with public source patches, engineering knowledge and reconstruction documentation.",
+  "description": "RG34XX/H700 native-port integration work for Project Picori, with public source patches, engineering knowledge and reconstruction documentation.",
   "url": "https://raposomiguel50.github.io/projects/minish-cap-rg34xx/",
   "codeRepository": "https://github.com/raposomiguel50/minish-cap-rg34xx",
   "programmingLanguage": ["C", "C++", "Shell"],
@@ -47,93 +47,92 @@
         <p class="breadcrumbs"><a href="../../#projects">Projects</a> / The Minish Cap - RG34XX</p>
         <div class="project-meta project-meta-large"><span>PORT</span><span>LINUX</span><span>ARM64</span><span>H700</span><span>RG34XX-H</span><span>KNOWLEDGE</span></div>
         <h1>The Minish Cap - RG34XX</h1>
-        <p class="project-lede">An unofficial RG34XX/H700 integration of <a class="inline-link" href="https://github.com/EstebanPdN/zelda-tmc-3ds" target="_blank" rel="noopener noreferrer">Project Picori</a>, built around preservation, containment, focus, restoration and minimal intervention.</p>
-        <p class="project-lede">The goal is not only to provide a port. It is to preserve the reasoning, failures and evidence so other developers can reuse the method.</p>
-        <div class="status-line" aria-label="Project status"><span class="status-badge">SOURCE + KNOWLEDGE PUBLICATION</span><span>AArch64</span><span>RG34XX-H</span><span>muOS</span><span>Updated 6 September 2026</span></div>
+        <p class="project-lede">An unofficial RG34XX/H700 integration of <a class="inline-link" href="https://github.com/EstebanPdN/zelda-tmc-3ds" target="_blank" rel="noopener noreferrer">Project Picori</a>, developed with the ANBERNIC RG34XX-H and muOS as the validated reference configuration.</p>
+        <p class="project-lede">The public project combines source-side integration work with engineering notes, validation boundaries and reconstruction status.</p>
+        <div class="status-line" aria-label="Project status"><span class="status-badge">SOURCE + KNOWLEDGE PUBLICATION</span><span>AArch64</span><span>RG34XX-H</span><span>muOS</span><span>Updated 7 September 2026</span></div>
         <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/minish-cap-rg34xx" target="_blank" rel="noopener noreferrer">Source repository</a><a class="button button-secondary" href="knowledge/">Knowledge</a><a class="button button-secondary" href="reproduce/">Reproduce</a><a class="button button-secondary" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PHILOSOPHY.md" target="_blank" rel="noopener noreferrer">Philosophy</a></div>
       </div>
     </section>
 
     <nav class="project-section-nav" aria-label="Minish Cap project sections" id="project-index">
       <div class="container">
-        <div class="project-section-nav-heading"><span class="section-kicker">ON THIS PAGE</span><span class="project-section-nav-hint">Purpose, evidence and learning paths</span></div>
-        <div class="project-section-links"><a href="#overview"><span>01</span>Overview</a><a href="#philosophy"><span>02</span>Philosophy</a><a href="#learn"><span>03</span>Learn</a><a href="#validation"><span>04</span>Validation</a><a href="#publication"><span>05</span>Publication</a><a href="#portmaster"><span>06</span>PortMaster</a></div>
+        <div class="project-section-nav-heading"><span class="section-kicker">ON THIS PAGE</span><span class="project-section-nav-hint">Scope, principles and evidence</span></div>
+        <div class="project-section-links"><a href="#overview"><span>01</span>Overview</a><a href="#philosophy"><span>02</span>Philosophy</a><a href="#learn"><span>03</span>Documentation</a><a href="#validation"><span>04</span>Validation</a><a href="#publication"><span>05</span>Publication</a><a href="#portmaster"><span>06</span>PortMaster</a></div>
       </div>
     </nav>
 
     <section class="section project-section" id="overview">
       <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">01 / OVERVIEW</p><h2>A port used to learn the platform</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <div class="section-title-row"><div><p class="section-kicker">01 / OVERVIEW</p><h2>RG34XX/H700 integration</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
         <div class="content-grid">
-          <div class="content-card"><h3>Project Picori foundation</h3><p>The integration is based on Project Picori revision <code>e72663ca4059dabf9dbf7f03c36fc791d90b8db5</code>. The public repository publishes the H700 integration layer rather than duplicating the complete upstream tree.</p></div>
-          <div class="content-card"><h3>Hardware-led reference</h3><p>The ANBERNIC RG34XX-H, Allwinner H700 and muOS form the validated reference configuration. Host builds remain development aids; target behaviour is a separate authority.</p></div>
-          <div class="content-card"><h3>Teaching output</h3><p>The public result includes patches, launcher material, provenance, failures, measurements, claim limits and reconstruction status. The reasoning is part of the deliverable.</p></div>
+          <div class="content-card"><h3>Project Picori foundation</h3><p>The integration is based on Project Picori revision <code>e72663ca4059dabf9dbf7f03c36fc791d90b8db5</code>. The public repository contains the H700 integration layer rather than duplicating the complete upstream tree.</p></div>
+          <div class="content-card"><h3>Validated reference</h3><p>The ANBERNIC RG34XX-H, Allwinner H700 and muOS form the validated reference configuration. Host builds are used for development; target behaviour is validated separately.</p></div>
+          <div class="content-card"><h3>Public documentation</h3><p>The repository includes patches, launcher material, provenance, measurements, validation limits and reconstruction status alongside the source integration.</p></div>
         </div>
       </div>
     </section>
 
     <section class="section alt project-section" id="philosophy">
       <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">02 / PHILOSOPHY</p><h2>Small interventions, solid foundations</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <p class="section-intro">This project deliberately resists the idea that newer, larger or more visible is automatically better. Improvements have to earn their place against the preservation goal and the target evidence.</p>
+        <div class="section-title-row"><div><p class="section-kicker">02 / PHILOSOPHY</p><h2>Preservation-led engineering</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <p class="section-intro">The project uses preservation, containment, focus, restoration and minimalism to guide platform-specific changes.</p>
         <div class="content-grid">
-          <div class="content-card"><h3>Preservation</h3><p>The original game remains authoritative for art, music, SFX, interface, cadence and control identity.</p></div>
-          <div class="content-card"><h3>Containment</h3><p>Solve the demonstrated build, timing, audio or lifecycle problem without turning each issue into a whole-engine redesign.</p></div>
-          <div class="content-card"><h3>Focus</h3><p>Research can remain research. Optional remastering or experimental renderers do not become required scope merely because they are technically interesting.</p></div>
-          <div class="content-card"><h3>Restoration</h3><p>Prefer adapting the original behaviour to the new environment instead of replacing the experience with a new interpretation.</p></div>
-          <div class="content-card"><h3>Minimalism</h3><p>Use the smallest justified technical intervention. Minimalism does not mean minimal documentation: the evidence and reasoning should remain visible.</p></div>
-          <div class="content-card"><h3>Independent judgment</h3><p>Trends, hype, marketing language, consumer pressure and feature-count escalation do not set project priorities. Need and evidence do.</p></div>
+          <div class="content-card"><h3>Preservation</h3><p>The original game remains the reference for art, music, sound effects, interface, cadence and control identity.</p></div>
+          <div class="content-card"><h3>Containment</h3><p>Build, timing, audio and lifecycle changes are kept within the smallest practical boundary that addresses the observed issue.</p></div>
+          <div class="content-card"><h3>Focus</h3><p>Stable scope is kept separate from optional research such as remastering or alternate rendering paths.</p></div>
+          <div class="content-card"><h3>Restoration</h3><p>Platform adaptation aims to retain the original behaviour and presentation rather than replace them with a different interpretation.</p></div>
+          <div class="content-card"><h3>Minimalism</h3><p>Technical interventions are kept as small as practical, while documentation remains detailed enough to support review and reuse.</p></div>
+          <div class="content-card"><h3>Priorities</h3><p>Changes are selected according to project purpose, target constraints and evidence rather than feature count or technical novelty alone.</p></div>
         </div>
-        <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PHILOSOPHY.md" target="_blank" rel="noopener noreferrer">Read the full preservation philosophy</a></p>
+        <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PHILOSOPHY.md" target="_blank" rel="noopener noreferrer">Read the preservation philosophy</a></p>
       </div>
     </section>
 
     <section class="section project-section" id="learn">
       <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">03 / LEARN</p><h2>Use the project as a technical case study</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <div class="section-title-row"><div><p class="section-kicker">03 / DOCUMENTATION</p><h2>Engineering record</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
         <div class="content-grid">
-          <div class="content-card"><h3>Knowledge</h3><p>Why high-refresh did not mean 120 FPS, how invalid benchmarks were rejected, how audio was evaluated, why failed experiments remain public and what publication mistakes taught.</p><p><a class="inline-link" href="knowledge/">Open engineering knowledge</a></p></div>
-          <div class="content-card"><h3>Reproduce</h3><p>Exact upstream pin, V1 identity, source-authority limits, licensing boundary and the difference between auditability, functional reconstruction and bit-for-bit reproducibility.</p><p><a class="inline-link" href="reproduce/">Open reconstruction status</a></p></div>
-          <div class="content-card"><h3>Patch history</h3><p>The patch directory is classified into foundation work, instrumentation, A/B experiments, accepted directions and historical/superseded work.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PATCH_SERIES.md" target="_blank" rel="noopener noreferrer">Read patch history</a></p></div>
+          <div class="content-card"><h3>Knowledge</h3><p>Timing, audio, benchmark methodology, rejected experiments, lifecycle work and publication/release lessons.</p><p><a class="inline-link" href="knowledge/">Open engineering knowledge</a></p></div>
+          <div class="content-card"><h3>Reproduce</h3><p>Upstream pin, private V1 identity, source-authority limits, licensing boundary and current reconstruction status.</p><p><a class="inline-link" href="reproduce/">Open reconstruction status</a></p></div>
+          <div class="content-card"><h3>Patch history</h3><p>Published patches are classified by purpose, including foundation work, instrumentation, A/B experiments and historical directions.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PATCH_SERIES.md" target="_blank" rel="noopener noreferrer">Read patch history</a></p></div>
         </div>
       </div>
     </section>
 
     <section class="section alt project-section" id="validation">
       <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">04 / VALIDATION</p><h2>Evidence without inflated claims</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <div class="section-title-row"><div><p class="section-kicker">04 / VALIDATION</p><h2>Measured results and limits</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
         <p>Retained private V1 SHA-256:</p>
         <p><code>787ba3cb8c297ea44a0605745347fe5a6e792094f0be755b51a8200c1eadc710</code></p>
         <div class="content-grid">
           <div class="content-card"><h3>Timing</h3><p>Accepted direction: logic ~59.7275 Hz, panel ~119.455 Hz, one explicit presentation per logical tick. A recorded comparison improved tick-lateness p95 from ~5.791 ms to ~0.028 ms.</p></div>
-          <div class="content-card"><h3>Runtime evidence</h3><p>Later retained configuration evidence includes CPU936, GPU420, audio1600 and <code>TMC_RENDER_THREADS=3</code>.</p></div>
-          <div class="content-card"><h3>Claim discipline</h3><p>These numbers are not converted into unsupported claims such as 120 FPS gameplay, 33.9% battery savings, universal H700 compatibility or bit-for-bit reproducibility.</p></div>
+          <div class="content-card"><h3>Runtime evidence</h3><p>Later retained configuration evidence includes CPU 936 MHz, GPU 420 MHz, audio 1600 and <code>TMC_RENDER_THREADS=3</code>.</p></div>
+          <div class="content-card"><h3>Evidence boundaries</h3><p>The record keeps display refresh, CPU frequency, compatibility and reproducibility claims separate from measurements that do not directly establish them.</p></div>
         </div>
-        <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/VALIDATION.md" target="_blank" rel="noopener noreferrer">Read the full validation record</a></p>
+        <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/VALIDATION.md" target="_blank" rel="noopener noreferrer">Read the validation record</a></p>
       </div>
     </section>
 
     <section class="section project-section" id="publication">
       <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">05 / PUBLICATION</p><h2>Safe boundary, open knowledge</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <div class="section-title-row"><div><p class="section-kicker">05 / PUBLICATION</p><h2>Public and private boundaries</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
         <div class="content-grid">
           <div class="content-card"><h3>Published</h3><p>Source patches, launcher/runtime integration material, reference hashes, philosophy, knowledge base, patch map, validation, reconstruction status and development method.</p></div>
           <div class="content-card"><h3>Not published</h3><p>No GBA ROM, extracted Nintendo assets, saves, private builds, device backups or validated V1 executable are included.</p></div>
           <div class="content-card"><h3>VirtuaAPU boundary</h3><p>The private V1 used VirtuaAPU. The audited revision had no explicit published licence file, so its source and the executable incorporating it are not redistributed.</p></div>
         </div>
-        <p>The first publication was too narrow editorially. The correction is now explicit: <strong>sanitise restricted material; do not sanitise away safe engineering knowledge.</strong></p>
       </div>
     </section>
 
     <section class="section alt project-section" id="portmaster">
       <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">06 / PORTMASTER</p><h2>Not submission-ready yet</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <p>A future PortMaster package remains a separate distribution milestone. It is currently blocked by two genuine requirements:</p>
+        <div class="section-title-row"><div><p class="section-kicker">06 / PORTMASTER</p><h2>Pending requirements</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <p>A future PortMaster package requires:</p>
         <ul>
-          <li>a clean redistribution/licensing path for the executable dependency boundary, especially VirtuaAPU;</li>
+          <li>a clear redistribution/licensing path for the executable dependency boundary, including VirtuaAPU;</li>
           <li>broader CFW/device validation beyond the current RG34XX-H + muOS reference.</li>
         </ul>
-        <p>Those blockers do not prevent public teaching, documentation or source-side publication.</p>
+        <p>Source-side documentation and engineering material remain available independently of those distribution requirements.</p>
         <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PORTMASTER_STATUS.md" target="_blank" rel="noopener noreferrer">Read current PortMaster status</a></p>
       </div>
     </section>
