@@ -7,14 +7,14 @@
       title: 'Inferno Protocol',
       artist: 'Psychronic',
       durationLabel: '4:00',
-      source: 'https://pixabay.com/music/download/id-234864.mp3',
+      source: 'https://cdn.pixabay.com/download/audio/2024/08/24/audio_3dfd99075f.mp3?filename=psychronic-inferno-protocol-234864.mp3',
       page: 'https://pixabay.com/music/techno-trance-inferno-protocol-234864/'
     },
     {
       title: 'Neon Nemesis',
       artist: 'Psychronic',
       durationLabel: '1:15',
-      source: 'https://pixabay.com/music/download/id-236981.mp3',
+      source: 'https://cdn.pixabay.com/download/audio/2024/09/01/audio_72d1d643bf.mp3?filename=psychronic-neon-nemesis-236981.mp3',
       page: 'https://pixabay.com/music/techno-trance-neon-nemesis-236981/'
     }
   ];
@@ -98,9 +98,9 @@
       return {
         track: Number.isInteger(stored.track) ? clamp(stored.track, 0, tracks.length - 1) : fallback.track,
         volume: Number.isFinite(stored.volume) ? clamp(stored.volume, 0, 1) : fallback.volume,
-        muted: Boolean(stored.muted),
+        muted: stored.muted === true,
         time: Number.isFinite(stored.time) && stored.time >= 0 ? stored.time : fallback.time,
-        wantedPlaying: Boolean(stored.wantedPlaying)
+        wantedPlaying: stored.wantedPlaying === true
       };
     } catch (_) {
       return fallback;
@@ -110,6 +110,11 @@
   const state = readState();
   let lastSavedSecond = -1;
   let sourceFailed = false;
+  let playbackNotice = '';
+  let playPending = false;
+  let requestId = 0;
+  let pendingResume = null;
+  let metadataListener = null;
 
   const shell = document.createElement('aside');
   shell.className = 'terminal-player';
@@ -175,18 +180,19 @@
       track: state.track,
       volume: audio.volume,
       muted: audio.muted,
-      time: Number.isFinite(audio.currentTime) ? audio.currentTime : 0,
-      wantedPlaying: !audio.paused,
+      time: pendingResume !== null ? pendingResume : (Number.isFinite(audio.currentTime) ? audio.currentTime : 0),
+      wantedPlaying: state.wantedPlaying,
       ...extra
     };
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshot)); } catch (_) {}
   }
 
   function updateTransport() {
-    playButton.textContent = audio.paused ? '[PLAY]' : '[PAUSE]';
-    playButton.setAttribute('aria-label', audio.paused ? 'Play music' : 'Pause music');
+    const active = playPending || !audio.paused;
+    playButton.textContent = active ? '[PAUSE]' : '[PLAY]';
+    playButton.setAttribute('aria-label', active ? 'Pause music' : 'Play music');
     muteButton.textContent = audio.muted || audio.volume === 0 ? '[MUTE]' : '[VOL]';
-    statusEl.textContent = sourceFailed ? 'SOURCE ERROR' : (audio.paused ? 'PAUSED' : 'PLAYING');
+    statusEl.textContent = playbackNotice || (playPending ? 'STARTING' : (audio.paused ? 'PAUSED' : 'PLAYING'));
   }
 
   function updateTimeline() {
@@ -196,56 +202,113 @@
     seek.value = duration ? String((audio.currentTime / duration) * 100) : '0';
   }
 
+  function setPlaybackNotice(label, detail = '') {
+    playbackNotice = label;
+    statusEl.title = detail;
+    updateTransport();
+  }
+
+  function reportSourceError(code) {
+    sourceFailed = true;
+    playPending = false;
+    const labels = { 1: 'PLAYBACK ABORTED', 2: 'NETWORK ERROR', 3: 'DECODE ERROR', 4: 'SOURCE ERROR' };
+    setPlaybackNotice(labels[code] || 'SOURCE ERROR', `MediaError code: ${code || 'unknown'}. Check the original track link.`);
+    shell.classList.add('terminal-player--error');
+    persist();
+  }
+
   function loadTrack(index, options = {}) {
+    ++requestId;
+    if (metadataListener) audio.removeEventListener('loadedmetadata', metadataListener);
     state.track = (index + tracks.length) % tracks.length;
-    const track = tracks[state.track];
+    state.wantedPlaying = options.play === true;
+    pendingResume = Number.isFinite(options.resumeAt) ? Math.max(0, options.resumeAt) : 0;
+    lastSavedSecond = -1;
+    playPending = false;
     sourceFailed = false;
+    playbackNotice = '';
+    statusEl.title = '';
+    shell.classList.remove('terminal-player--error');
+    const track = tracks[state.track];
     titleEl.textContent = track.title;
     titleEl.href = track.page;
     artistEl.textContent = `${track.artist} / Pixabay`;
     durationEl.textContent = track.durationLabel;
-    statusEl.textContent = 'LOADING';
+    metadataListener = () => {
+      const resumeAt = pendingResume;
+      if (resumeAt !== null && Number.isFinite(audio.duration) && audio.duration > 0) {
+        try { audio.currentTime = Math.min(resumeAt, Math.max(0, audio.duration - 0.25)); }
+        catch (_) {}
+      }
+      pendingResume = null;
+      metadataListener = null;
+      updateTimeline();
+      updateTransport();
+      persist();
+    };
+    audio.addEventListener('loadedmetadata', metadataListener, { once: true });
     audio.src = track.source;
     audio.load();
-
-    const resumeAt = Number.isFinite(options.resumeAt) ? Math.max(0, options.resumeAt) : 0;
-    const shouldPlay = Boolean(options.play);
-    const onceLoaded = () => {
-      if (resumeAt && Number.isFinite(audio.duration)) {
-        audio.currentTime = Math.min(resumeAt, Math.max(0, audio.duration - 0.25));
-      }
-      updateTimeline();
-      if (shouldPlay) requestPlay(); else updateTransport();
-    };
-    audio.addEventListener('loadedmetadata', onceLoaded, { once: true });
-    persist({ time: resumeAt, wantedPlaying: shouldPlay });
+    updateTimeline();
+    updateTransport();
+    persist();
+    if (state.wantedPlaying) requestPlay();
   }
 
   async function requestPlay() {
-    sourceFailed = false;
-    statusEl.textContent = 'STARTING';
+    const id = ++requestId;
+    state.wantedPlaying = true;
+    playPending = true;
+    playbackNotice = '';
+    statusEl.title = '';
+    updateTransport();
+    persist();
     try {
       await audio.play();
+      if (id !== requestId) return;
+      playPending = false;
+      sourceFailed = false;
+      shell.classList.remove('terminal-player--error');
+      playbackNotice = '';
       updateTransport();
-      persist({ wantedPlaying: true });
-    } catch (_) {
-      statusEl.textContent = 'PRESS PLAY';
-      playButton.textContent = '[PLAY]';
-      persist({ wantedPlaying: false });
+      persist();
+    } catch (error) {
+      if (id !== requestId) return;
+      playPending = false;
+      if (audio.error) reportSourceError(audio.error.code);
+      else if (error && error.name === 'NotAllowedError') {
+        setPlaybackNotice('PRESS PLAY', 'The browser requires an explicit Play action. Playback intent is retained.');
+      } else if (error && error.name === 'NotSupportedError') {
+        reportSourceError(4);
+      } else if (error && error.name === 'AbortError') {
+        setPlaybackNotice('PLAYBACK ABORTED', 'Playback was interrupted. Press Play to retry.');
+      } else {
+        setPlaybackNotice('PLAYBACK ERROR', `play() rejected: ${error && error.name ? error.name : 'unknown'}`);
+      }
+      persist();
     }
   }
 
   playButton.addEventListener('click', () => {
-    if (audio.paused) requestPlay();
-    else {
+    if (playPending || !audio.paused) {
+      ++requestId;
+      state.wantedPlaying = false;
+      playPending = false;
+      playbackNotice = '';
+      statusEl.title = '';
       audio.pause();
       updateTransport();
-      persist({ wantedPlaying: false });
-    }
+      persist();
+    } else if (sourceFailed || audio.error) {
+      loadTrack(state.track, {
+        resumeAt: pendingResume !== null ? pendingResume : audio.currentTime,
+        play: true
+      });
+    } else requestPlay();
   });
 
-  prevButton.addEventListener('click', () => loadTrack(state.track - 1, { play: !audio.paused }));
-  nextButton.addEventListener('click', () => loadTrack(state.track + 1, { play: !audio.paused }));
+  prevButton.addEventListener('click', () => loadTrack(state.track - 1, { play: state.wantedPlaying }));
+  nextButton.addEventListener('click', () => loadTrack(state.track + 1, { play: state.wantedPlaying }));
 
   volume.value = String(state.volume);
   audio.volume = state.volume;
@@ -290,20 +353,12 @@
   });
   audio.addEventListener('ended', () => loadTrack(state.track + 1, { play: true }));
   audio.addEventListener('error', () => {
-    sourceFailed = true;
-    statusEl.textContent = 'SOURCE ERROR';
-    playButton.textContent = '[PLAY]';
-    shell.classList.add('terminal-player--error');
-    persist({ wantedPlaying: false });
+    if (audio.error) reportSourceError(audio.error.code);
   });
-  audio.addEventListener('canplay', () => {
-    sourceFailed = false;
-    shell.classList.remove('terminal-player--error');
-    updateTransport();
-  });
+  audio.addEventListener('canplay', updateTransport);
 
   window.addEventListener('pagehide', () => persist());
 
-  loadTrack(state.track, { resumeAt: state.time, play: false });
+  loadTrack(state.track, { resumeAt: state.time, play: state.wantedPlaying });
   updateTransport();
 })();
