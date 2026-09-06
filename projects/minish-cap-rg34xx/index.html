@@ -48,7 +48,7 @@
         <div class="project-meta project-meta-large"><span>PORT</span><span>LINUX</span><span>ARM64</span><span>H700</span><span>RG34XX-H</span><span>KNOWLEDGE</span></div>
         <h1>The Minish Cap - RG34XX</h1>
         <p class="project-lede">An unofficial RG34XX/H700 integration of <a class="inline-link" href="https://github.com/EstebanPdN/zelda-tmc-3ds" target="_blank" rel="noopener noreferrer">Project Picori</a>, developed with the ANBERNIC RG34XX-H and muOS as the validated reference configuration.</p>
-        <p class="project-lede">The public project combines source-side integration work with engineering notes, validation boundaries and reconstruction status.</p>
+        <p class="project-lede">I chose the RG34XX-H because its horizontal form and design closely recall the original Game Boy Advance. The GBA was the first console I owned, given to me by my father after growing up mainly with PCs and PC games.</p>
         <div class="status-line" aria-label="Project status"><span class="status-badge">SOURCE + KNOWLEDGE PUBLICATION</span><span>AArch64</span><span>RG34XX-H</span><span>muOS</span><span>Updated 7 September 2026</span></div>
         <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/minish-cap-rg34xx" target="_blank" rel="noopener noreferrer">Source repository</a><a class="button button-secondary" href="knowledge/">Knowledge</a><a class="button button-secondary" href="reproduce/">Reproduce</a><a class="button button-secondary" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PHILOSOPHY.md" target="_blank" rel="noopener noreferrer">Philosophy</a></div>
       </div>
@@ -63,11 +63,11 @@
 
     <section class="section project-section" id="overview">
       <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">01 / OVERVIEW</p><h2>RG34XX/H700 integration</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <div class="section-title-row"><div><p class="section-kicker">01 / OVERVIEW</p><h2>Why the RG34XX-H</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
         <div class="content-grid">
+          <div class="content-card"><h3>Personal connection</h3><p>I grew up mainly with PCs and PC games. The Game Boy Advance was the first console I owned, given to me by my father. The RG34XX-H is, for me, the modern handheld that most closely recalls the GBA as a physical device.</p></div>
+          <div class="content-card"><h3>Technical fit</h3><p>Its 720x480 display allows the GBA's original 240x160 image to scale exactly at 3x without changing its proportions. The H700 and muOS also provide a useful constrained ARM/Linux target for native-port work.</p></div>
           <div class="content-card"><h3>Project Picori foundation</h3><p>The integration is based on Project Picori revision <code>e72663ca4059dabf9dbf7f03c36fc791d90b8db5</code>. The public repository contains the H700 integration layer rather than duplicating the complete upstream tree.</p></div>
-          <div class="content-card"><h3>Validated reference</h3><p>The ANBERNIC RG34XX-H, Allwinner H700 and muOS form the validated reference configuration. Host builds are used for development; target behaviour is validated separately.</p></div>
-          <div class="content-card"><h3>Public documentation</h3><p>The repository includes patches, launcher material, provenance, measurements, validation limits and reconstruction status alongside the source integration.</p></div>
         </div>
       </div>
     </section>
