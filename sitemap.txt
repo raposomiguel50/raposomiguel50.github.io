@@ -5,3 +5,5 @@ https://raposomiguel50.github.io/projects/system-shock-android/
 https://raposomiguel50.github.io/projects/system-shock-android/reproduce/
 https://raposomiguel50.github.io/projects/system-shock-android/knowledge/
 https://raposomiguel50.github.io/projects/minish-cap-rg34xx/
+https://raposomiguel50.github.io/projects/minish-cap-rg34xx/knowledge/
+https://raposomiguel50.github.io/projects/minish-cap-rg34xx/reproduce/
