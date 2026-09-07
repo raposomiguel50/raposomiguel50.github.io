@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Engineering knowledge from The Minish Cap RG34XX/H700 port: timing, audio, benchmarking, rejected experiments and reusable lessons.">
+  <meta name="description" content="Engineering knowledge from The Minish Cap RG34XX/H700 port: technical restoration, curation, timing, audio, benchmarking and reusable lessons.">
   <title>The Minish Cap RG34XX - Knowledge | Miguel's Game Dev Lab</title>
   <link rel="canonical" href="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/knowledge/">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta property="og:site_name" content="Miguel's Game Dev Lab">
   <meta property="og:type" content="article">
   <meta property="og:title" content="The Minish Cap RG34XX - Engineering Knowledge">
-  <meta property="og:description" content="Findings, measurements, rejected approaches and reusable lessons from the RG34XX/H700 integration.">
+  <meta property="og:description" content="Restoration principles, measurements, rejected approaches and reusable lessons from the RG34XX/H700 integration.">
   <meta property="og:url" content="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/knowledge/">
   <link rel="stylesheet" href="../../../assets/css/style.css">
   <link rel="stylesheet" href="../../../assets/css/project-nav.css">
@@ -27,9 +27,9 @@
     <section class="project-hero">
       <div class="container">
         <p class="breadcrumbs"><a href="../">The Minish Cap - RG34XX</a> / Knowledge</p>
-        <div class="project-meta project-meta-large"><span>KNOWLEDGE</span><span>H700</span><span>EVIDENCE</span><span>LESSONS</span></div>
+        <div class="project-meta project-meta-large"><span>KNOWLEDGE</span><span>RESTORATION</span><span>CURATION</span><span>EVIDENCE</span></div>
         <h1>Engineering knowledge</h1>
-        <p class="project-lede">A concise record of the main findings, validation methods and technical boundaries identified during the RG34XX/H700 integration.</p>
+        <p class="project-lede">A concise record of the restoration principles, validation methods and technical boundaries identified during the RG34XX/H700 integration.</p>
         <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/KNOWLEDGE_BASE.md" target="_blank" rel="noopener noreferrer">Full knowledge base</a><a class="button button-secondary" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PHILOSOPHY.md" target="_blank" rel="noopener noreferrer">Project philosophy</a></div>
       </div>
     </section>
@@ -37,18 +37,23 @@
     <nav class="project-section-nav" aria-label="Knowledge sections" id="project-index">
       <div class="container">
         <div class="project-section-nav-heading"><span class="section-kicker">ON THIS PAGE</span><span class="project-section-nav-hint">Selected engineering findings</span></div>
-        <div class="project-section-links"><a href="#philosophy"><span>01</span>Principles</a><a href="#timing"><span>02</span>Timing</a><a href="#audio"><span>03</span>Audio</a><a href="#benchmarking"><span>04</span>Benchmarking</a><a href="#negative"><span>05</span>Experiments</a><a href="#publication"><span>06</span>Release process</a></div>
+        <div class="project-section-links"><a href="#philosophy"><span>01</span>Restoration</a><a href="#timing"><span>02</span>Timing</a><a href="#audio"><span>03</span>Audio</a><a href="#benchmarking"><span>04</span>Benchmarking</a><a href="#negative"><span>05</span>Experiments</a><a href="#publication"><span>06</span>Release process</a></div>
       </div>
     </nav>
 
     <section class="section project-section" id="philosophy">
       <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">01 / PRINCIPLES</p><h2>Preservation and containment</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <p class="section-intro">The integration keeps the original game as the reference and limits platform-specific changes to the issues being addressed.</p>
+        <div class="section-title-row"><div><p class="section-kicker">01 / RESTORATION</p><h2>Preserve the work, remove justified technical obstacles</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <p class="section-intro">The project treats the finished game as the primary creative authority. Native execution is used to restore and present that work, not to redesign it.</p>
         <div class="content-grid">
-          <div class="content-card"><h3>Preserve identity</h3><p>Art, music, sound effects, interface, cadence and control identity remain authoritative.</p></div>
-          <div class="content-card"><h3>Contain changes</h3><p>Build, timing, audio and lifecycle work are kept within the smallest practical boundary that solves the observed problem.</p></div>
-          <div class="content-card"><h3>Document clearly</h3><p>Measurements, alternatives and evidence limits are recorded so small changes remain understandable and reusable.</p></div>
+          <div class="content-card"><h3>Painting-restoration model</h3><p>A conservator does not repaint or add detail, but familiar degradation is not automatically part of the original work. The same distinction is applied to technical defects in software.</p></div>
+          <div class="content-card"><h3>Correct demonstrated defects</h3><p>Known bugs, crashes, save problems, avoidable slowdowns or stutter can be corrected when the creative work remains intact. If defect versus design is uncertain, preservation is the default.</p></div>
+          <div class="content-card"><h3>Curated reference</h3><p>The project selects and validates one coherent preservation configuration instead of requiring the player to build it from many micro-settings.</p></div>
+          <div class="content-card"><h3>Original presentation</h3><p>The reference image is 240x160 at exact 3x integer scale to 720x480, without smoothing, shaders or instructional overlays over the game image.</p></div>
+          <div class="content-card"><h3>Menus without visual intrusion</h3><p>Project Picori menus remain accessible through shortcuts, while its instructional overlays are disabled by default so they do not cover the original presentation.</p></div>
+          <div class="content-card"><h3>Preserve control identity</h3><p>Original GBA controls remain reserved for gameplay. Device-specific port functions use combinations that do not replace those controls.</p></div>
+          <div class="content-card"><h3>Efficiency after fidelity</h3><p>Once fidelity and stability are satisfied, unused performance is treated as reserve. Reduced clocks are preferred when they retain the validated experience instead of consuming resources without purpose.</p></div>
+          <div class="content-card"><h3>Document restored differences</h3><p>When a technical restoration changes observable historical behaviour, the difference and supporting evidence are recorded transparently.</p></div>
         </div>
       </div>
     </section>
@@ -75,6 +80,7 @@
         <div class="section-title-row"><div><p class="section-kicker">04 / BENCHMARKING</p><h2>Use a representative launch context</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
         <p>Early AutoLab measurements obtained through direct SSH were rejected because the surrounding frontend/background state did not represent a normal Ports launch.</p>
         <p>Later comparisons used a normal Ports-session context, deterministic replay and CPU/GPU restoration between variants.</p>
+        <p>The retained V1 uses CPU ceiling <strong>936 MHz</strong> and GPU <strong>420 MHz</strong>. The lower clocks were selected with the objective of avoiding unnecessary power and thermal demand after fidelity and stability requirements were met; clock reduction is not converted into an unmeasured battery, power or temperature percentage.</p>
       </div>
     </section>
 
@@ -86,6 +92,7 @@
           <div class="content-card"><h3>Fullscreen clear</h3><p>A fullscreen-clear experiment was evaluated but not adopted into the retained V1 line.</p></div>
           <div class="content-card"><h3>Mixed optimisation data</h3><p>The record also retains less favourable observations, including higher maximum temperature in one comparison and slightly higher RSS.</p></div>
         </div>
+        <p>These are technical investigations used to define engineering boundaries, not an alternative creative direction for the game.</p>
       </div>
     </section>
 
@@ -101,7 +108,7 @@
       <div class="container">
         <p class="section-kicker">FULL RECORD</p>
         <h2>Engineering knowledge base</h2>
-        <p>The repository contains the complete structured record covering upstream choice, host/target boundaries, lifecycle, timing, audio, AutoLab, optimisation, licensing and reconstruction.</p>
+        <p>The repository contains the complete structured record covering restoration and curation, upstream choice, host/target boundaries, lifecycle, timing, audio, AutoLab, optimisation, licensing and reconstruction.</p>
         <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/KNOWLEDGE_BASE.md" target="_blank" rel="noopener noreferrer">Open KNOWLEDGE_BASE.md</a><a class="button button-secondary" href="../reproduce/">Reconstruction status</a></div>
       </div>
     </section>
