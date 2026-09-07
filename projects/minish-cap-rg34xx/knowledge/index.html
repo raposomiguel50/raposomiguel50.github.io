@@ -24,19 +24,19 @@
     <section class="project-hero"><div class="container">
       <p class="breadcrumbs"><a href="../">The Minish Cap</a> / Learn</p>
       <h1>Learn from the port</h1>
-      <p class="project-lede">Why did menus, timing and shutdown need attention? Each section explains the problem, the change and the lesson.</p>
+      <p class="project-lede">How do you adapt a game to a handheld without changing its identity? Explore controls, presentation timing and the tests behind the choices.</p>
       <p>Start with a topic below. The source files and full measurements are one level deeper.</p>
-      <div class="hero-actions"><a class="button" href="#timing">Understand frame timing</a><a class="button button-secondary" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/KNOWLEDGE_BASE.md">Browse all 25 lessons</a></div>
+      <div class="hero-actions"><a class="button" href="#timing">Understand frame timing</a><a class="button button-secondary" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/KNOWLEDGE_BASE.md">Browse engineering lessons</a></div>
     </div></section>
     <nav class="project-section-nav" aria-label="Page sections" id="project-index"><div class="container">
       <div class="project-section-nav-heading"><span class="section-kicker">ON THIS PAGE</span><span class="project-section-nav-hint">Choose what you want to understand</span></div>
       <div class="project-section-links"><a href="#philosophy"><span>01</span>Controls</a><a href="#timing"><span>02</span>Timing</a><a href="#audio"><span>03</span>Audio</a><a href="#benchmarking"><span>04</span>Testing</a><a href="#negative"><span>05</span>Open questions</a><a href="#publication"><span>06</span>Use the knowledge</a></div>
     </div></nav>
     <section class="section project-section" id="philosophy"><div class="container">
-      <div class="section-title-row"><div><p class="section-kicker">01 / CAN MENUS REMAIN ACCESSIBLE WITHOUT COVERING THE GAME?</p><h2>Can menus remain accessible without covering the game?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <p><strong>Yes.</strong> The port hides the legacy <code>L Settings</code> hint, not the settings function.</p>
-      <p>Pressing <code>MENU+R2</code> opens settings. <code>MENU+L2</code> exits. These device-specific shortcuts keep the original GBA controls assigned to gameplay.</p>
-      <p><strong>Lesson:</strong> a visible prompt and the function it opens are separate design choices.</p>
+      <div class="section-title-row"><div><p class="section-kicker">01 / GAMEPLAY AND PORT SETTINGS</p><h2>How are port settings kept separate from gameplay?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+      <p><strong>The reference keeps port instructions off the game image.</strong> Settings remain available through <code>MENU+R2</code>; <code>MENU+L2</code> returns to muOS.</p>
+      <p>The GBA controls stay assigned to gameplay. These additional shortcuts use the handheld's extra controls, rather than repurposing the game's buttons.</p>
+      <p><strong>Lesson:</strong> make platform functions accessible without making them part of the game's presentation. This is interface integration, not an original-game bug fix.</p>
       <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/KNOWLEDGE_BASE.md#kb-mc-004">Read the control changes and supporting record</a></p>
     </div></section>
     <section class="section alt project-section" id="timing"><div class="container">
