@@ -51,11 +51,11 @@
         <div class="section-title-row"><div><p class="section-kicker">01 / OVERVIEW</p><h2>Hardware choice and implemented work</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
         <div class="content-grid">
           <div class="content-card"><h3>Why this handheld</h3><p>I grew up mainly with PCs and PC games. The Game Boy Advance was my first console, given to me by my father. I chose the RG34XX for its close physical resemblance to that handheld.</p></div>
-          <div class="content-card"><h3>Build integration</h3><p>The P04 patches change source inclusion, EGL/GLES linking and header order. P06 adds ARMv8-A/SIMD and Cortex-A53 targeting flags. These are build changes, not evidence of original-game glitch repair (Raposo, 2026).</p></div>
-          <div class="content-card"><h3>Menu and exit integration</h3><p>P10.3.2 suppresses the legacy <code>L Settings</code> hint and L-button settings activation in the seamless profile. Its dated verdict records MENU+R2 menu access and MENU+L2 exit checks (Miguel's Game Dev Lab, 2026a).</p></div>
-          <div class="content-card"><h3>Presentation scheduling</h3><p>P11.4 changes the targeted render period from half a logic tick to one logic tick. The resulting trace is measured separately; the policy is not an assertion that every tick has exactly one presentation (Raposo, 2026).</p></div>
+          <div class="content-card"><h3>Build integration</h3><p>The P04 patches change source inclusion, EGL/GLES linking and header order. P06 adds ARMv8-A/SIMD and Cortex-A53 targeting flags. These are build changes, not evidence of original-game glitch repair (see <a class="inline-link" href="#source-code">patches and launcher</a>).</p></div>
+          <div class="content-card"><h3>Menu and exit integration</h3><p>P10.3.2 suppresses the legacy <code>L Settings</code> hint and L-button settings activation in the seamless profile. Its dated verdict records MENU+R2 menu access and MENU+L2 exit checks (see <a class="inline-link" href="#source-runtime">runtime records</a>).</p></div>
+          <div class="content-card"><h3>Presentation scheduling</h3><p>P11.4 changes the targeted render period from half a logic tick to one logic tick. The resulting trace is measured separately; the policy is not an assertion that every tick has exactly one presentation (see <a class="inline-link" href="#source-code">patches and launcher</a>).</p></div>
           <div class="content-card"><h3>Native target, with runtime layers</h3><p>The integration targets Linux AArch64 and uses SDL/platform compatibility and audio components. Native CPU execution does not mean bare-metal access or removal of every graphics/audio hardware-model layer.</p></div>
-          <div class="content-card"><h3>Source foundation</h3><p>The recorded Project Picori revision is <code>e72663ca4059dabf9dbf7f03c36fc791d90b8db5</code>. The complete upstream tree is not vendored in this integration repository (Raposo, 2026).</p></div>
+          <div class="content-card"><h3>Source foundation</h3><p>The recorded Project Picori revision is <code>e72663ca4059dabf9dbf7f03c36fc791d90b8db5</code>. The complete upstream tree is not vendored in this integration repository (see <a class="inline-link" href="#source-code">patches and launcher</a>).</p></div>
         </div>
         <p><a class="inline-link" href="#references">Sources and fixed revisions</a></p>
       </div>
@@ -79,7 +79,7 @@
       <div class="container">
         <div class="section-title-row"><div><p class="section-kicker">03 / DOCUMENTATION</p><h2>Inspect the work and the evidence</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
         <div class="content-grid">
-          <div class="content-card"><h3>Technical report</h3><p>Methods, source-level changes, numerical results, discrepancies, limitations and author–date references.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/TECHNICAL_REPORT.md" target="_blank" rel="noopener noreferrer">Read the audit report</a></p></div>
+          <div class="content-card"><h3>Technical report</h3><p>Methods, source-level changes, numerical results, discrepancies, limitations, direct evidence links and external references.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/TECHNICAL_REPORT.md" target="_blank" rel="noopener noreferrer">Read the audit report</a></p></div>
           <div class="content-card"><h3>Knowledge</h3><p>25 entries distinguish observations, archived workflow notes, implementation and approved policy.</p><p><a class="inline-link" href="knowledge/">Open engineering knowledge</a></p></div>
           <div class="content-card"><h3>Patch map and reconstruction</h3><p>All 15 patch filenames, their actual changes, historical roles and the missing requirements for a complete rebuild.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PATCH_SERIES.md" target="_blank" rel="noopener noreferrer">Patch inventory</a> · <a class="inline-link" href="reproduce/">Reconstruction status</a></p></div>
         </div>
@@ -93,9 +93,9 @@
           <div class="content-card"><h3>5 September: acceptance</h3><p>The record contains one manual gameplay session with visual/audio <code>OK</code>, two preceding automated soaks and 874 monitor samples. Maximum reported temperature: 52.6 °C. This is not a full-playthrough or all-scenes guarantee.</p></div>
           <div class="content-card"><h3>Clock limits, not energy savings</h3><p>The final monitor reports CPU maximum 936 MHz and GPU maximum 420 MHz. Stage-A energy eligibility is false and energy values are null. A separate stored P13.1 comparison has a +5.3 °C maximum-temperature delta.</p></div>
         </div>
-        <p>Sources: Miguel's Game Dev Lab (2026a, 2026b). The selected private binary is 8,858,736 bytes, SHA-256 <code>787ba3cb8c297ea44a0605745347fe5a6e792094f0be755b51a8200c1eadc710</code>. Its identity is not a reproducible-build result.</p>
+        <p>Sources: <a class="inline-link" href="#source-runtime">runtime records</a> and <a class="inline-link" href="#source-analysis">REANALYSIS.json</a>. The selected private binary is 8,858,736 bytes, SHA-256 <code>787ba3cb8c297ea44a0605745347fe5a6e792094f0be755b51a8200c1eadc710</code>. Its identity is not a reproducible-build result.</p>
         <h3>Open documentary findings</h3>
-        <p>The launcher requests 1600 audio frames but prints 1920. The log announces inert save states but records quicksave/autosave writes. The monitor has different pre/post CPU governors despite matching caps and display mode. Two out-of-ROM pointer warnings remain in the accepted session log. These observations are disclosed without assuming their causes or declaring new bugs (Raposo, 2026; Miguel's Game Dev Lab, 2026a, 2026b).</p>
+        <p>The launcher requests 1600 audio frames but prints 1920. The log announces inert save states but records quicksave/autosave writes. The monitor has different pre/post CPU governors despite matching caps and display mode. Two out-of-ROM pointer warnings remain in the accepted session log. These observations are disclosed without assuming their causes or declaring new bugs (see <a class="inline-link" href="#source-code">patches and launcher</a>, <a class="inline-link" href="#source-runtime">runtime records</a>, <a class="inline-link" href="#source-analysis">REANALYSIS.json</a>).</p>
         <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/VALIDATION.md" target="_blank" rel="noopener noreferrer">Read validation scope and source locators</a></p>
       </div>
     </section>
@@ -118,10 +118,10 @@
     </section>
     <section class="section project-section" id="references">
       <div class="container">
-        <p class="section-kicker">REFERENCES</p><h2>Primary records and source revision</h2>
-        <p>Miguel's Game Dev Lab. (2026a). <em>Archived RG34XX integration and runtime records</em> [Data set and test records]. GitHub. <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07" target="_blank" rel="noopener noreferrer">Fixed evidence collection</a>.</p>
-        <p>Miguel's Game Dev Lab. (2026b). <em>Reanalysis of archived P11 timing traces and the P13.1 monitor</em> [Data analysis output]. GitHub. <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07/REANALYSIS.json" target="_blank" rel="noopener noreferrer">Fixed reanalysis output</a>.</p>
-        <p>Raposo, M. (2026). <em>The Minish Cap: RG34XX integration patches and launcher</em> (Revision 90fd77a82d579de9460f2de1167a95ec264e57c3) [Source code]. GitHub. <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/90fd77a82d579de9460f2de1167a95ec264e57c3" target="_blank" rel="noopener noreferrer">Audited source revision</a>.</p>
+        <p class="section-kicker">SUPPORTING FILES</p><h2>Primary records and source revision</h2>
+        <p id="source-runtime"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07" target="_blank" rel="noopener noreferrer">Archived runtime records, source index and log excerpts</a>.</p>
+        <p id="source-analysis"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07/REANALYSIS.json" target="_blank" rel="noopener noreferrer">REANALYSIS.json</a> — archived timing and monitor calculations.</p>
+        <p id="source-code"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/90fd77a82d579de9460f2de1167a95ec264e57c3" target="_blank" rel="noopener noreferrer">Integration patches and launcher</a> — revision <code>90fd77a82d579de9460f2de1167a95ec264e57c3</code>.</p>
         <p>The September audit recalculated archived data; it did not run new device tests. The report is AI-assisted and is not presented as independently peer-reviewed.</p>
       </div>
     </section>
