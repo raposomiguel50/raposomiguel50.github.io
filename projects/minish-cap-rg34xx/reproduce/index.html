@@ -3,106 +3,78 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Reconstruction and reproducibility status for The Minish Cap RG34XX/H700 integration, including upstream pin, validation boundaries and open requirements.">
+  <meta name="description" content="Minish Cap RG34XX reconstruction status: exact recorded inputs, private artifact identity, raw-data access and requirements not yet demonstrated.">
   <title>The Minish Cap RG34XX - Reproduce | Miguel's Game Dev Lab</title>
   <link rel="canonical" href="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/reproduce/">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta property="og:site_name" content="Miguel's Game Dev Lab">
   <meta property="og:type" content="article">
   <meta property="og:title" content="The Minish Cap RG34XX - Reconstruction status">
-  <meta property="og:description" content="Current auditability, reconstruction and reproducibility status for the RG34XX/H700 integration.">
+  <meta property="og:description" content="Historical traceability is not a complete functional reconstruction or bit-for-bit rebuild.">
   <meta property="og:url" content="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/reproduce/">
   <link rel="stylesheet" href="../../../assets/css/style.css">
   <link rel="stylesheet" href="../../../assets/css/project-nav.css">
 </head>
 <body class="project-page">
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="../../../" aria-label="Miguel's Game Dev Lab home"><span class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a>
-      <nav aria-label="Primary navigation"><a href="../">Project</a><a href="../knowledge/">Knowledge</a><a href="../../../method/">Method</a><a href="https://github.com/raposomiguel50/minish-cap-rg34xx" target="_blank" rel="noopener noreferrer">Source</a></nav>
-    </div>
-  </header>
-
+  <header class="site-header"><div class="container nav-wrap">
+    <a class="brand" href="../../../" aria-label="Miguel's Game Dev Lab home"><span class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a>
+    <nav aria-label="Primary navigation"><a href="../">Project</a><a href="../knowledge/">Knowledge</a><a href="../../../method/">Method</a><a href="https://github.com/raposomiguel50/minish-cap-rg34xx" target="_blank" rel="noopener noreferrer">Source</a></nav>
+  </div></header>
   <main id="top">
-    <section class="project-hero">
-      <div class="container">
-        <p class="breadcrumbs"><a href="../">The Minish Cap - RG34XX</a> / Reproduce</p>
-        <div class="project-meta project-meta-large"><span>RECONSTRUCTION</span><span>PROVENANCE</span><span>LIMITS</span></div>
-        <h1>Reconstruction and reproducibility</h1>
-        <p class="project-lede">Historical auditability, functional reconstruction and bit-for-bit reproducibility are documented as separate evidence levels.</p>
-        <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/REPRODUCTION.md" target="_blank" rel="noopener noreferrer">Full reconstruction document</a><a class="button button-secondary" href="../knowledge/">Engineering knowledge</a></div>
+    <section class="project-hero"><div class="container">
+      <p class="breadcrumbs"><a href="../">The Minish Cap - RG34XX</a> / Reproduce</p>
+      <div class="project-meta project-meta-large"><span>RECONSTRUCTION</span><span>PROVENANCE</span><span>LIMITS</span></div>
+      <h1>Reconstruction and reproducibility</h1>
+      <p class="project-lede">The public material records integration history and selected device observations. It does not demonstrate a complete rebuild of the private V1.</p>
+      <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/REPRODUCTION.md" target="_blank" rel="noopener noreferrer">Full reconstruction document</a><a class="button button-secondary" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/TECHNICAL_REPORT.md" target="_blank" rel="noopener noreferrer">Evidence audit</a></div>
+    </div></section>
+    <nav class="project-section-nav" aria-label="Reconstruction sections" id="project-index"><div class="container">
+      <div class="project-section-nav-heading"><span class="section-kicker">ON THIS PAGE</span><span class="project-section-nav-hint">Evidence and open requirements</span></div>
+      <div class="project-section-links"><a href="#claims"><span>01</span>Evidence levels</a><a href="#baseline"><span>02</span>Baseline</a><a href="#v1"><span>03</span>Private V1</a><a href="#start"><span>04</span>Starting point</a><a href="#gates"><span>05</span>Open gates</a><a href="#license"><span>06</span>Licence</a></div>
+    </div></nav>
+    <section class="section project-section" id="claims"><div class="container">
+      <div class="section-title-row"><div><p class="section-kicker">01 / EVIDENCE LEVELS</p><h2>Three separate properties</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+      <div class="content-grid">
+        <div class="content-card"><h3>Historical traceability</h3><p>Versioned patches, source pins and selected archived test records identify parts of the development history. Raw-data access has explicit limits.</p></div>
+        <div class="content-card"><h3>Functional reconstruction</h3><p>A new clean build must run and pass target checks. The September documentation audit did not perform that build or test.</p></div>
+        <div class="content-card"><h3>Identical rebuilt bytes</h3><p>A source/toolchain recipe must reproduce the reference binary hash. That result is not established by the current publication.</p></div>
       </div>
-    </section>
-
-    <nav class="project-section-nav" aria-label="Reconstruction sections" id="project-index">
-      <div class="container">
-        <div class="project-section-nav-heading"><span class="section-kicker">ON THIS PAGE</span><span class="project-section-nav-hint">Evidence and open requirements</span></div>
-        <div class="project-section-links"><a href="#claims"><span>01</span>Evidence levels</a><a href="#baseline"><span>02</span>Baseline</a><a href="#v1"><span>03</span>Private V1</a><a href="#start"><span>04</span>Starting point</a><a href="#gates"><span>05</span>Open gates</a><a href="#license"><span>06</span>Licence</a></div>
-      </div>
-    </nav>
-
-    <section class="section project-section" id="claims">
-      <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">01 / EVIDENCE LEVELS</p><h2>Three distinct claims</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <div class="content-grid">
-          <div class="content-card"><h3>Historical auditability</h3><p>The public record documents decisions, evidence, retained experiments and known limits.</p></div>
-          <div class="content-card"><h3>Functional reconstruction</h3><p>A new build is produced from documented inputs and validated on the target. This remains an open validation gate.</p></div>
-          <div class="content-card"><h3>Bit-for-bit reproducibility</h3><p>The specified source, toolchain and environment reproduce identical bytes. This is not currently claimed.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section alt project-section" id="baseline">
-      <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">02 / BASELINE</p><h2>Exact upstream reference</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <p>Principal upstream: <a class="inline-link" href="https://github.com/EstebanPdN/zelda-tmc-3ds" target="_blank" rel="noopener noreferrer">Project Picori</a>.</p>
-        <p>Reference revision:</p>
-        <p><code>e72663ca4059dabf9dbf7f03c36fc791d90b8db5</code></p>
-        <p>The public repository supplies target/build patches, launcher/runtime material, provenance, patch classification and engineering documentation without vendoring the complete upstream tree.</p>
-      </div>
-    </section>
-
-    <section class="section project-section" id="v1">
-      <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">03 / PRIVATE V1</p><h2>Artifact identity</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <p>Retained private V1 SHA-256:</p>
-        <p><code>787ba3cb8c297ea44a0605745347fe5a6e792094f0be755b51a8200c1eadc710</code></p>
-        <p>The hash identifies the retained executable. It does not establish that the public repository recreates identical bytes.</p>
-        <p>Four P13.1 source snapshots were preserved and hash-verified in the private engineering record — <code>port_ppu.cpp</code>, <code>port_gpu_renderer.cpp</code>, <code>port_main.c</code> and <code>xmake.lua</code>. They improve traceability but are not presented as a complete final build environment.</p>
-      </div>
-    </section>
-
-    <section class="section alt project-section" id="start">
-      <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">04 / STARTING POINT</p><h2>Public reconstruction baseline</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <p>The public starting point is the exact Project Picori revision together with the classified integration material.</p>
-        <pre><code>git clone https://github.com/EstebanPdN/zelda-tmc-3ds.git
-cd zelda-tmc-3ds
-git checkout --detach e72663ca4059dabf9dbf7f03c36fc791d90b8db5</code></pre>
-        <p>The patch map should be reviewed before applying changes because foundation work, instrumentation, A/B experiments and historical directions are kept separate.</p>
-        <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PATCH_SERIES.md" target="_blank" rel="noopener noreferrer">Patch history</a><a class="button button-secondary" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/SOURCE_BASELINE.json" target="_blank" rel="noopener noreferrer">Source baseline</a></div>
-      </div>
-    </section>
-
-    <section class="section project-section" id="gates">
-      <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">05 / OPEN GATES</p><h2>Requirements for stronger reconstruction claims</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <p>A supported functional reconstruction requires a clean build from explicit dependency/toolchain pins, a defined accepted patch sequence, successful AArch64 build checks and target visual/input/audio/exit validation.</p>
-        <p>A bit-for-bit claim additionally requires exact source identity, dependencies, compiler/linker versions, flags, deterministic metadata and matching post-processing steps.</p>
-        <p>Until those requirements are demonstrated, the public documentation retains the narrower evidence level.</p>
-      </div>
-    </section>
-
-    <section class="section alt project-section" id="license">
-      <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">06 / LICENCE</p><h2>Redistribution boundary</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <p>The retained private V1 incorporated VirtuaAPU. At the audited revision, that component did not contain an explicit published licence file.</p>
-        <p>The public project therefore does not redistribute VirtuaAPU or the V1 executable incorporating it. Source-side integration documentation remains available independently of that binary-distribution boundary.</p>
-        <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/LEGAL_STATUS.md" target="_blank" rel="noopener noreferrer">Legal status</a><a class="button button-secondary" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/THIRD_PARTY_NOTICES.md" target="_blank" rel="noopener noreferrer">Third-party notices</a></div>
-      </div>
-    </section>
+    </div></section>
+    <section class="section alt project-section" id="baseline"><div class="container">
+      <div class="section-title-row"><div><p class="section-kicker">02 / BASELINE</p><h2>Recorded upstream reference</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+      <p>The source baseline identifies <a class="inline-link" href="https://github.com/EstebanPdN/zelda-tmc-3ds">Project Picori</a> revision <code>e72663ca4059dabf9dbf7f03c36fc791d90b8db5</code>. The integration snapshot contains 15 historical patches and a launcher, not the full upstream source tree (Raposo, 2026).</p>
+      <p>The source-authority record names four retained snapshots: <code>port_ppu.cpp</code>, <code>port_gpu_renderer.cpp</code>, <code>port_main.c</code> and <code>xmake.lua</code>. Those files are not a complete final build environment.</p>
+    </div></section>
+    <section class="section project-section" id="v1"><div class="container">
+      <div class="section-title-row"><div><p class="section-kicker">03 / PRIVATE V1</p><h2>Selected artifact identity</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+      <p>The archived selection identifies an 8,858,736-byte executable with SHA-256:</p>
+      <p><code>787ba3cb8c297ea44a0605745347fe5a6e792094f0be755b51a8200c1eadc710</code></p>
+      <p>The P13.1 acceptance records one manual session, visual/audio <code>OK</code> and two preceding automated soaks. The recorded configuration includes CPU ceiling 936 MHz, GPU cap 420 MHz, audio request 1600 and three render threads. This is dated acceptance evidence, not a complete rebuild or full-playthrough result (Miguel's Game Dev Lab, 2026).</p>
+    </div></section>
+    <section class="section alt project-section" id="start"><div class="container">
+      <div class="section-title-row"><div><p class="section-kicker">04 / STARTING POINT</p><h2>Inspect before reconstructing</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+      <p>Begin with the recorded upstream revision and patch inventory. Build/link changes, diagnostics, alternative timing policies and historical prototypes have different roles. Do not apply every patch as one sequence or assume that the result matches private V1.</p>
+      <p>The reconstruction document lists required inputs and checks; it is not presented as an executed, complete recipe.</p>
+      <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PATCH_SERIES.md">Patch inventory</a><a class="button button-secondary" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/SOURCE_BASELINE.json">Source baseline</a></div>
+    </div></section>
+    <section class="section project-section" id="gates"><div class="container">
+      <div class="section-title-row"><div><p class="section-kicker">05 / OPEN GATES</p><h2>Missing evidence for stronger claims</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+      <p>A complete reconstruction needs exact source ancestry, accepted changes, dependency/toolchain versions, build flags, generated inputs and post-processing. Target checks must cover the resulting artifact, not a previous candidate.</p>
+      <p>Recalculating archived timing statistics is a different task. Selected summaries, source hashes and reanalysis output are public. The full traces and calculation script are supplied in the audit delivery to the project owner; the full raw files are not included in this repository snapshot. A public hash does not provide the underlying data.</p>
+      <p><a class="inline-link" href="../knowledge/">Open findings</a> include audio-buffer diagnostics, save-state/autosave messages, governor restoration and pointer warnings. The audit reports them without silently repairing or dismissing them.</p>
+    </div></section>
+    <section class="section alt project-section" id="license"><div class="container">
+      <div class="section-title-row"><div><p class="section-kicker">06 / LICENCE</p><h2>Distribution remains a separate decision</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+      <p>The audited publication did not establish redistribution permission for the VirtuaAPU component used by the private executable. The component and executable remain excluded; this editorial audit does not change that boundary.</p>
+      <p>No ROM, extracted Nintendo assets or saves are published. Additional package and device claims require their own evidence.</p>
+      <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/LEGAL_STATUS.md">Legal status</a><a class="button button-secondary" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/THIRD_PARTY_NOTICES.md">Third-party notices</a></div>
+    </div></section>
+    <section class="section project-section" id="references"><div class="container">
+      <p class="section-kicker">REFERENCES</p><h2>Source and artifact records</h2>
+      <p>Miguel's Game Dev Lab. (2026). <em>Archived RG34XX integration and runtime records</em> [Data set and test records]. GitHub. <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07">Fixed evidence collection</a>.</p>
+      <p>Raposo, M. (2026). <em>The Minish Cap: RG34XX integration patches and launcher</em> (Revision 90fd77a82d579de9460f2de1167a95ec264e57c3) [Source code]. GitHub. <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/90fd77a82d579de9460f2de1167a95ec264e57c3">Audited source revision</a>.</p>
+    </div></section>
   </main>
-
   <footer><div class="container footer-wrap"><span>Miguel's Game Dev Lab</span><span class="legal">Human-directed, AI-assisted development. No proprietary game data is distributed by this site.</span></div></footer>
   <script src="/assets/js/music-player.js" defer></script>
 </body>

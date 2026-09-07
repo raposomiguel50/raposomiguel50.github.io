@@ -3,117 +3,80 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Engineering knowledge from The Minish Cap RG34XX/H700 port: technical restoration, curation, timing, audio, benchmarking and reusable lessons.">
+  <meta name="description" content="Minish Cap RG34XX engineering evidence: exact source changes, two archived timing captures, dated acceptance, unresolved diagnostics and limitations.">
   <title>The Minish Cap RG34XX - Knowledge | Miguel's Game Dev Lab</title>
   <link rel="canonical" href="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/knowledge/">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta property="og:site_name" content="Miguel's Game Dev Lab">
   <meta property="og:type" content="article">
   <meta property="og:title" content="The Minish Cap RG34XX - Engineering Knowledge">
-  <meta property="og:description" content="Restoration principles, measurements, rejected approaches and reusable lessons from the RG34XX/H700 integration.">
+  <meta property="og:description" content="Primary sources, archived observations and approved policy are reported separately.">
   <meta property="og:url" content="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/knowledge/">
   <link rel="stylesheet" href="../../../assets/css/style.css">
   <link rel="stylesheet" href="../../../assets/css/project-nav.css">
 </head>
 <body class="project-page">
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="../../../" aria-label="Miguel's Game Dev Lab home"><span class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a>
-      <nav aria-label="Primary navigation"><a href="../">Project</a><a href="../reproduce/">Reproduce</a><a href="../../../method/">Method</a><a href="https://github.com/raposomiguel50/minish-cap-rg34xx" target="_blank" rel="noopener noreferrer">Source</a></nav>
-    </div>
-  </header>
-
+  <header class="site-header"><div class="container nav-wrap">
+    <a class="brand" href="../../../" aria-label="Miguel's Game Dev Lab home"><span class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a>
+    <nav aria-label="Primary navigation"><a href="../">Project</a><a href="../reproduce/">Reproduce</a><a href="../../../method/">Method</a><a href="https://github.com/raposomiguel50/minish-cap-rg34xx" target="_blank" rel="noopener noreferrer">Source</a></nav>
+  </div></header>
   <main id="top">
-    <section class="project-hero">
-      <div class="container">
-        <p class="breadcrumbs"><a href="../">The Minish Cap - RG34XX</a> / Knowledge</p>
-        <div class="project-meta project-meta-large"><span>KNOWLEDGE</span><span>RESTORATION</span><span>CURATION</span><span>EVIDENCE</span></div>
-        <h1>Engineering knowledge</h1>
-        <p class="project-lede">A concise record of the restoration principles, validation methods and technical boundaries identified during the RG34XX/H700 integration.</p>
-        <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/KNOWLEDGE_BASE.md" target="_blank" rel="noopener noreferrer">Full knowledge base</a><a class="button button-secondary" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PHILOSOPHY.md" target="_blank" rel="noopener noreferrer">Project philosophy</a></div>
+    <section class="project-hero"><div class="container">
+      <p class="breadcrumbs"><a href="../">The Minish Cap - RG34XX</a> / Knowledge</p>
+      <div class="project-meta project-meta-large"><span>KNOWLEDGE</span><span>H700</span><span>EVIDENCE</span><span>LIMITATIONS</span></div>
+      <h1>Engineering knowledge</h1>
+      <p class="project-lede">An archival audit dated 7 September 2026, based on source changes and preserved execution records. Recalculation is distinguished from new testing; policy is distinguished from completed work.</p>
+      <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/TECHNICAL_REPORT.md" target="_blank" rel="noopener noreferrer">Technical report</a><a class="button button-secondary" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/KNOWLEDGE_BASE.md" target="_blank" rel="noopener noreferrer">All 25 knowledge entries</a><a class="button button-secondary" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/main/docs/evidence/2026-09-07" target="_blank" rel="noopener noreferrer">Primary records</a></div>
+    </div></section>
+    <nav class="project-section-nav" aria-label="Knowledge sections" id="project-index"><div class="container">
+      <div class="project-section-nav-heading"><span class="section-kicker">ON THIS PAGE</span><span class="project-section-nav-hint">Evidence and interpretation</span></div>
+      <div class="project-section-links"><a href="#philosophy"><span>01</span>Scope</a><a href="#timing"><span>02</span>Timing</a><a href="#audio"><span>03</span>Audio</a><a href="#benchmarking"><span>04</span>Benchmarking</a><a href="#negative"><span>05</span>Open findings</a><a href="#publication"><span>06</span>Evidence access</a></div>
+    </div></nav>
+    <section class="section project-section" id="philosophy"><div class="container">
+      <div class="section-title-row"><div><p class="section-kicker">01 / SCOPE</p><h2>What was implemented</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+      <p>The audited source has 15 patches: build/link and header-order changes, Cortex-A53 targeting, handheld menu/input integration, shutdown handling, an audio-resampling policy and presentation instrumentation/policy changes. The full inventory identifies each file and its role (Raposo, 2026).</p>
+      <p>The 29 August P10.3.2 verdict records one settings-open/close pair, one MENU+L2 exit marker and operator-signalled legacy-hint checks. This supports specific integration checks, not correction of original GBA gameplay bugs (Miguel's Game Dev Lab, 2026a).</p>
+      <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PHILOSOPHY.md" target="_blank" rel="noopener noreferrer">The restoration philosophy</a> is the approved decision framework. It is not an empirical list of fixes already performed.</p>
+    </div></section>
+    <section class="section alt project-section" id="timing"><div class="container">
+      <div class="section-title-row"><div><p class="section-kicker">02 / TIMING</p><h2>Two captures, with outliers retained</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+      <p>P11.3 contains 10,203 ticks and P11.4 contains 10,449. Recalculated lateness p95 is 5.790787 ms versus 0.027887 ms. The median presentation-call interval is 7.469125 ms versus 0.569417 ms; its maximum is 46.450584 ms versus 60.917250 ms. A better median coexists with a worse maximum (Miguel's Game Dev Lab, 2026a, 2026b).</p>
+      <p>P11.4 targets a render period equal to one logic tick. The trace has 63 zero-presentation, 10,346 one-presentation and 40 two-presentation ticks. Both captures retain a 16.742706 ms logic period. The reported display mode around 119.455 Hz is not 120 FPS game logic.</p>
+      <p>These are within-session observations, not thousands of independent test runs. The audit does not establish randomized order, identical workloads or full-game coverage for the pair. The intervals are not end-to-end input-latency measurements.</p>
+    </div></section>
+    <section class="section project-section" id="audio"><div class="container">
+      <div class="section-title-row"><div><p class="section-kicker">03 / AUDIO</p><h2>Source policy, request and listening</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+      <p>The A53 patch selects LINEAR for one enhanced-resampling branch, while the <code>gbaAccurate</code> branch still selects NEAREST. This is a conditional code change, not proof of one resampler in all modes (Raposo, 2026).</p>
+      <p>The P11.4 comparison records an audio setting of 1920 frames. The later launcher requests 1600, but retains a printed diagnostic of 1920. The negotiated buffer size is not established from those strings. Final operator audio acceptance is <code>OK</code>, not a signal-equivalence or universal defect-free result (Miguel's Game Dev Lab, 2026a).</p>
+    </div></section>
+    <section class="section alt project-section" id="benchmarking"><div class="container">
+      <div class="section-title-row"><div><p class="section-kicker">04 / BENCHMARKING</p><h2>Keep stage and sample boundaries visible</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+      <p>The P12 R2.6 workflow note reports invalidation of direct-SSH results and a normal muOS Ports-session procedure with deterministic replay. It reports one menu launch and zero manual gameplay sessions during its six automated streams. This later procedure must not be assigned retrospectively to the earlier P11 pair (Miguel's Game Dev Lab, 2026c).</p>
+      <p>The final P13.1 acceptance separately records one manual session, two preceding automated soaks and 874 monitor samples. Maximum reported temperature is 52.6 °C. All monitor rows report CPU maximum 936 MHz and GPU maximum 420 MHz. Stage-A energy values are null; no energy-saving percentage is established (Miguel's Game Dev Lab, 2026a, 2026b).</p>
+    </div></section>
+    <section class="section project-section" id="negative"><div class="container">
+      <div class="section-title-row"><div><p class="section-kicker">05 / OPEN FINDINGS</p><h2>Retain contradictions and rejected work</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+      <div class="content-grid">
+        <div class="content-card"><h3>Selection, not universal improvement</h3><p>The stored P13.1 comparison has a +5.3 °C maximum-temperature delta and an RSS median ratio of 1.003497. The workflow note records rejection of the GPU-renderer path; the chosen backend is SDL_RENDERER and the clear-skip experiment is not adopted.</p></div>
+        <div class="content-card"><h3>Conflicting runtime messages</h3><p>The log describes save states as inert but records quicksave/autosave ring writes. Two out-of-ROM pointer warnings also remain. Their causes and gameplay impact are not established by this audit.</p></div>
+        <div class="content-card"><h3>Restoration scope</h3><p>The recorded display mode and CPU/GPU limits match before/after. The CPU governor changes from powersave to ondemand. Thus the session does not prove restoration of the entire prior system state.</p></div>
       </div>
-    </section>
-
-    <nav class="project-section-nav" aria-label="Knowledge sections" id="project-index">
-      <div class="container">
-        <div class="project-section-nav-heading"><span class="section-kicker">ON THIS PAGE</span><span class="project-section-nav-hint">Selected engineering findings</span></div>
-        <div class="project-section-links"><a href="#philosophy"><span>01</span>Restoration</a><a href="#timing"><span>02</span>Timing</a><a href="#audio"><span>03</span>Audio</a><a href="#benchmarking"><span>04</span>Benchmarking</a><a href="#negative"><span>05</span>Experiments</a><a href="#publication"><span>06</span>Release process</a></div>
-      </div>
-    </nav>
-
-    <section class="section project-section" id="philosophy">
-      <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">01 / RESTORATION</p><h2>Preserve the work, remove justified technical obstacles</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <p class="section-intro">The project treats the finished game as the primary creative authority. Native execution is used to restore and present that work, not to redesign it.</p>
-        <div class="content-grid">
-          <div class="content-card"><h3>Painting-restoration model</h3><p>A conservator does not repaint or add detail, but familiar degradation is not automatically part of the original work. The same distinction is applied to technical defects in software.</p></div>
-          <div class="content-card"><h3>Correct demonstrated defects</h3><p>Known bugs, crashes, save problems, avoidable slowdowns or stutter can be corrected when the creative work remains intact. If defect versus design is uncertain, preservation is the default.</p></div>
-          <div class="content-card"><h3>Curated reference</h3><p>The project selects and validates one coherent preservation configuration instead of requiring the player to build it from many micro-settings.</p></div>
-          <div class="content-card"><h3>Original presentation</h3><p>The reference image is 240x160 at exact 3x integer scale to 720x480, without smoothing, shaders or instructional overlays over the game image.</p></div>
-          <div class="content-card"><h3>Menus without visual intrusion</h3><p>Project Picori menus remain accessible through shortcuts, while its instructional overlays are disabled by default so they do not cover the original presentation.</p></div>
-          <div class="content-card"><h3>Preserve control identity</h3><p>Original GBA controls remain reserved for gameplay. Device-specific port functions use combinations that do not replace those controls.</p></div>
-          <div class="content-card"><h3>Efficiency after fidelity</h3><p>Once fidelity and stability are satisfied, unused performance is treated as reserve. Reduced clocks are preferred when they retain the validated experience instead of consuming resources without purpose.</p></div>
-          <div class="content-card"><h3>Document restored differences</h3><p>When a technical restoration changes observable historical behaviour, the difference and supporting evidence are recorded transparently.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section alt project-section" id="timing">
-      <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">02 / TIMING</p><h2>Separate game cadence from display refresh</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <p>The accepted direction keeps game logic around <strong>59.7275 Hz</strong>, uses the panel around <strong>119.455 Hz</strong>, and performs <strong>one explicit presentation per logical tick</strong>.</p>
-        <p>In the recorded comparison, tick-lateness p95 improved from approximately <strong>5.791 ms</strong> to <strong>0.028 ms</strong> under the tested conditions.</p>
-        <p>The result concerns presentation timing and is not presented as 120 FPS game logic.</p>
-      </div>
-    </section>
-
-    <section class="section project-section" id="audio">
-      <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">03 / AUDIO</p><h2>Combine instrumentation with listening</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <p>Audio work on Cortex-A53/H700 combined callback/timing evidence with human listening. Later retained configuration evidence uses audio <strong>1600</strong>, with a nominal interval around 33.333 ms.</p>
-        <p>A callback-gap/outlier warning remained in the record. It is treated as instrumentation evidence rather than a direct count of audible defects.</p>
-      </div>
-    </section>
-
-    <section class="section alt project-section" id="benchmarking">
-      <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">04 / BENCHMARKING</p><h2>Use a representative launch context</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <p>Early AutoLab measurements obtained through direct SSH were rejected because the surrounding frontend/background state did not represent a normal Ports launch.</p>
-        <p>Later comparisons used a normal Ports-session context, deterministic replay and CPU/GPU restoration between variants.</p>
-        <p>The retained V1 uses CPU ceiling <strong>936 MHz</strong> and GPU <strong>420 MHz</strong>. The lower clocks were selected with the objective of avoiding unnecessary power and thermal demand after fidelity and stability requirements were met; clock reduction is not converted into an unmeasured battery, power or temperature percentage.</p>
-      </div>
-    </section>
-
-    <section class="section project-section" id="negative">
-      <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">05 / EXPERIMENTS</p><h2>Retain useful negative results</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <div class="content-grid">
-          <div class="content-card"><h3>GPU renderer</h3><p>An experimental GPU renderer failed and was not promoted.</p></div>
-          <div class="content-card"><h3>Fullscreen clear</h3><p>A fullscreen-clear experiment was evaluated but not adopted into the retained V1 line.</p></div>
-          <div class="content-card"><h3>Mixed optimisation data</h3><p>The record also retains less favourable observations, including higher maximum temperature in one comparison and slightly higher RSS.</p></div>
-        </div>
-        <p>These are technical investigations used to define engineering boundaries, not an alternative creative direction for the game.</p>
-      </div>
-    </section>
-
-    <section class="section alt project-section" id="publication">
-      <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">06 / RELEASE PROCESS</p><h2>Keep validation and publication as separate gates</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <p>Local validation, repository publication, deployment and live verification are tracked separately.</p>
-        <p>Release preparation also distinguishes redistribution restrictions from documentation scope so that safe engineering information can remain public even when a binary or dependency cannot be distributed.</p>
-      </div>
-    </section>
-
-    <section class="section project-section">
-      <div class="container">
-        <p class="section-kicker">FULL RECORD</p>
-        <h2>Engineering knowledge base</h2>
-        <p>The repository contains the complete structured record covering restoration and curation, upstream choice, host/target boundaries, lifecycle, timing, audio, AutoLab, optimisation, licensing and reconstruction.</p>
-        <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/KNOWLEDGE_BASE.md" target="_blank" rel="noopener noreferrer">Open KNOWLEDGE_BASE.md</a><a class="button button-secondary" href="../reproduce/">Reconstruction status</a></div>
-      </div>
-    </section>
+      <p>Sources: Miguel's Game Dev Lab (2026a, 2026b, 2026c). These are documentary findings, not newly diagnosed runtime bugs or authorization to modify the private V1.</p>
+    </div></section>
+    <section class="section alt project-section" id="publication"><div class="container">
+      <div class="section-title-row"><div><p class="section-kicker">06 / EVIDENCE ACCESS</p><h2>What readers can verify</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+      <p>The public evidence directory contains preserved result files, dated workflow notes, selected log excerpts and recalculation output. Source paths and hashes are recorded. Full raw traces are supplied in the audit delivery to the project owner, not in this repository snapshot. A hash is an identifier, not public access to the missing file.</p>
+      <p>No new game build or device test was performed for this audit. No original-game bug correction, complete build reproducibility, energy saving or all-device compatibility is inferred.</p>
+      <p><a class="inline-link" href="../reproduce/">Read the reconstruction and data-access limits</a>.</p>
+    </div></section>
+    <section class="section project-section" id="references"><div class="container">
+      <p class="section-kicker">REFERENCES</p><h2>Sources</h2>
+      <p>Miguel's Game Dev Lab. (2026a). <em>Archived RG34XX integration and runtime records</em> [Data set and test records]. GitHub. <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07">Fixed evidence collection</a>.</p>
+      <p>Miguel's Game Dev Lab. (2026b). <em>Reanalysis of archived P11 timing traces and the P13.1 monitor</em> [Data analysis output]. GitHub. <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07/REANALYSIS.json">Fixed analysis output</a>.</p>
+      <p>Miguel's Game Dev Lab. (2026c). <em>Technical AutoLab workflow notes</em> [Archived project notes]. GitHub. <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/5c306562615b1595ed49c7388dc768c8348b1296/docs/evidence/2026-09-07">Dated notes and provenance</a>.</p>
+      <p>Raposo, M. (2026). <em>The Minish Cap: RG34XX integration patches and launcher</em> (Revision 90fd77a82d579de9460f2de1167a95ec264e57c3) [Source code]. GitHub. <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/90fd77a82d579de9460f2de1167a95ec264e57c3">Audited source revision</a>.</p>
+    </div></section>
   </main>
-
   <footer><div class="container footer-wrap"><span>Miguel's Game Dev Lab</span><span class="legal">Human-directed, AI-assisted development. No proprietary game data is distributed by this site.</span></div></footer>
   <script src="/assets/js/music-player.js" defer></script>
 </body>
