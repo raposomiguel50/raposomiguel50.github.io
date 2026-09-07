@@ -34,25 +34,25 @@
     </div></nav>
     <section class="section project-section" id="philosophy"><div class="container">
       <div class="section-title-row"><div><p class="section-kicker">01 / SCOPE</p><h2>What was implemented</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <p>The audited source has 15 patches: build/link and header-order changes, Cortex-A53 targeting, handheld menu/input integration, shutdown handling, an audio-resampling policy and presentation instrumentation/policy changes. The full inventory identifies each file and its role (Raposo, 2026).</p>
-      <p>The 29 August P10.3.2 verdict records one settings-open/close pair, one MENU+L2 exit marker and operator-signalled legacy-hint checks. This supports specific integration checks, not correction of original GBA gameplay bugs (Miguel's Game Dev Lab, 2026a).</p>
+      <p>The audited source has 15 patches: build/link and header-order changes, Cortex-A53 targeting, handheld menu/input integration, shutdown handling, an audio-resampling policy and presentation instrumentation/policy changes. The full inventory identifies each file and its role (see <a class="inline-link" href="#source-code">patches and launcher</a>).</p>
+      <p>The 29 August P10.3.2 verdict records one settings-open/close pair, one MENU+L2 exit marker and operator-signalled legacy-hint checks. This supports specific integration checks, not correction of original GBA gameplay bugs (see <a class="inline-link" href="#source-runtime">runtime records</a>).</p>
       <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PHILOSOPHY.md" target="_blank" rel="noopener noreferrer">The restoration philosophy</a> is the approved decision framework. It is not an empirical list of fixes already performed.</p>
     </div></section>
     <section class="section alt project-section" id="timing"><div class="container">
       <div class="section-title-row"><div><p class="section-kicker">02 / TIMING</p><h2>Two captures, with outliers retained</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <p>P11.3 contains 10,203 ticks and P11.4 contains 10,449. Recalculated lateness p95 is 5.790787 ms versus 0.027887 ms. The median presentation-call interval is 7.469125 ms versus 0.569417 ms; its maximum is 46.450584 ms versus 60.917250 ms. A better median coexists with a worse maximum (Miguel's Game Dev Lab, 2026a, 2026b).</p>
+      <p>P11.3 contains 10,203 ticks and P11.4 contains 10,449. Recalculated lateness p95 is 5.790787 ms versus 0.027887 ms. The median presentation-call interval is 7.469125 ms versus 0.569417 ms; its maximum is 46.450584 ms versus 60.917250 ms. A better median coexists with a worse maximum (see <a class="inline-link" href="#source-runtime">runtime records</a>, <a class="inline-link" href="#source-analysis">REANALYSIS.json</a>).</p>
       <p>P11.4 targets a render period equal to one logic tick. The trace has 63 zero-presentation, 10,346 one-presentation and 40 two-presentation ticks. Both captures retain a 16.742706 ms logic period. The reported display mode around 119.455 Hz is not 120 FPS game logic.</p>
       <p>These are within-session observations, not thousands of independent test runs. The audit does not establish randomized order, identical workloads or full-game coverage for the pair. The intervals are not end-to-end input-latency measurements.</p>
     </div></section>
     <section class="section project-section" id="audio"><div class="container">
       <div class="section-title-row"><div><p class="section-kicker">03 / AUDIO</p><h2>Source policy, request and listening</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <p>The A53 patch selects LINEAR for one enhanced-resampling branch, while the <code>gbaAccurate</code> branch still selects NEAREST. This is a conditional code change, not proof of one resampler in all modes (Raposo, 2026).</p>
-      <p>The P11.4 comparison records an audio setting of 1920 frames. The later launcher requests 1600, but retains a printed diagnostic of 1920. The negotiated buffer size is not established from those strings. Final operator audio acceptance is <code>OK</code>, not a signal-equivalence or universal defect-free result (Miguel's Game Dev Lab, 2026a).</p>
+      <p>The A53 patch selects LINEAR for one enhanced-resampling branch, while the <code>gbaAccurate</code> branch still selects NEAREST. This is a conditional code change, not proof of one resampler in all modes (see <a class="inline-link" href="#source-code">patches and launcher</a>).</p>
+      <p>The P11.4 comparison records an audio setting of 1920 frames. The later launcher requests 1600, but retains a printed diagnostic of 1920. The negotiated buffer size is not established from those strings. Final operator audio acceptance is <code>OK</code>, not a signal-equivalence or universal defect-free result (see <a class="inline-link" href="#source-runtime">runtime records</a>).</p>
     </div></section>
     <section class="section alt project-section" id="benchmarking"><div class="container">
       <div class="section-title-row"><div><p class="section-kicker">04 / BENCHMARKING</p><h2>Keep stage and sample boundaries visible</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <p>The P12 R2.6 workflow note reports invalidation of direct-SSH results and a normal muOS Ports-session procedure with deterministic replay. It reports one menu launch and zero manual gameplay sessions during its six automated streams. This later procedure must not be assigned retrospectively to the earlier P11 pair (Miguel's Game Dev Lab, 2026c).</p>
-      <p>The final P13.1 acceptance separately records one manual session, two preceding automated soaks and 874 monitor samples. Maximum reported temperature is 52.6 °C. All monitor rows report CPU maximum 936 MHz and GPU maximum 420 MHz. Stage-A energy values are null; no energy-saving percentage is established (Miguel's Game Dev Lab, 2026a, 2026b).</p>
+      <p>The P12 R2.6 workflow note reports invalidation of direct-SSH results and a normal muOS Ports-session procedure with deterministic replay. It reports one menu launch and zero manual gameplay sessions during its six automated streams. This later procedure must not be assigned retrospectively to the earlier P11 pair (see <a class="inline-link" href="#source-workflow">workflow notes</a>).</p>
+      <p>The final P13.1 acceptance separately records one manual session, two preceding automated soaks and 874 monitor samples. Maximum reported temperature is 52.6 °C. All monitor rows report CPU maximum 936 MHz and GPU maximum 420 MHz. Stage-A energy values are null; no energy-saving percentage is established (see <a class="inline-link" href="#source-runtime">runtime records</a>, <a class="inline-link" href="#source-analysis">REANALYSIS.json</a>).</p>
     </div></section>
     <section class="section project-section" id="negative"><div class="container">
       <div class="section-title-row"><div><p class="section-kicker">05 / OPEN FINDINGS</p><h2>Retain contradictions and rejected work</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
@@ -61,7 +61,7 @@
         <div class="content-card"><h3>Conflicting runtime messages</h3><p>The log describes save states as inert but records quicksave/autosave ring writes. Two out-of-ROM pointer warnings also remain. Their causes and gameplay impact are not established by this audit.</p></div>
         <div class="content-card"><h3>Restoration scope</h3><p>The recorded display mode and CPU/GPU limits match before/after. The CPU governor changes from powersave to ondemand. Thus the session does not prove restoration of the entire prior system state.</p></div>
       </div>
-      <p>Sources: Miguel's Game Dev Lab (2026a, 2026b, 2026c). These are documentary findings, not newly diagnosed runtime bugs or authorization to modify the private V1.</p>
+      <p>Sources: <a class="inline-link" href="#source-runtime">runtime records</a>, <a class="inline-link" href="#source-analysis">REANALYSIS.json</a> and <a class="inline-link" href="#source-workflow">workflow notes</a>. These are documentary findings, not newly diagnosed runtime bugs or authorization to modify the private V1.</p>
     </div></section>
     <section class="section alt project-section" id="publication"><div class="container">
       <div class="section-title-row"><div><p class="section-kicker">06 / EVIDENCE ACCESS</p><h2>What readers can verify</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
@@ -70,11 +70,11 @@
       <p><a class="inline-link" href="../reproduce/">Read the reconstruction and data-access limits</a>.</p>
     </div></section>
     <section class="section project-section" id="references"><div class="container">
-      <p class="section-kicker">REFERENCES</p><h2>Sources</h2>
-      <p>Miguel's Game Dev Lab. (2026a). <em>Archived RG34XX integration and runtime records</em> [Data set and test records]. GitHub. <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07">Fixed evidence collection</a>.</p>
-      <p>Miguel's Game Dev Lab. (2026b). <em>Reanalysis of archived P11 timing traces and the P13.1 monitor</em> [Data analysis output]. GitHub. <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07/REANALYSIS.json">Fixed analysis output</a>.</p>
-      <p>Miguel's Game Dev Lab. (2026c). <em>Technical AutoLab workflow notes</em> [Archived project notes]. GitHub. <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/5c306562615b1595ed49c7388dc768c8348b1296/docs/evidence/2026-09-07">Dated notes and provenance</a>.</p>
-      <p>Raposo, M. (2026). <em>The Minish Cap: RG34XX integration patches and launcher</em> (Revision 90fd77a82d579de9460f2de1167a95ec264e57c3) [Source code]. GitHub. <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/90fd77a82d579de9460f2de1167a95ec264e57c3">Audited source revision</a>.</p>
+      <p class="section-kicker">SUPPORTING FILES</p><h2>Sources</h2>
+      <p id="source-runtime"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07">Archived runtime records, source index and log excerpts</a>.</p>
+      <p id="source-analysis"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07/REANALYSIS.json">REANALYSIS.json</a> — archived timing and monitor calculations.</p>
+      <p id="source-workflow"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/5c306562615b1595ed49c7388dc768c8348b1296/docs/evidence/2026-09-07">Dated AutoLab workflow notes and provenance</a>.</p>
+      <p id="source-code"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/90fd77a82d579de9460f2de1167a95ec264e57c3">Integration patches and launcher</a> — revision <code>90fd77a82d579de9460f2de1167a95ec264e57c3</code>.</p>
     </div></section>
   </main>
   <footer><div class="container footer-wrap"><span>Miguel's Game Dev Lab</span><span class="legal">Human-directed, AI-assisted development. No proprietary game data is distributed by this site.</span></div></footer>
