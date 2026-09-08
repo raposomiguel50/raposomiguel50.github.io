@@ -24,7 +24,7 @@
   "description": "Resolved problems, open concerns, failed experiments, standards and reusable engineering lessons from the System Shock Android port.",
   "url": "https://raposomiguel50.github.io/projects/system-shock-android/knowledge/",
   "mainEntityOfPage": "https://raposomiguel50.github.io/projects/system-shock-android/knowledge/",
-  "dateModified": "2026-08-20",
+  "dateModified": "2026-09-08",
   "author": {
     "@type": "Person",
     "name": "Miguel Raposo",
@@ -44,7 +44,7 @@
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="../../../" aria-label="Miguel's Game Dev Lab home"><span class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a>
-      <nav aria-label="Primary navigation"><a href="../">Project</a><a href="../reproduce/">Reproduce</a><a href="../#feedback-contact">Feedback</a><a href="../#references">References</a><a href="../../../#contact">Contact</a></nav>
+      <nav aria-label="Primary navigation"><a href="../">Project</a><a href="../reproduce/">Reproduce</a><a href="https://github.com/raposomiguel50/system-shock-android/issues/new/choose">Feedback</a><a href="../#references">References</a><a href="../../../#contact">Contact</a></nav>
     </div>
   </header>
 
@@ -54,9 +54,9 @@
         <p class="breadcrumbs"><a href="../">System Shock - Android</a> / Knowledge Base</p>
         <div class="project-meta project-meta-large"><span>OPEN KNOWLEDGE</span><span>PROBLEMS</span><span>DECISIONS</span><span>STANDARDS</span><span>LESSONS</span></div>
         <h1>Engineering knowledge base</h1>
-        <p class="project-lede">I want the useful output of this port to be more than an APK. This page keeps the operational knowledge: what failed, what was observed, what caused it, what was changed, how it was validated and what should be reused - or avoided - in future ports.</p>
-        <div class="status-line"><span class="status-badge">LIVING DOCUMENT</span><span>v0.1.0-pre.3 release/importer gates resolved</span><span>Resolved and unresolved work remain visible</span><span>Last consolidated 20 August 2026</span></div>
-        <div class="hero-actions"><a class="button" href="#records">Knowledge records</a><a class="button button-secondary" href="#standards">Engineering standards</a><a class="button button-secondary" href="#open">Open concerns</a><a class="button button-secondary" href="../reproduce/">Reproduce the port</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/issues/new/choose" target="_blank" rel="noopener noreferrer">Contribute feedback</a></div>
+        <p class="project-lede">Explore the controller, text-entry and audio decisions behind the Android port. Each case explains the problem, the change and the lesson for future work.</p>
+        <div class="status-line"><span class="status-badge">LIVING DOCUMENT</span><span>Stable release: v1.0.0</span><span>Historical research identified separately</span><span>Updated 8 September 2026</span></div>
+        <div class="hero-actions"><a class="button" href="#records">Knowledge records</a><a class="button button-secondary" href="#standards">Engineering standards</a><a class="button button-secondary" href="#open">Compatibility and research</a><a class="button button-secondary" href="../reproduce/">Reproduce the port</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/issues/new/choose" target="_blank" rel="noopener noreferrer">Contribute feedback</a></div>
       </div>
     </section>
 
@@ -64,11 +64,11 @@
       <div class="container">
         <p class="section-kicker">01 / METHOD</p>
         <h2>Knowledge as an engineering deliverable</h2>
-        <p class="section-intro">Each record follows an operational structure similar to a technical knowledge or communication cell: context, observation, impact, proven cause, resolution or workaround, validation and reusable lesson. Direct observation is kept separate from inference, and failed experiments are not rewritten out of the history.</p>
+        <p class="section-intro">Each case gives the context, observed problem, change and test result. Historical experiments remain separate from the stable release.</p>
         <div class="content-grid">
           <div class="content-card"><h3>Evidence before narrative</h3><p>A machine pass, a screenshot, a real-device observation and a hypothesis are different kinds of evidence. They are recorded separately so one cannot silently replace another.</p></div>
           <div class="content-card"><h3>Resolved does not mean forgotten</h3><p>A resolved problem remains useful if its root cause can prevent the same failure in another port. The record stays public instead of disappearing when the bug is closed.</p></div>
-          <div class="content-card"><h3>Rejected work is knowledge</h3><p>An experiment that fails a fidelity or architecture gate is preserved as a negative result. This prevents future work from repeating a superficially attractive approach that has already been disproven.</p></div>
+          <div class="content-card"><h3>Rejected work is knowledge</h3><p>An experiment that fails a fidelity or architecture gate is preserved as a negative result. Its recorded limits help assess whether it is worth revisiting.</p></div>
         </div>
       </div>
     </section>
@@ -140,10 +140,10 @@
         </article>
 
         <article class="project-card" id="kb-ss-008" style="margin-top:1rem">
-          <div class="project-meta"><span>KB-SS-008</span><span>PARTIAL / OPEN</span><span>HD ASSETS</span></div>
+          <div class="project-meta"><span>KB-SS-008</span><span>HISTORICAL RESEARCH</span><span>HD ASSETS</span></div>
           <h3>The remaster algorithm must fit the runtime color model</h3>
           <p><strong>Finding.</strong> The Android game renderer remains indexed 8-bit software rendering. Scale4x on sprite/UI material can select existing source colors exactly, while bicubic WORLD/STATIC output creates intermediate RGB colors that require lossy palette quantization.</p>
-          <p><strong>Decision.</strong> Original resources remain authoritative. WORLD/STATIC HD is blocked until a truecolor-versus-quantized path is explicitly evaluated. A sprite/UI runtime experiment was also rejected after manual quality QA and is not part of the canonical baseline.</p>
+          <p><strong>Decision.</strong> Version 1.0.0 uses the original resources. The HD world and sprite/UI experiments were not selected for the preservation release.</p>
           <p><strong>Reusable lesson.</strong> Offline image quality is insufficient evidence if the runtime renderer cannot represent the result faithfully.</p>
         </article>
 
@@ -179,7 +179,8 @@
           <p><strong>Context.</strong> The first signed non-debuggable v0.1.0-pre.3 candidate passed build, package, ABI and signing verification, but the existing data-copy workflow depended on Android <code>run-as</code>.</p>
           <p><strong>Impact.</strong> A release APK that requires debug-only <code>run-as</code> cannot provide a normal end-user installation path even if the game binary itself is valid.</p>
           <p><strong>Resolution.</strong> Add a first-run launcher that uses Android's Storage Access Framework to let the user select a compatible <code>res</code> folder containing <code>data</code> and <code>sound</code>. Copy through a staging directory into app-private storage and keep rollback behavior if activation fails.</p>
-          <p><strong>Validation.</strong> A separate non-debuggable release-QA package, signed with the stable release certificate, imported 56 data files and 96 sound files on the Retroid Pocket 5, launched the game, passed the smoke test, removed its temporary package/data afterward and preserved the baseline installation. The final signed release was rebuilt from the merged source and published as v0.1.0-pre.3.</p>
+          <p><strong>Validation.</strong> A separate non-debuggable release-QA package, signed for that pre-release, imported 56 data files and 96 sound files on the Retroid Pocket 5, launched the game, passed the smoke test, removed its temporary package/data afterward and preserved the baseline installation.</p>
+<p>The final signed release was rebuilt from the merged source and published as v0.1.0-pre.3.</p>
           <p><strong>Reusable lesson.</strong> Distribution architecture is part of runtime architecture. A release gate must validate how legitimate user-owned data reaches a non-debuggable build, not only whether the APK compiles and signs.</p>
         </article>
       </div>
@@ -207,14 +208,14 @@
 
     <section class="section alt" id="open">
       <div class="container">
-        <p class="section-kicker">04 / OPEN CONCERNS</p>
-        <h2>Problems not hidden by the working baseline</h2>
+        <p class="section-kicker">04 / COMPATIBILITY AND RESEARCH</p>
+        <h2>Compatibility and historical research</h2>
         <div class="project-grid">
           <article class="metric-card"><span class="metric-label">OPEN-SS-002</span><strong>Broad Android compatibility</strong><p>RP5 is the validated reference target. Other Android handhelds and phones may differ in controller maps, lifecycle/OEM overlays, storage providers and display behavior.</p></article>
-          <article class="metric-card"><span class="metric-label">OPEN-SS-003</span><strong>WORLD/STATIC HD</strong><p>The indexed renderer cannot represent bicubic RGB output exactly. Truecolor versus explicit quantization remains an architecture/quality decision.</p></article>
-          <article class="metric-card"><span class="metric-label">OPEN-SS-004</span><strong>Font remaster</strong><p>The validated offline dump contains 36 fonts and 5,696 glyphs. Contour/vector candidates remain research until they pass identity, layout and readability gates.</p></article>
+          <article class="metric-card"><span class="metric-label">SCOPE-SS-003</span><strong>WORLD/STATIC HD</strong><p>Historical graphics research: bicubic output required new colours that the indexed renderer could not represent exactly. HD and truecolor rendering are outside version 1.0.0.</p></article>
+          <article class="metric-card"><span class="metric-label">SCOPE-SS-004</span><strong>Font remaster</strong><p>Historical font research covered 36 fonts and 5,696 glyphs. Version 1.0.0 keeps the original fonts.</p></article>
         </div>
-        <p class="note">The previous end-user importer, public release identity/signing and final fresh-clone/release gates were resolved during the v0.1.0-pre.3 release process and are retained in the resolved records rather than listed as open work.</p>
+        <p class="note">The importer was introduced in v0.1.0-pre.3. Version 1.0.0 established a separate stable package and signing identity; its final release checks are complete.</p>
       </div>
     </section>
 

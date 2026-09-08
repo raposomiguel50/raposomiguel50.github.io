@@ -53,8 +53,8 @@
         <p class="breadcrumbs"><a href="../../#projects">Projects</a> / System Shock - Android</p>
         <div class="project-meta project-meta-large"><span>PORT</span><span>ANDROID</span><span>ARM64</span><span>RETROID POCKET 5</span><span>STABLE v1.0.0</span></div>
         <h1>System Shock - Android</h1>
-        <p class="project-lede">A native Android/ARM64 preservation adaptation of <a class="inline-link" href="https://github.com/Interrupt/systemshock" target="_blank" rel="noopener noreferrer">Shockolate</a>. The stable line keeps the original System Shock content and 4:3 presentation authoritative while adapting installation, controls, text entry, audio and platform integration for Android.</p>
-        <div class="status-line" aria-label="Project status"><span class="status-badge">STABLE RELEASE</span><span>Version: v1.0.0</span><span>Presentation: 1024x768 4:3</span><span>Reference target: Retroid Pocket 5</span><span>Updated 24 August 2026</span></div>
+        <p class="project-lede">An unofficial Android/ARM64 port of System Shock, based on <a class="inline-link" href="https://github.com/Interrupt/systemshock">Shockolate</a>. Play with handheld controls and supply game data from your own copy.</p>
+        <div class="status-line" aria-label="Project status"><span class="status-badge">STABLE RELEASE</span><span>Version: v1.0.0</span><span>Presentation: 1024x768 4:3</span><span>Reference target: Retroid Pocket 5</span><span>Released 24 August 2026</span></div>
         <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/system-shock-android/releases/download/v1.0.0/SystemShock-Android-v1.0.0-arm64-v8a.apk" target="_blank" rel="noopener noreferrer">Download v1.0.0 APK</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v1.0.0" target="_blank" rel="noopener noreferrer">Release &amp; checksums</a><a class="button button-secondary" href="reproduce/">Reproduce the port</a><a class="button button-secondary" href="knowledge/">Knowledge base</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">Source repository</a><a class="button button-secondary" href="https://www.moddb.com/mods/system-shock-android" target="_blank" rel="noopener noreferrer">ModDB</a></div>
       </div>
     </section>
@@ -68,7 +68,7 @@
 
     <section class="section project-section" id="overview">
       <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">01 / OVERVIEW</p><h2>What the stable port is</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <div class="section-title-row"><div><p class="section-kicker">01 / OVERVIEW</p><h2>System Shock on an Android handheld</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
         <div class="content-grid">
           <div class="content-card"><h3>Source-port foundation</h3><p>The code foundation is Shockolate, using upstream commit <a class="inline-link" href="https://github.com/Interrupt/systemshock/commit/4cc3d07dfff2d11b6d3a0a9960a51cf4ca253690" target="_blank" rel="noopener noreferrer"><code>4cc3d07d…</code></a>. The Android work is published separately in <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android" target="_blank" rel="noopener noreferrer">raposomiguel50/system-shock-android</a>.</p></div>
           <div class="content-card"><h3>Hardware-led validation</h3><p>The Retroid Pocket 5 is the validated reference device. The accepted baseline covers display behavior, handheld controls, text entry, audio, first-run data import and a complete start-to-finish playthrough.</p></div>
@@ -79,7 +79,7 @@
 
     <section class="section alt project-section" id="release">
       <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">02 / RELEASE</p><h2>v1.0.0 verified stable identity</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <div class="section-title-row"><div><p class="section-kicker">02 / RELEASE</p><h2>Version 1.0.0</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
         <div class="project-grid">
           <article class="metric-card"><span class="metric-label">VERSION</span><strong>1.0.0</strong><p><code>versionCode 10000</code></p></article>
           <article class="metric-card"><span class="metric-label">PACKAGE</span><strong>Stable line</strong><p><code>io.github.raposomiguel50.systemshock</code></p></article>
@@ -114,9 +114,9 @@
     <section class="section alt project-section" id="preservation">
       <div class="container">
         <div class="section-title-row"><div><p class="section-kicker">04 / PRESERVATION</p><h2>Stable v1.0 is not a remaster</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-        <p class="section-intro">The product boundary is deliberately conservative. Android-specific adaptations exist to preserve access to the original experience rather than replace it.</p>
+        <p class="section-intro">The port adapts installation and controls for Android while keeping the original game content.</p>
         <div class="content-grid">
-          <div class="content-card"><h3>Preserved</h3><p>Original game logic and content remain authoritative. The public presentation stays at 1024x768 4:3 without non-uniform stretching.</p></div>
+          <div class="content-card"><h3>Preserved</h3><p>Version 1.0.0 keeps the original game content. The image is presented at 1024×768 in 4:3 without stretching.</p></div>
           <div class="content-card"><h3>Not part of v1.0</h3><p>No widescreen/Hor+, HD replacement graphics, truecolor conversion, font remaster, replacement music or sound, gameplay rebalance, new maps or new story content.</p></div>
           <div class="content-card"><h3>Android adaptations</h3><p>Native ARM64 packaging, lifecycle integration, controller mapping, fine cursor input, optional touch pointer, Android text entry, audio platform fixes, first-run data import and release/reproducibility tooling.</p></div>
         </div>
@@ -140,7 +140,7 @@
 
     <section class="section alt project-section" id="validation">
       <div class="container">
-        <div class="section-title-row"><div><p class="section-kicker">06 / VALIDATION</p><h2>What v1.0.0 claims</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
+        <div class="section-title-row"><div><p class="section-kicker">06 / VALIDATION</p><h2>Testing and compatibility</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
         <div class="content-grid">
           <div class="content-card"><h3>Reference hardware</h3><p>Retroid Pocket 5 is the validated target for the stable release.</p></div>
           <div class="content-card"><h3>Manual acceptance</h3><p>A complete start-to-finish playthrough was accepted before the stable source freeze.</p></div>
@@ -156,7 +156,7 @@
         <div class="content-grid">
           <div class="content-card"><h3>Reproduce</h3><p>The <a class="inline-link" href="reproduce/">reproduction guide</a> documents toolchain requirements, pinned dependencies, QA/release gates and the commercial-data boundary.</p></div>
           <div class="content-card"><h3>Knowledge base</h3><p>The <a class="inline-link" href="knowledge/">engineering knowledge base</a> records root causes, rejected approaches, resolved problems, reusable rules and open concerns.</p></div>
-          <div class="content-card"><h3>Human-directed, AI-assisted</h3><p>Project goals, constraints, product decisions, hardware interpretation, testing and acceptance are human-directed. ChatGPT assists with programming, analysis, automation, debugging, documentation and repetitive engineering work.</p></div>
+          <div class="content-card"><h3>Human-directed, AI-assisted</h3><p>I set the goals, make project decisions and test the hardware. ChatGPT assists with programming, analysis, automation and documentation.</p></div>
         </div>
       </div>
     </section>

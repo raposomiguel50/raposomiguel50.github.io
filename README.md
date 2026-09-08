@@ -1,33 +1,27 @@
 # Miguel's Game Dev Lab
 
-Learning hardware through ports. Building native games from what I learn.
+Game ports, retro development and lessons from working with hardware.
 
-## Website
+[Visit the website](https://raposomiguel50.github.io/)
 
-https://raposomiguel50.github.io/
+## Projects
 
-## Current public projects
+**System Shock — Android:** an ARM64 port based on Shockolate, tested on the Retroid Pocket 5. Version 1.0.0 is available; users supply their own game data.
 
-### System Shock - Android
+[Project](https://raposomiguel50.github.io/projects/system-shock-android/) · [Release](https://github.com/raposomiguel50/system-shock-android/releases/tag/v1.0.0) · [Source](https://github.com/raposomiguel50/system-shock-android)
 
-Native Android/ARM64 preservation port based on Shockolate, with the Retroid Pocket 5 as the validated reference device.
+**The Minish Cap — RG34XX:** a native muOS integration based on EstebanPdN's Project Picori-derived source. Integration patches and guides are public; there is no public game executable.
 
-- Project page: https://raposomiguel50.github.io/projects/system-shock-android/
-- Stable release: https://github.com/raposomiguel50/system-shock-android/releases/tag/v1.0.0
-- Reproduction guide: https://raposomiguel50.github.io/projects/system-shock-android/reproduce/
-- Engineering knowledge base: https://raposomiguel50.github.io/projects/system-shock-android/knowledge/
-- External coverage: https://raposomiguel50.github.io/coverage/
-- Public source: https://github.com/raposomiguel50/system-shock-android
-- Feedback and testing: https://github.com/raposomiguel50/system-shock-android/issues/new/choose
+[Project](https://raposomiguel50.github.io/projects/minish-cap-rg34xx/) · [Source](https://github.com/raposomiguel50/minish-cap-rg34xx) · [Upstream](https://github.com/EstebanPdN/zelda-tmc-3ds)
 
-### The Minish Cap - RG34XX
+## Site and documentation
 
-RG34XX/H700 native-port integration based on Project Picori, with the
-ANBERNIC RG34XX-H and muOS as the validated reference configuration.
+This repository contains the GitHub Pages site. Each game's source and engineering records live in its own repository.
 
-- Project page: https://raposomiguel50.github.io/projects/minish-cap-rg34xx/
-- Public source: https://github.com/raposomiguel50/minish-cap-rg34xx
-- Upstream: https://github.com/EstebanPdN/zelda-tmc-3ds
-- PortMaster status: https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PORTMASTER_STATUS.md
+Product pages introduce the project and explain how to use it. Technical pages provide test conditions, source revisions and supporting records.
 
-This repository contains the GitHub Pages site for the lab. Project source code is kept in dedicated repositories. Proprietary game data and other commercial assets are not distributed unless redistribution is explicitly permitted.
+Write routine product facts directly. Keep source links where they help verification, credits where work is inherited, and formal citations where specific borrowed work requires attribution.
+
+[Development method](https://raposomiguel50.github.io/method/) · [External coverage](https://raposomiguel50.github.io/coverage/) · [Feedback](https://github.com/raposomiguel50/system-shock-android/issues/new/choose)
+
+Proprietary game data is not distributed by this site.
