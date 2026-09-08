@@ -1,0 +1,21 @@
+/* Reading and keyboard navigation; keeps the lab colour palette. */
+.skip-link { position: fixed; top: .5rem; left: .5rem; z-index: 100; padding: .8rem 1rem; background: var(--surface); color: var(--text); border: 2px solid var(--term-cyan); transform: translateY(-200%); }
+.skip-link:focus { transform: translateY(0); }
+main:focus { outline: none; }
+.section > .container > p, .section > .container > ul, .section > .container > ol, details > p { max-width: 72ch; }
+.project-lede { max-width: 65ch; }
+.section > .container > h3 { margin-top: 2rem; }
+details { margin-top: 1.5rem; border: 1px solid var(--line); padding: .8rem 1rem; }
+summary { cursor: pointer; color: var(--term-cyan); min-height: 2.75rem; padding: .45rem 0; }
+summary:focus-visible, .table-wrap:focus-visible { outline: 2px solid var(--term-cyan); outline-offset: 3px; }
+.project-section { scroll-margin-top: 170px; }
+[aria-current="page"] { color: var(--term-green); text-decoration: underline; text-underline-offset: .25em; }
+@media (max-width: 760px) {
+  .site-header { position: static; }
+  .project-section { scroll-margin-top: 1rem; }
+  .site-header nav a, .project-section-links a { min-height: 2.75rem; display: inline-flex; align-items: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+}

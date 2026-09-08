@@ -22,6 +22,14 @@ Product pages introduce the project and explain how to use it. Technical pages p
 
 Write routine product facts directly. Keep source links where they help verification, credits where work is inherited, and formal citations where specific borrowed work requires attribution.
 
-[Development method](https://raposomiguel50.github.io/method/) · [External coverage](https://raposomiguel50.github.io/coverage/) · [Feedback](https://github.com/raposomiguel50/system-shock-android/issues/new/choose)
+[Development method](https://raposomiguel50.github.io/method/) · [External coverage](https://raposomiguel50.github.io/coverage/) · [System Shock feedback](https://github.com/raposomiguel50/system-shock-android/issues/new/choose) · [Minish Cap feedback](https://github.com/raposomiguel50/minish-cap-rg34xx/issues)
 
 Proprietary game data is not distributed by this site.
+
+## Check the site
+
+Run `python3 tools/check_site.py` from this repository. It checks local links, fragment targets, duplicate IDs, page titles, main headings and skip links without network access.
+
+The **Site quality** workflow runs the same checks on pushes and pull requests. Deployment is a separate workflow; a build result does not replace a page check.
+
+Test narrow-screen layout and keyboard navigation after changing navigation or styles. Keep knowledge-record identifiers consistent with the project repositories.
