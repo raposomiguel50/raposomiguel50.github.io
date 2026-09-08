@@ -36,7 +36,7 @@
       <div class="section-title-row"><div><p class="section-kicker">01 / GAMEPLAY AND PORT SETTINGS</p><h2>How are port settings kept separate from gameplay?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
       <p><strong>The reference keeps port instructions off the game image.</strong> Settings remain available through <code>MENU+R2</code>; <code>MENU+L2</code> returns to muOS.</p>
       <p>The GBA controls stay assigned to gameplay. These additional shortcuts use the handheld's extra controls, rather than repurposing the game's buttons.</p>
-      <p><strong>Lesson:</strong> make platform functions accessible without making them part of the game's presentation. This is interface integration, not an original-game bug fix.</p>
+      <p><strong>Lesson:</strong> make platform functions accessible without making them part of the game's presentation. The player can reach settings when needed while the gameplay image stays clear.</p>
       <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/KNOWLEDGE_BASE.md#kb-mc-004">Read the control changes and supporting record</a></p>
     </div></section>
     <section class="section alt project-section" id="timing"><div class="container">
@@ -75,7 +75,7 @@
     <section class="section project-section" id="negative"><div class="container">
       <div class="section-title-row"><div><p class="section-kicker">05 / WHAT STILL NEEDS INVESTIGATION?</p><h2>What still needs investigation?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
       <p>The records retain conflicting audio-buffer messages, autosave activity and a different CPU governor after exit. Pointer warnings also remain.</p>
-      <p>These are observations, not diagnosed causes. They should guide a focused investigation, not an automatic change to private V1.</p>
+      <p>Their causes remain unresolved. Investigation needs to connect each message to its code path and effective runtime value.</p>
       <p>One comparison records a 5.3 °C higher maximum temperature. Energy values are null. Lower clocks alone cannot establish energy savings.</p>
       <p><strong>Lesson:</strong> an accepted configuration can still have documented limits.</p>
       <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/AUDIT_SUPPLEMENT_2026-09-07.md">Read each observation and what is still unknown</a></p>
@@ -89,7 +89,7 @@
     </div></section>
     <section class="section project-section" id="references"><div class="container">
       <details><summary>Supporting records and review scope</summary>
-        <p>Evidence reviewed on 7 September 2026. No new device session was run for that review.</p>
+        <p>Analysis date: 7 September 2026. Method: reanalysis of archived device sessions.</p>
         <p id="source-code"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/90fd77a82d579de9460f2de1167a95ec264e57c3">Integration patches and launcher</a></p>
         <p id="source-runtime"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07">Runtime records and log excerpts</a></p>
         <p id="source-analysis"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07/REANALYSIS.json">Timing and monitor calculations</a></p>
