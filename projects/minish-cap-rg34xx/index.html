@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A native Minish Cap port for the GBA-style RG34XX. Learn what changed, why it changed and what the recorded tests show.">
+  <meta name="description" content="Native Minish Cap for RG34XX/muOS: 3× integer scaling and a ~120 Hz display mode, with original game timing. Source, guides and test records.">
   <title>The Minish Cap - RG34XX | Miguel's Game Dev Lab</title>
   <link rel="canonical" href="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/">
   <meta name="robots" content="index,follow,max-image-preview:large">
@@ -33,7 +33,7 @@
   <main id="top" tabindex="-1">
     <section class="project-hero"><div class="container">
       <p class="breadcrumbs"><a href="../../#projects">Projects</a> / The Minish Cap</p>
-      <div class="project-meta project-meta-large"><span>NATIVE PORT</span><span>RG34XX</span><span>muOS</span></div>
+      <div class="project-meta project-meta-large"><span>NATIVE PORT</span><span>RG34XX</span><span>muOS</span><span>~120 Hz DISPLAY MODE</span></div>
       <h1>The Minish Cap — RG34XX</h1>
       <p class="project-lede">An unofficial native port of The Minish Cap for the RG34XX handheld, running muOS.</p>
       <p>Built on EstebanPdN's Project Picori-derived source. The reference preserves the game's artwork, controls and proportions.</p>
@@ -47,6 +47,13 @@
     <section class="section project-section" id="overview"><div class="container">
       <div class="section-title-row"><div><p class="section-kicker">01 / HANDHELD SETUP</p><h2>How is the game presented on the RG34XX?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
       <div class="content-grid"><div class="content-card"><h3>Original image, integer scale</h3><p>The reference presents the game's 240 × 160 image at 3× scale. Port instructions stay off the game image.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/EVIDENCE_AUDIT.md#3-presentation-and-controls">Check presentation and controls</a></p></div><div class="content-card"><h3>Settings when needed</h3><p>Press <code>MENU+R2</code> to open port settings. GBA buttons remain assigned to gameplay; additional shortcuts use the handheld's extra controls.</p><p><a class="inline-link" href="knowledge/#philosophy">Learn how the controls are separated</a></p></div><div class="content-card"><h3>Return to muOS</h3><p><code>MENU+L2</code> exits the game. Port settings use the handheld's extra buttons, separate from the original GBA controls.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/EVIDENCE_AUDIT.md#2-exit-handling-a-port-defect-not-an-original-game-bug">Inspect the exit test and its limits</a></p></div></div>
+    </div></section>
+    <section class="section project-section" id="display-mode"><div class="container">
+      <h2>A ~120 Hz display mode, with the original game pace</h2>
+      <p>During play, the launcher selects a 119.455 Hz display mode on the RG34XX with muOS. Game logic stays at 59.7275 Hz.</p>
+      <p>The display rate is twice the logic rate. It does not make the game run twice as fast or turn it into 120 FPS gameplay.</p>
+      <p>The launcher restores the previous display timings on exit. It keeps the normal mode if the high-refresh check fails.</p>
+      <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/DISPLAY_MODE.md">Display setup, recorded results and fallback</a></p>
     </div></section>
     <section class="section alt project-section" id="philosophy"><div class="container">
       <div class="section-title-row"><div><p class="section-kicker">02 / APPROACH</p><h2>Why this approach?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
