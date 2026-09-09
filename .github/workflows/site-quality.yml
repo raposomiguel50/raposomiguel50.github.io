@@ -17,3 +17,5 @@ jobs:
         run: python3 tools/check_site.py
       - name: Check shared design and full project names
         run: python3 tools/check_design.py
+      - name: Check that project titles identify the port and target
+        run: python3 tools/check_project_titles.py
