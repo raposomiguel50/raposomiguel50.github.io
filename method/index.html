@@ -1,95 +1,85 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="How changes are developed, tested and documented: focused work, real-device checks, reusable knowledge and clear source links.">
-  <title>Development Method and AI Assistance | Miguel's Game Dev Lab</title>
-  <link rel="canonical" href="https://raposomiguel50.github.io/method/">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta property="og:site_name" content="Miguel's Game Dev Lab">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="Development Method and AI Assistance | Miguel's Game Dev Lab">
-  <meta property="og:description" content="Focused changes, hardware tests and reusable knowledge. Learn how the lab develops and documents its ports.">
-  <meta property="og:url" content="https://raposomiguel50.github.io/method/">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Development Method and AI Assistance | Miguel's Game Dev Lab">
-  <meta name="twitter:description" content="From a source change to a tested result: practical development, evidence and documentation.">
-  <script type="application/ld+json">
-{
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="How changes are developed, tested and documented: focused work, real-device checks, reusable knowledge and clear source links." name="description"/>
+<title>Development method | Miguel's Game Dev Lab</title>
+<link href="https://raposomiguel50.github.io/method/" rel="canonical"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/>
+<meta content="Miguel's Game Dev Lab" property="og:site_name"/>
+<meta content="article" property="og:type"/>
+<meta content="Development method | Miguel's Game Dev Lab" property="og:title"/>
+<meta content="Focused changes, hardware tests and reusable knowledge. Learn how the lab develops and documents its ports." property="og:description"/>
+<meta content="https://raposomiguel50.github.io/method/" property="og:url"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="Development method | Miguel's Game Dev Lab" name="twitter:title"/>
+<meta content="From a source change to a tested result: practical development, evidence and documentation." name="twitter:description"/>
+<script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "TechArticle",
   "headline": "Development method and AI assistance",
   "description": "Development, target-device testing and knowledge sharing at Miguel's Game Dev Lab.",
   "url": "https://raposomiguel50.github.io/method/",
   "mainEntityOfPage": "https://raposomiguel50.github.io/method/",
-  "dateModified": "2026-09-08",
+  "dateModified": "2026-09-09",
   "author": {
     "@type": "Person",
     "name": "Miguel Raposo",
     "url": "https://raposomiguel50.github.io/"
   }
-}
-  </script>
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="../assets/css/readability.css">
-</head>
+}</script>
+<link href="/assets/css/site.css?v=20260909" rel="stylesheet"/></head>
 <body>
-  <a class="skip-link" href="#top">Skip to content</a>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="../" aria-label="Miguel's Game Dev Lab home"><span class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a>
-      <nav aria-label="Primary navigation"><a href="../">Home</a><a href="../#projects">Projects</a><a href="../#dev-notes">Dev Notes</a><a href="../#about">About</a><a href="../#contact">Contact</a></nav>
-    </div>
-  </header>
-
-  <main id="top" tabindex="-1">
-    <section class="hero"><div class="container">
-      <p class="eyebrow">DEVELOPMENT METHOD</p>
-      <h1>From a change to a tested result</h1>
-      <p class="intro">Define the goal, make a focused change and test it on the target hardware. Keep enough evidence for someone else to follow the work.</p>
-    </div></section>
-    <section class="section"><div class="container narrow">
-      <p class="section-kicker">01 / RESPONSIBILITY</p><h2>Who does what?</h2>
-      <p>I choose the goals, hardware and preservation criteria. I make the project decisions and perform the final device testing.</p>
-      <p>ChatGPT assists with programming, calculations, debugging, automation and documentation.</p>
-    </div></section>
-    <section class="section alt"><div class="container narrow">
-      <p class="section-kicker">02 / TESTING</p><h2>Check the right result</h2>
-      <p>Start from a known source revision and configuration. Keep changes small enough to inspect and compare.</p>
-      <p>A build check confirms that an executable was produced. Device tests check its controls, image, sound and behaviour.</p>
-      <p>Keep these results separate. A working build is the start of testing, not the end.</p>
-    </div></section>
-    <section class="section"><div class="container narrow">
-      <p class="section-kicker">03 / CONTINUITY</p><h2>Keep the work recoverable</h2>
-      <p>Source control stores revisions. Test records identify the build and conditions. Handovers record decisions, open questions and the next step.</p>
-      <p>Keep private game data and signing keys separate from public source.</p>
-    </div></section>
-    <section class="section alt"><div class="container narrow">
-      <p class="section-kicker">04 / AUTOMATION</p><h2>Automate repetition</h2>
-      <p>Use scripts for dependency setup, builds, file checks and repeatable measurements. Test the scripts before relying on them.</p>
-      <p>Visual quality, sound and control feel still need hands-on evaluation. Preserve useful failed experiments so their lessons can be reused.</p>
-    </div></section>
-    <section class="section"><div class="container narrow">
-      <p class="section-kicker">05 / KNOWLEDGE</p><h2>Explain what helps the reader</h2>
-      <p>Start with the question an article answers. Explain the decision and result before adding implementation detail.</p>
-      <p>Keep one main explanation for each topic. Link summaries to it and update them when the evidence changes.</p>
-      <p>Use short paragraphs and clear terms. Put important limits beside the result they qualify.</p>
-    </div></section>
-    <section class="section alt"><div class="container narrow">
-      <p class="section-kicker">06 / SOURCES</p><h2>Make the evidence easy to find</h2>
-      <p>Describe ordinary hardware facts directly. Add a product link where checking a specification is useful.</p>
-      <p>Credit upstream code and identifiable contributions by name. Link measured results to their test records.</p>
-      <p>Use formal references for quotations, research findings and distinctive borrowed ideas when needed.</p>
-    </div></section>
-    <section class="section"><div class="container narrow">
-      <p class="section-kicker">07 / PROJECT GUIDES</p><h2>Explore the working methods</h2>
-      <p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/blob/main/docs/DEVELOPMENT_METHOD.md">System Shock — development and testing</a></p>
-      <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/DEVELOPMENT_METHOD.md">The Minish Cap — knowledge and reporting</a></p>
-    </div></section>
-  </main>
-
-  <footer><div class="container footer-wrap"><span>Miguel's Game Dev Lab</span><span class="legal">Human-directed, AI-assisted development. No proprietary game data is distributed by this site.</span></div></footer>
-  <script src="/assets/js/music-player.js" defer></script>
+<a class="skip-link" href="#top">Skip to content</a>
+<header class="site-header"><div class="container nav-wrap"><a aria-label="Miguel's Game Dev Lab home" class="brand" href="/"><span aria-hidden="true" class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a><nav aria-label="Primary navigation" class="global-nav"><a href="/">Home</a><a href="/#projects">Projects</a><a href="/coverage/">Coverage</a><a aria-current="page" href="/method/">Method</a><a href="/#contact">Contact</a></nav></div></header>
+<main id="top" tabindex="-1">
+<section class="hero"><div class="container">
+<p class="eyebrow">DEVELOPMENT METHOD</p>
+<h1>From a change to a tested result</h1>
+<p class="intro">Define the goal, make a focused change and test it on the target hardware. Keep enough evidence for someone else to follow the work.</p>
+</div></section><nav aria-label="On this page" class="project-section-nav" id="project-index"><div class="container"><p class="section-kicker">ON THIS PAGE</p><div class="project-section-links"><a href="#who-does-what"><span aria-hidden="true">01</span>Responsibility</a><a href="#check-the-right-result"><span aria-hidden="true">02</span>Testing</a><a href="#keep-the-work-recoverable"><span aria-hidden="true">03</span>Continuity</a><a href="#automate-repetition"><span aria-hidden="true">04</span>Automation</a><a href="#explain-what-helps-the-reader"><span aria-hidden="true">05</span>Knowledge</a><a href="#make-the-evidence-easy-to-find"><span aria-hidden="true">06</span>Sources</a><a href="#explore-the-working-methods"><span aria-hidden="true">07</span>Project Guides</a></div></div></nav>
+<section class="section project-section" id="who-does-what"><div class="container narrow">
+<div class="section-heading"><p class="section-kicker">01 / RESPONSIBILITY</p><h2>Who does what?</h2></div>
+<p>I choose the goals, hardware and preservation criteria. I make the project decisions and perform the final device testing.</p>
+<p>ChatGPT assists with programming, calculations, debugging, automation and documentation.</p>
+</div></section>
+<section class="section alt project-section" id="check-the-right-result"><div class="container narrow">
+<div class="section-heading"><p class="section-kicker">02 / TESTING</p><h2>Check the right result</h2></div>
+<p>Start from a known source revision and configuration. Keep changes small enough to inspect and compare.</p>
+<p>A build check confirms that an executable was produced. Device tests check its controls, image, sound and behaviour.</p>
+<p>Keep these results separate. A working build is the start of testing, not the end.</p>
+</div></section>
+<section class="section project-section" id="keep-the-work-recoverable"><div class="container narrow">
+<div class="section-heading"><p class="section-kicker">03 / CONTINUITY</p><h2>Keep the work recoverable</h2></div>
+<p>Source control stores revisions. Test records identify the build and conditions. Handovers record decisions, open questions and the next step.</p>
+<p>Keep private game data and signing keys separate from public source.</p>
+</div></section>
+<section class="section alt project-section" id="automate-repetition"><div class="container narrow">
+<div class="section-heading"><p class="section-kicker">04 / AUTOMATION</p><h2>Automate repetition</h2></div>
+<p>Use scripts for dependency setup, builds, file checks and repeatable measurements. Test the scripts before relying on them.</p>
+<p>Visual quality, sound and control feel still need hands-on evaluation. Preserve useful failed experiments so their lessons can be reused.</p>
+</div></section>
+<section class="section project-section" id="explain-what-helps-the-reader"><div class="container narrow">
+<div class="section-heading"><p class="section-kicker">05 / KNOWLEDGE</p><h2>Explain what helps the reader</h2></div>
+<p>Start with the question an article answers. Explain the decision and result before adding implementation detail.</p>
+<p>Keep one main explanation for each topic. Link summaries to it and update them when the evidence changes.</p>
+<p>Use short paragraphs and clear terms. Put important limits beside the result they qualify.</p>
+</div></section>
+<section class="section alt project-section" id="make-the-evidence-easy-to-find"><div class="container narrow">
+<div class="section-heading"><p class="section-kicker">06 / SOURCES</p><h2>Make the evidence easy to find</h2></div>
+<p>Describe ordinary hardware facts directly. Add a product link where checking a specification is useful.</p>
+<p>Credit upstream code and identifiable contributions by name. Link measured results to their test records.</p>
+<p>Use formal references for quotations, research findings and distinctive borrowed ideas when needed.</p>
+</div></section>
+<section class="section project-section" id="explore-the-working-methods"><div class="container narrow">
+<div class="section-heading"><p class="section-kicker">07 / PROJECT GUIDES</p><h2>Explore the working methods</h2></div>
+<p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/blob/main/docs/DEVELOPMENT_METHOD.md">System Shock — development and testing</a></p>
+<p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/DEVELOPMENT_METHOD.md">The Legend of Zelda: The Minish Cap — knowledge and reporting</a></p>
+</div></section>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-top"><a class="brand" href="/"><span aria-hidden="true" class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a><nav aria-label="Footer navigation"><a href="/#projects">Projects</a><a href="/method/">Method</a><a href="/#contact">Contact</a><a href="https://github.com/raposomiguel50">GitHub</a></nav></div><p class="legal">Human-directed, AI-assisted development. No proprietary game data is distributed by this site.</p></div></footer>
+<script defer="" src="/assets/js/music-player.js"></script>
 </body>
 </html>

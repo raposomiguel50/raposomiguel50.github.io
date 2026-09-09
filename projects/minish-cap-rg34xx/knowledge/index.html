@@ -1,106 +1,108 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Short lessons from the Minish Cap RG34XX port: controls, timing, audio, testing and the evidence behind each decision.">
-  <title>The Minish Cap RG34XX - Knowledge | Miguel's Game Dev Lab</title>
-  <link rel="canonical" href="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/knowledge/">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta property="og:site_name" content="Miguel's Game Dev Lab">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="The Minish Cap RG34XX - Engineering Knowledge">
-  <meta property="og:description" content="Primary sources, archived observations and approved policy are reported separately.">
-  <meta property="og:url" content="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/knowledge/">
-  <link rel="stylesheet" href="../../../assets/css/style.css">
-  <link rel="stylesheet" href="../../../assets/css/project-nav.css">
-  <link rel="stylesheet" href="../../../assets/css/readability.css">
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Engineering notes for The Legend of Zelda: The Minish Cap on RG34XX: controls, display timing, audio and documented device tests." name="description"/>
+<title>The Legend of Zelda: The Minish Cap — Engineering notes | Miguel's Game Dev Lab</title>
+<link href="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/knowledge/" rel="canonical"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/>
+<meta content="Miguel's Game Dev Lab" property="og:site_name"/>
+<meta content="article" property="og:type"/>
+<meta content="The Legend of Zelda: The Minish Cap — Engineering notes | Miguel's Game Dev Lab" property="og:title"/>
+<meta content="Engineering notes for The Legend of Zelda: The Minish Cap on RG34XX: controls, display timing, audio and documented device tests." property="og:description"/>
+<meta content="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/knowledge/" property="og:url"/>
+<link href="/assets/css/site.css?v=20260909" rel="stylesheet"/><meta content="The Legend of Zelda: The Minish Cap — Engineering notes | Miguel's Game Dev Lab" name="twitter:title"/><meta content="Engineering notes for The Legend of Zelda: The Minish Cap on RG34XX: controls, display timing, audio and documented device tests." name="twitter:description"/><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "The Legend of Zelda: The Minish Cap — Engineering notes",
+  "url": "https://raposomiguel50.github.io/projects/minish-cap-rg34xx/knowledge/",
+  "dateModified": "2026-09-09",
+  "about": {
+    "@type": "SoftwareSourceCode",
+    "name": "The Legend of Zelda: The Minish Cap — RG34XX",
+    "codeRepository": "https://github.com/raposomiguel50/minish-cap-rg34xx"
+  }
+}</script></head>
 <body class="project-page">
-  <a class="skip-link" href="#top">Skip to content</a>
-  <header class="site-header"><div class="container nav-wrap">
-    <a class="brand" href="../../../" aria-label="Miguel's Game Dev Lab home"><span class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a>
-    <nav aria-label="Primary navigation"><a href="../">Project</a><a href="../reproduce/">Reproduce</a><a href="../../../method/">Method</a><a href="https://github.com/raposomiguel50/minish-cap-rg34xx" target="_blank" rel="noopener noreferrer">Source</a></nav>
-  </div></header>
-  <main id="top" tabindex="-1">
-    <section class="project-hero"><div class="container">
-      <p class="breadcrumbs"><a href="../">The Minish Cap</a> / Learn</p>
-      <h1>Learn from the port</h1>
-      <p class="project-lede">How do you adapt a game to a handheld without changing its identity? Explore controls, presentation timing and the tests behind the choices.</p>
-      <p>Start with a topic below. The source files and full measurements are one level deeper.</p>
-      <div class="hero-actions"><a class="button" href="#timing">Understand frame timing</a><a class="button button-secondary" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/KNOWLEDGE_BASE.md">Browse engineering lessons</a></div>
-    </div></section>
-    <nav class="project-section-nav" aria-label="Page sections" id="project-index"><div class="container">
-      <div class="project-section-nav-heading"><span class="section-kicker">ON THIS PAGE</span><span class="project-section-nav-hint">Choose what you want to understand</span></div>
-      <div class="project-section-links"><a href="#philosophy"><span>01</span>Controls</a><a href="#timing"><span>02</span>Timing</a><a href="#audio"><span>03</span>Audio</a><a href="#benchmarking"><span>04</span>Testing</a><a href="#negative"><span>05</span>Open questions</a><a href="#publication"><span>06</span>Use the knowledge</a></div>
-    </div></nav>
-    <section class="section project-section" id="philosophy"><div class="container">
-      <div class="section-title-row"><div><p class="section-kicker">01 / CONTROLS</p><h2>How are port settings kept separate from gameplay?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <p><strong>The reference keeps port instructions off the game image.</strong> Settings remain available through <code>MENU+R2</code>; <code>MENU+L2</code> returns to muOS.</p>
-      <p>The GBA controls stay assigned to gameplay. These additional shortcuts use the handheld's extra controls, rather than repurposing the game's buttons.</p>
-      <p><strong>Lesson:</strong> make platform functions accessible without making them part of the game's presentation. The player can reach settings when needed while the gameplay image stays clear.</p>
-      <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/KNOWLEDGE_BASE.md#kb-mc-004">Read the control changes and supporting record</a></p>
-    </div></section>
-    <section class="section alt project-section" id="timing"><div class="container">
-      <div class="section-title-row"><div><p class="section-kicker">02 / TIMING</p><h2>Does a faster screen make the game faster?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <p><strong>Not necessarily.</strong> Game logic updates the world. Screen refresh displays images. They do not have to run at the same rate.</p>
-      <p>This project records game logic near 59.7275 Hz and a screen mode near 119.455 Hz. It does not claim 120 FPS game logic.</p>
-      <p>The P11.4 change schedules presentation once per logic period. The resulting trace still contains ticks with zero or two presentations.</p>
-      <p><strong>Lesson:</strong> measure actual behaviour rather than describing a scheduling rule as a guaranteed result.</p>
-      <details><summary>Show the measured comparison</summary>
-        <p>The two captures contain 10,203 and 10,449 ticks. Their p95 lateness is 5.790787 and 0.027887 ms.</p>
-        <p>The p95 is the threshold containing about 95% of values. The largest presentation duration increased from 46.450584 to 60.917250 ms.</p>
-        <p>There is one capture per variant. Identical scenes and randomised order were not established.</p>
-        <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/VALIDATION.md">Read the full table and measurement definitions</a></p>
-      </details>
-    </div></section>
-    <section class="section project-section" id="audio"><div class="container">
-      <div class="section-title-row"><div><p class="section-kicker">03 / AUDIO</p><h2>Can audio measurements and listening disagree?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <p><strong>They can record different aspects of the same work.</strong> Timing counters measure execution. A listening check records what the tester heard.</p>
-      <p>The earlier 1,600-frame machine test reported <code>AUDIO1600_MACHINE_AUDIO_REGRESSION</code>. The later manual acceptance reports audio <code>OK</code>.</p>
-      <p><strong>Lesson:</strong> keep both observations. Do not replace a negative test with a later positive summary.</p>
-      <details><summary>Show the audio details</summary>
-        <p>The largest callback gap rose from 62.2 to 168.8 ms. The p95 of each window's maximum audio work fell from 30.79 to 26.53 ms.</p>
-        <p>The A53 patch changes one enhanced-resampling branch to LINEAR. The <code>gbaAccurate</code> branch retains NEAREST.</p>
-        <p>The launcher requests 1600 frames but prints 1920. Neither message alone proves the device's effective buffer size.</p>
-        <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/VALIDATION.md">Read audio results</a> · <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/AUDIT_SUPPLEMENT_2026-09-07.md#audio-buffer">Read the buffer discrepancy</a></p>
-      </details>
-    </div></section>
-    <section class="section alt project-section" id="benchmarking"><div class="container">
-      <div class="section-title-row"><div><p class="section-kicker">04 / TESTING</p><h2>Why does the test setup matter?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <p>A remote-shell launch and a normal handheld menu launch can leave different background conditions.</p>
-      <p>The later AutoLab procedure uses a normal muOS Ports session and deterministic replay. That procedure must not be assumed for the earlier timing pair.</p>
-      <p><strong>Lesson:</strong> describe the setup actually used before comparing the results.</p>
-      <p>The final acceptance records one manual session and two preceding automated soak runs. These are not three full playthroughs.</p>
-      <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/KNOWLEDGE_BASE.md#kb-mc-008">Read the benchmarking lesson</a> · <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/VALIDATION.md">Inspect acceptance and sample sizes</a></p>
-    </div></section>
-    <section class="section project-section" id="negative"><div class="container">
-      <div class="section-title-row"><div><p class="section-kicker">05 / OPEN QUESTIONS</p><h2>What still needs investigation?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <p>The records retain conflicting audio-buffer messages, autosave activity and a different CPU governor after exit. Pointer warnings also remain.</p>
-      <p>Their causes remain unresolved. Investigation needs to connect each message to its code path and effective runtime value.</p>
-      <p>One comparison records a 5.3 °C higher maximum temperature. Energy values are null. Lower clocks alone cannot establish energy savings.</p>
-      <p><strong>Lesson:</strong> an accepted configuration can still have documented limits.</p>
-      <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/AUDIT_SUPPLEMENT_2026-09-07.md">Read each observation and what is still unknown</a></p>
-    </div></section>
-    <section class="section alt project-section" id="publication"><div class="container">
-      <div class="section-title-row"><div><p class="section-kicker">06 / REUSE</p><h2>How can you use this knowledge?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <p>Find the matching problem. Read the change and its limits. Inspect the source before adapting the idea to another platform.</p>
-      <p>Use a separate copy for experiments. A successful result on this handheld does not automatically apply elsewhere.</p>
-      <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/GLOSSARY.md">Look up a term</a> · <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/KNOWLEDGE_BASE.md">Browse all lessons</a> · <a class="inline-link" href="../reproduce/">Check rebuild requirements</a></p>
-      <p>Found an unclear passage? Include its title and the missing explanation in a <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/issues">GitHub issue</a>.</p>
-    </div></section>
-    <section class="section project-section" id="references"><div class="container">
-      <details><summary>Supporting records and review scope</summary>
-        <p>Analysis date: 7 September 2026. Method: reanalysis of archived device sessions.</p>
-        <p id="source-code"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/90fd77a82d579de9460f2de1167a95ec264e57c3">Integration patches and launcher</a></p>
-        <p id="source-runtime"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07">Runtime records and log excerpts</a></p>
-        <p id="source-analysis"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07/REANALYSIS.json">Timing and monitor calculations</a></p>
-        <p id="source-workflow"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/5c306562615b1595ed49c7388dc768c8348b1296/docs/evidence/2026-09-07">Dated workflow notes</a></p>
-        <p>Full raw traces remain in the private archive. The public extract supports inspection, but not every numerical recalculation.</p>
-      </details>
-    </div></section>
-  </main>
-  <footer><div class="container footer-wrap"><span>Miguel's Game Dev Lab</span><span class="legal">Human-directed, AI-assisted development. No proprietary game data is distributed by this site.</span></div></footer>
-  <script src="/assets/js/music-player.js" defer></script>
+<a class="skip-link" href="#top">Skip to content</a>
+<header class="site-header"><div class="container nav-wrap"><a aria-label="Miguel's Game Dev Lab home" class="brand" href="/"><span aria-hidden="true" class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a><nav aria-label="Primary navigation" class="global-nav"><a href="/">Home</a><a aria-current="page" href="/#projects">Projects</a><a href="/coverage/">Coverage</a><a href="/method/">Method</a><a href="/#contact">Contact</a></nav></div></header>
+<main id="top" tabindex="-1">
+<section class="project-hero"><div class="container">
+<p class="breadcrumbs"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/#projects">Projects</a><span aria-hidden="true">/</span><a href="/projects/minish-cap-rg34xx/">The Legend of Zelda: The Minish Cap — RG34XX</a></p>
+<p class="eyebrow">RG34XX / muOS <span aria-hidden="true">·</span> ENGINEERING NOTES</p><h1>Engineering notes</h1>
+<p class="project-lede">How do you adapt a game to a handheld without changing its identity? Explore controls, presentation timing and the tests behind the choices.</p>
+<p>Start with a topic below. The source files and full measurements are one level deeper.</p>
+<div class="hero-actions"><a class="button" href="#timing">Understand frame timing</a><a class="button button-secondary" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/KNOWLEDGE_BASE.md">Browse engineering lessons</a></div>
+</div></section><nav aria-label="Project navigation" class="project-tabs"><div class="container"><a href="/projects/minish-cap-rg34xx/">Overview</a><a aria-current="page" href="/projects/minish-cap-rg34xx/knowledge/">Engineering notes</a><a href="/projects/minish-cap-rg34xx/reproduce/">Reconstruction</a><a href="https://github.com/raposomiguel50/minish-cap-rg34xx">Source</a></div></nav><nav aria-label="On this page" class="project-section-nav" id="project-index"><div class="container"><p class="section-kicker">ON THIS PAGE</p><div class="project-section-links"><a href="#philosophy"><span aria-hidden="true">01</span>Controls</a><a href="#timing"><span aria-hidden="true">02</span>Timing</a><a href="#audio"><span aria-hidden="true">03</span>Audio</a><a href="#benchmarking"><span aria-hidden="true">04</span>Testing</a><a href="#negative"><span aria-hidden="true">05</span>Open questions</a><a href="#publication"><span aria-hidden="true">06</span>Use the knowledge</a><a href="#references"><span aria-hidden="true">07</span>Sources</a></div></div></nav>
+<section class="section project-section" id="philosophy"><div class="container">
+<div class="section-title-row"><div><p class="section-kicker">01 / CONTROLS</p><h2>How are port settings kept separate from gameplay?</h2></div></div>
+<p><strong>The reference keeps port instructions off the game image.</strong> Settings remain available through <code>MENU+R2</code>; <code>MENU+L2</code> returns to muOS.</p>
+<p>The GBA controls stay assigned to gameplay. These additional shortcuts use the handheld's extra controls, rather than repurposing the game's buttons.</p>
+<p><strong>Lesson:</strong> make platform functions accessible without making them part of the game's presentation. The player can reach settings when needed while the gameplay image stays clear.</p>
+<p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/KNOWLEDGE_BASE.md#kb-mc-004">Read the control changes and supporting record</a></p>
+</div></section>
+<section class="section alt project-section" id="timing"><div class="container">
+<div class="section-title-row"><div><p class="section-kicker">02 / TIMING</p><h2>Does a faster screen make the game faster?</h2></div></div>
+<p><strong>Not necessarily.</strong> Game logic updates the world. Screen refresh displays images. They do not have to run at the same rate.</p>
+<p>This project records game logic near 59.7275 Hz and a screen mode near 119.455 Hz. It does not claim 120 FPS game logic.</p>
+<p>The P11.4 change schedules presentation once per logic period. The resulting trace still contains ticks with zero or two presentations.</p>
+<p><strong>Lesson:</strong> measure actual behaviour rather than describing a scheduling rule as a guaranteed result.</p>
+<details><summary>Show the measured comparison</summary>
+<p>The two captures contain 10,203 and 10,449 ticks. Their p95 lateness is 5.790787 and 0.027887 ms.</p>
+<p>The p95 is the threshold containing about 95% of values. The largest presentation duration increased from 46.450584 to 60.917250 ms.</p>
+<p>There is one capture per variant. Identical scenes and randomised order were not established.</p>
+<p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/VALIDATION.md">Read the full table and measurement definitions</a></p>
+</details>
+</div></section>
+<section class="section project-section" id="audio"><div class="container">
+<div class="section-title-row"><div><p class="section-kicker">03 / AUDIO</p><h2>Can audio measurements and listening disagree?</h2></div></div>
+<p><strong>They can record different aspects of the same work.</strong> Timing counters measure execution. A listening check records what the tester heard.</p>
+<p>The earlier 1,600-frame machine test reported <code>AUDIO1600_MACHINE_AUDIO_REGRESSION</code>. The later manual acceptance reports audio <code>OK</code>.</p>
+<p><strong>Lesson:</strong> keep both observations. Do not replace a negative test with a later positive summary.</p>
+<details><summary>Show the audio details</summary>
+<p>The largest callback gap rose from 62.2 to 168.8 ms. The p95 of each window's maximum audio work fell from 30.79 to 26.53 ms.</p>
+<p>The A53 patch changes one enhanced-resampling branch to LINEAR. The <code>gbaAccurate</code> branch retains NEAREST.</p>
+<p>The launcher requests 1600 frames but prints 1920. Neither message alone proves the device's effective buffer size.</p>
+<p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/VALIDATION.md">Read audio results</a> · <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/AUDIT_SUPPLEMENT_2026-09-07.md#audio-buffer">Read the buffer discrepancy</a></p>
+</details>
+</div></section>
+<section class="section alt project-section" id="benchmarking"><div class="container">
+<div class="section-title-row"><div><p class="section-kicker">04 / TESTING</p><h2>Why does the test setup matter?</h2></div></div>
+<p>A remote-shell launch and a normal handheld menu launch can leave different background conditions.</p>
+<p>The later AutoLab procedure uses a normal muOS Ports session and deterministic replay. That procedure must not be assumed for the earlier timing pair.</p>
+<p><strong>Lesson:</strong> describe the setup actually used before comparing the results.</p>
+<p>The final acceptance records one manual session and two preceding automated soak runs. These are not three full playthroughs.</p>
+<p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/KNOWLEDGE_BASE.md#kb-mc-008">Read the benchmarking lesson</a> · <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/VALIDATION.md">Inspect acceptance and sample sizes</a></p>
+</div></section>
+<section class="section project-section" id="negative"><div class="container">
+<div class="section-title-row"><div><p class="section-kicker">05 / OPEN QUESTIONS</p><h2>What still needs investigation?</h2></div></div>
+<p>The records retain conflicting audio-buffer messages, autosave activity and a different CPU governor after exit. Pointer warnings also remain.</p>
+<p>Their causes remain unresolved. Investigation needs to connect each message to its code path and effective runtime value.</p>
+<p>One comparison records a 5.3 °C higher maximum temperature. Energy values are null. Lower clocks alone cannot establish energy savings.</p>
+<p><strong>Lesson:</strong> an accepted configuration can still have documented limits.</p>
+<p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/AUDIT_SUPPLEMENT_2026-09-07.md">Read each observation and what is still unknown</a></p>
+</div></section>
+<section class="section alt project-section" id="publication"><div class="container">
+<div class="section-title-row"><div><p class="section-kicker">06 / USE THE KNOWLEDGE</p><h2>How can you use this knowledge?</h2></div></div>
+<p>Find the matching problem. Read the change and its limits. Inspect the source before adapting the idea to another platform.</p>
+<p>Use a separate copy for experiments. A successful result on this handheld does not automatically apply elsewhere.</p>
+<p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/GLOSSARY.md">Look up a term</a> · <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/KNOWLEDGE_BASE.md">Browse all lessons</a> · <a class="inline-link" href="../reproduce/">Check rebuild requirements</a></p>
+<p>Found an unclear passage? Include its title and the missing explanation in a <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/issues">GitHub issue</a>.</p>
+</div></section>
+<section class="section project-section" id="references"><div class="container">
+<details><summary>Supporting records and review scope</summary>
+<p>Analysis date: 7 September 2026. Method: reanalysis of archived device sessions.</p>
+<p id="source-code"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/90fd77a82d579de9460f2de1167a95ec264e57c3">Integration patches and launcher</a></p>
+<p id="source-runtime"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07">Runtime records and log excerpts</a></p>
+<p id="source-analysis"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07/REANALYSIS.json">Timing and monitor calculations</a></p>
+<p id="source-workflow"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/5c306562615b1595ed49c7388dc768c8348b1296/docs/evidence/2026-09-07">Dated workflow notes</a></p>
+<p>Full raw traces remain in the private archive. The public extract supports inspection, but not every numerical recalculation.</p>
+</details>
+</div></section>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-top"><a class="brand" href="/"><span aria-hidden="true" class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a><nav aria-label="Footer navigation"><a href="/#projects">Projects</a><a href="/method/">Method</a><a href="/#contact">Contact</a><a href="https://github.com/raposomiguel50">GitHub</a></nav></div><p class="legal">Human-directed, AI-assisted development. No proprietary game data is distributed by this site.</p></div></footer>
+<script defer="" src="/assets/js/music-player.js"></script>
 </body>
 </html>

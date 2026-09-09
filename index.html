@@ -1,129 +1,109 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Native game ports, retro development and hardware-focused engineering. Public source, preservation principles, reconstruction notes and reusable technical knowledge.">
-  <title>Miguel's Game Dev Lab | Game Ports, Retro Development and Hardware</title>
-  <!-- SEO metadata -->
-  <link rel="canonical" href="https://raposomiguel50.github.io/">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta property="og:site_name" content="Miguel's Game Dev Lab">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Miguel's Game Dev Lab | Game Ports, Retro Development and Hardware">
-  <meta property="og:description" content="Native game ports, retro development and hardware-focused engineering with public source and reusable technical documentation.">
-  <meta property="og:url" content="https://raposomiguel50.github.io/">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Miguel's Game Dev Lab | Game Ports, Retro Development and Hardware">
-  <meta name="twitter:description" content="Native game ports, retro development and hardware-focused engineering with public source and reusable technical documentation.">
-  <script type="application/ld+json">
-{
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Native game ports, retro development and hardware-focused engineering. Public source, preservation principles, reconstruction notes and reusable technical knowledge." name="description"/>
+<title>Miguel's Game Dev Lab | Native game ports and engineering</title>
+<!-- SEO metadata -->
+<link href="https://raposomiguel50.github.io/" rel="canonical"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/>
+<meta content="Miguel's Game Dev Lab" property="og:site_name"/>
+<meta content="website" property="og:type"/>
+<meta content="Miguel's Game Dev Lab | Native game ports and engineering" property="og:title"/>
+<meta content="Native game ports, retro development and hardware-focused engineering with public source and reusable technical documentation." property="og:description"/>
+<meta content="https://raposomiguel50.github.io/" property="og:url"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="Miguel's Game Dev Lab | Native game ports and engineering" name="twitter:title"/>
+<meta content="Native game ports, retro development and hardware-focused engineering with public source and reusable technical documentation." name="twitter:description"/>
+<script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Miguel's Game Dev Lab",
   "url": "https://raposomiguel50.github.io/",
   "description": "Native game ports, retro development and hardware-focused engineering, with public source, reconstruction notes and technical knowledge."
-}
-  </script>
-  <!-- /SEO metadata -->
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/readability.css">
-</head>
-<body>
-  <a class="skip-link" href="#top">Skip to content</a>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="#home" aria-label="Miguel's Game Dev Lab home"><span class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a>
-      <nav aria-label="Primary navigation"><a href="#home">Home</a><a href="#projects">Projects</a><a href="#press">Coverage</a><a href="#platforms">Platforms</a><a href="#dev-notes">Dev Notes</a><a href="method/">Method</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
-    </div>
-  </header>
-
-  <main id="top" tabindex="-1">
-    <section class="hero" id="home">
-      <div class="container">
-        <p class="eyebrow">GAME DEVELOPMENT / PORTING / HARDWARE</p>
-        <h1>Miguel's Game Dev Lab</h1>
-        <p class="tagline">Learning hardware through ports. Building native games from what I learn.</p>
-        <p class="intro">Game ports are a practical way to learn hardware. This lab shares the code, decisions and lessons from that work.</p>
-        <a class="button" href="#projects">View projects</a>
-      </div>
-    </section>
-
-    <section class="section" id="projects">
-      <div class="container">
-        <div class="section-heading"><p class="section-kicker">01 / PROJECTS</p><h2>Current work</h2></div>
-        <article class="project-card">
-          <div class="project-meta"><span>PORT</span><span>ANDROID</span><span>RETROID POCKET 5 TARGET</span><span>STABLE v1.0.0</span></div>
-          <h3>System Shock - Android</h3>
-          <p>An Android/ARM64 port of System Shock, tested on the Retroid Pocket 5.</p>
-          <p class="project-note">Version 1.0.0 is available. It includes handheld controls, Android text entry and a first-run importer. Supply compatible game data from your own copy.</p>
-          <div class="project-actions"><a class="button" href="projects/system-shock-android/">Install and play</a><a class="button button-secondary" href="projects/system-shock-android/knowledge/">Learn from the work</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android">Source and guides</a></div>
-        </article>
-        <article class="project-card">
-          <div class="project-meta"><span>NATIVE PORT</span><span>RG34XX / muOS</span><span>SOURCE + GUIDES</span></div>
-          <h3>The Minish Cap - RG34XX</h3>
-          <p>A native port for a GBA-style handheld, built on Project Picori-derived source. The aim is to keep the game familiar while adapting its software to the RG34XX.</p>
-          <p class="project-note">Explore the handheld presentation, controls and runtime choices. The learning guide explains their purpose; the technical report links each result to its source.</p>
-          <p class="project-note">Integration source and guides are public. A game executable is not available for download.</p>
-          <div class="project-actions"><a class="button" href="projects/minish-cap-rg34xx/">Explore the project</a><a class="button button-secondary" href="projects/minish-cap-rg34xx/knowledge/">Learn from the work</a><a class="button button-secondary" href="https://github.com/raposomiguel50/minish-cap-rg34xx">Source and evidence</a></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="press">
-      <div class="container">
-        <div class="section-heading"><p class="section-kicker">02 / FEATURED / COVERAGE</p><h2>External coverage</h2></div>
-        <p class="section-intro">Articles, videos and community discussions about the lab's projects.</p>
-        <article class="project-card">
-          <div class="project-meta"><span>VIDEO / NEWS</span><span>MR. SUJANO</span><span>25 AUGUST 2026</span></div>
-          <h3>System Shock Android featured in Mr. Sujano's gaming and tech news</h3>
-          <p>Mr. Sujano covered <strong>System Shock Android</strong> in a dedicated video chapter. The segment starts at 10:40.</p>
-          <div class="project-actions"><a class="button" href="https://www.youtube.com/watch?v=cLREnxvoD90&amp;t=640s" target="_blank" rel="noopener noreferrer">Watch from the System Shock segment</a></div>
-        </article>
-        <article class="project-card">
-          <div class="project-meta"><span>EDITORIAL</span><span>GENERATIONAMIGA.COM</span><span>21 AUGUST 2026</span></div>
-          <h3>System Shock Android port brings the 1994 classic to handhelds</h3>
-          <p>GenerationAmiga's article introduces the Android port, its handheld controls and the first-run game-data importer.</p>
-          <div class="project-actions"><a class="button" href="https://www.generationamiga.com/2026/08/21/system-shock-android-port-brings-the-1994-classic-to-handhelds/" target="_blank" rel="noopener noreferrer">Read the GenerationAmiga article</a></div>
-        </article>
-        <article class="project-card">
-          <div class="project-meta"><span>COMMUNITY</span><span>RETROGAMETALK</span><span>26 AUGUST 2026</span></div>
-          <h3>System Shock android port</h3>
-          <p>A RetroGameTalk discussion shares the repository and Mr. Sujano's video. It also notes testing on the Retroid Pocket 5.</p>
-          <div class="project-actions"><a class="button" href="https://retrogametalk.com/threads/system-shock-android-port.27861/" target="_blank" rel="noopener noreferrer">Open the RetroGameTalk discussion</a></div>
-        </article>
-        <p><a class="inline-link" href="coverage/">View the full external coverage archive</a></p>
-      </div>
-    </section>
-
-    <section class="section alt" id="platforms">
-      <div class="container narrow"><p class="section-kicker">03 / PLATFORMS</p><h2>Hardware first</h2><p>Each platform has its own controls, tools and limits. Porting a game helps reveal how they fit together.</p></div>
-    </section>
-
-    <section class="section" id="dev-notes">
-      <div class="container narrow"><p class="section-kicker">04 / DEV NOTES</p><h2>Documenting the process</h2><p>The notes explain what changed, why it changed and how it was tested. Failed experiments remain useful when they explain a design decision.</p></div>
-    </section>
-
-    <section class="section alt" id="about">
-      <div class="container narrow"><p class="section-kicker">05 / ABOUT</p><h2>From ports to native games</h2><p>I use ports to learn a platform before designing original games for it.</p><p>The existing game guides each port. Technical changes serve its presentation, controls and operation on the target device.</p><p>I set the goals, make project decisions and test the hardware. ChatGPT assists with programming, analysis, automation and documentation.</p><p><a class="inline-link" href="method/">Read the development method and AI attribution</a></p></div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container">
-        <p class="section-kicker">06 / FEEDBACK &amp; CONTACT</p>
-        <h2>Questions, ideas and testing reports are welcome</h2>
-        <p class="section-intro">Use GitHub for public project feedback so problems, solutions and compatibility reports remain searchable. Use LinkedIn for professional contact.</p>
-        <div class="content-grid">
-          <div class="content-card"><h3>Project feedback</h3><p>Choose the project your question concerns. Include its version and device when reporting a problem.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/issues/new/choose">System Shock feedback</a> · <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/issues">Minish Cap feedback</a></p></div>
-          <div class="content-card"><h3>Contribute</h3><p>Code, documentation corrections and technical review can be contributed through the public repositories and pull requests.</p><p><a class="inline-link" href="https://github.com/raposomiguel50" target="_blank" rel="noopener noreferrer">Open GitHub profile</a></p></div>
-          <div class="content-card"><h3>ModDB</h3><p>Find the lab and its published projects on ModDB.</p><p><a class="inline-link" href="https://www.moddb.com/company/miguels-game-dev-lab" target="_blank" rel="noopener noreferrer">Open ModDB developer profile</a></p></div>
-          <div class="content-card"><h3>Professional contact</h3><p>Contact me on LinkedIn for professional enquiries.</p><p><a class="inline-link" href="https://www.linkedin.com/in/miguel-raposo-7192a251/" target="_blank" rel="noopener noreferrer">Open LinkedIn profile</a></p></div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer><div class="container footer-wrap"><span>Miguel's Game Dev Lab</span><span class="legal">Human-directed, AI-assisted development. No proprietary game data is distributed by this site.</span></div></footer>
-  <script src="/assets/js/music-player.js" defer></script>
+}</script>
+<!-- /SEO metadata -->
+<link href="/assets/css/site.css?v=20260909" rel="stylesheet"/></head>
+<body class="home-page">
+<a class="skip-link" href="#top">Skip to content</a>
+<header class="site-header"><div class="container nav-wrap"><a aria-label="Miguel's Game Dev Lab home" class="brand" href="/"><span aria-hidden="true" class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a><nav aria-label="Primary navigation" class="global-nav"><a aria-current="page" href="/">Home</a><a href="/#projects">Projects</a><a href="/coverage/">Coverage</a><a href="/method/">Method</a><a href="/#contact">Contact</a></nav></div></header>
+<main id="top" tabindex="-1">
+<section class="hero" id="home">
+<div class="container">
+<p class="eyebrow">GAME DEVELOPMENT / PORTING / HARDWARE</p>
+<h1>Miguel's Game Dev Lab</h1>
+<p class="tagline">Learning hardware through ports. Building native games from what I learn.</p>
+<p class="intro">Game ports are a practical way to learn hardware. This lab shares the code, decisions and lessons from that work.</p>
+<a class="button" href="#projects">View projects</a>
+</div>
+</section>
+<section class="section project-section" id="projects">
+<div class="container">
+<div class="section-heading"><p class="section-kicker">01 / PROJECTS</p><h2>Current work</h2></div>
+<div class="project-list"><article class="project-card">
+<div class="project-meta"><span>PORT</span><span>ANDROID</span><span>RETROID POCKET 5 TARGET</span><span>STABLE v1.0.0</span></div>
+<h3>System Shock — Android</h3>
+<p>An Android/ARM64 port of System Shock, tested on the Retroid Pocket 5.</p>
+<p class="project-note">Version 1.0.0 is available. It includes handheld controls, Android text entry and a first-run importer. Supply compatible game data from your own copy.</p>
+<div class="project-actions"><a class="button" href="projects/system-shock-android/">Install and play</a><a class="button button-secondary" href="projects/system-shock-android/knowledge/">Learn from the work</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android">Source and guides</a></div>
+</article><article class="project-card">
+<div class="project-meta"><span>NATIVE PORT</span><span>RG34XX / muOS</span><span>SOURCE + GUIDES</span></div>
+<h3>The Legend of Zelda: The Minish Cap — RG34XX</h3>
+<p>A native port for a GBA-style handheld, built on Project Picori-derived source. The aim is to keep the game familiar while adapting its software to the RG34XX.</p>
+<p class="project-note">Explore the handheld presentation, controls and runtime choices. The learning guide explains their purpose; the technical report links each result to its source.</p>
+<p class="project-note">Integration source and guides are public. A game executable is not available for download.</p>
+<div class="project-actions"><a class="button" href="projects/minish-cap-rg34xx/">Explore the project</a><a class="button button-secondary" href="projects/minish-cap-rg34xx/knowledge/">Learn from the work</a><a class="button button-secondary" href="https://github.com/raposomiguel50/minish-cap-rg34xx">Source and evidence</a></div>
+</article></div>
+</div>
+</section>
+<section class="section project-section" id="press">
+<div class="container">
+<div class="section-heading"><p class="section-kicker">02 / FEATURED / COVERAGE</p><h2>External coverage</h2></div>
+<p class="section-intro">Articles, videos and community discussions about the lab's projects.</p>
+<div class="coverage-list"><article class="project-card">
+<div class="project-meta"><span>VIDEO / NEWS</span><span>MR. SUJANO</span><span>25 AUGUST 2026</span></div>
+<h3>System Shock Android featured in Mr. Sujano's gaming and tech news</h3>
+<p>Mr. Sujano covered <strong>System Shock Android</strong> in a dedicated video chapter. The segment starts at 10:40.</p>
+<div class="project-actions"><a class="button" href="https://www.youtube.com/watch?v=cLREnxvoD90&amp;t=640s" rel="noopener noreferrer" target="_blank">Watch from the System Shock segment</a></div>
+</article><article class="project-card">
+<div class="project-meta"><span>EDITORIAL</span><span>GENERATIONAMIGA.COM</span><span>21 AUGUST 2026</span></div>
+<h3>System Shock Android port brings the 1994 classic to handhelds</h3>
+<p>GenerationAmiga's article introduces the Android port, its handheld controls and the first-run game-data importer.</p>
+<div class="project-actions"><a class="button" href="https://www.generationamiga.com/2026/08/21/system-shock-android-port-brings-the-1994-classic-to-handhelds/" rel="noopener noreferrer" target="_blank">Read the GenerationAmiga article</a></div>
+</article><article class="project-card">
+<div class="project-meta"><span>COMMUNITY</span><span>RETROGAMETALK</span><span>26 AUGUST 2026</span></div>
+<h3>System Shock android port</h3>
+<p>A RetroGameTalk discussion shares the repository and Mr. Sujano's video. It also notes testing on the Retroid Pocket 5.</p>
+<div class="project-actions"><a class="button" href="https://retrogametalk.com/threads/system-shock-android-port.27861/" rel="noopener noreferrer" target="_blank">Open the RetroGameTalk discussion</a></div>
+</article></div>
+<p><a class="inline-link" href="coverage/">View the full external coverage archive</a></p>
+</div>
+</section>
+<section class="section alt project-section" id="platforms">
+<div class="container narrow"><div class="section-heading"><p class="section-kicker">03 / PLATFORMS</p><h2>Hardware first</h2></div><p>Each platform has its own controls, tools and limits. Porting a game helps reveal how they fit together.</p></div>
+</section>
+<section class="section project-section" id="dev-notes">
+<div class="container narrow"><div class="section-heading"><p class="section-kicker">04 / DEV NOTES</p><h2>Documenting the process</h2></div><p>The notes explain what changed, why it changed and how it was tested. Failed experiments remain useful when they explain a design decision.</p></div>
+</section>
+<section class="section alt project-section" id="about">
+<div class="container narrow"><div class="section-heading"><p class="section-kicker">05 / ABOUT</p><h2>From ports to native games</h2></div><p>I use ports to learn a platform before designing original games for it.</p><p>The existing game guides each port. Technical changes serve its presentation, controls and operation on the target device.</p><p>I set the goals, make project decisions and test the hardware. ChatGPT assists with programming, analysis, automation and documentation.</p><p><a class="inline-link" href="method/">Read the development method and AI attribution</a></p></div>
+</section>
+<section class="section project-section" id="contact">
+<div class="container">
+<div class="section-heading"><p class="section-kicker">06 / FEEDBACK &amp; CONTACT</p><h2>Questions, ideas and testing reports are welcome</h2></div>
+<p class="section-intro">Use GitHub for public project feedback so problems, solutions and compatibility reports remain searchable. Use LinkedIn for professional contact.</p>
+<div class="content-grid" data-columns="2">
+<div class="content-card"><h3>Project feedback</h3><p>Choose the project your question concerns. Include its version and device when reporting a problem.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/issues/new/choose">System Shock feedback</a> · <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/issues">Minish Cap feedback</a></p></div>
+<div class="content-card"><h3>Contribute</h3><p>Code, documentation corrections and technical review can be contributed through the public repositories and pull requests.</p><p><a class="inline-link" href="https://github.com/raposomiguel50" rel="noopener noreferrer" target="_blank">Open GitHub profile</a></p></div>
+<div class="content-card"><h3>ModDB</h3><p>Find the lab and its published projects on ModDB.</p><p><a class="inline-link" href="https://www.moddb.com/company/miguels-game-dev-lab" rel="noopener noreferrer" target="_blank">Open ModDB developer profile</a></p></div>
+<div class="content-card"><h3>Professional contact</h3><p>Contact me on LinkedIn for professional enquiries.</p><p><a class="inline-link" href="https://www.linkedin.com/in/miguel-raposo-7192a251/" rel="noopener noreferrer" target="_blank">Open LinkedIn profile</a></p></div>
+</div>
+</div>
+</section>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-top"><a class="brand" href="/"><span aria-hidden="true" class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a><nav aria-label="Footer navigation"><a href="/#projects">Projects</a><a href="/method/">Method</a><a href="/#contact">Contact</a><a href="https://github.com/raposomiguel50">GitHub</a></nav></div><p class="legal">Human-directed, AI-assisted development. No proprietary game data is distributed by this site.</p></div></footer>
+<script defer="" src="/assets/js/music-player.js"></script>
 </body>
 </html>

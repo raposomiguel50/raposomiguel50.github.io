@@ -1,113 +1,119 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Native Minish Cap for RG34XX/muOS: 3× integer scaling and a ~120 Hz display mode, with original game timing. Source, guides and test records.">
-  <title>The Minish Cap - RG34XX | Miguel's Game Dev Lab</title>
-  <link rel="canonical" href="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta property="og:site_name" content="Miguel's Game Dev Lab">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="The Minish Cap - RG34XX | Miguel's Game Dev Lab">
-  <meta property="og:description" content="Source changes, dated runtime observations and restoration policy, reported separately with primary evidence.">
-  <meta property="og:url" content="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="The Minish Cap - RG34XX | Miguel's Game Dev Lab">
-  <meta name="twitter:description" content="RG34XX/H700 integration of Project Picori, with source patches, archived test records and evidence limits.">
-  <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"The Minish Cap - RG34XX","description":"RG34XX/H700 integration patches and documentation for Project Picori, with selected archived test records.","url":"https://raposomiguel50.github.io/projects/minish-cap-rg34xx/","codeRepository":"https://github.com/raposomiguel50/minish-cap-rg34xx","programmingLanguage":["C","C++","Shell"],"runtimePlatform":"Linux ARM64 / H700 / muOS","license":"https://www.gnu.org/licenses/gpl-3.0.html","isBasedOn":"https://github.com/EstebanPdN/zelda-tmc-3ds","author":{"@type":"Person","name":"Miguel Raposo","url":"https://raposomiguel50.github.io/"}}
-  </script>
-  <link rel="stylesheet" href="../../assets/css/style.css">
-  <link rel="stylesheet" href="../../assets/css/project-nav.css">
-  <link rel="stylesheet" href="../../assets/css/readability.css">
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="The Legend of Zelda: The Minish Cap for RG34XX/muOS. Native integration, 3× integer scaling and a ~120 Hz display mode with original game timing. Source and guides available." name="description"/>
+<title>The Legend of Zelda: The Minish Cap — RG34XX | Miguel's Game Dev Lab</title>
+<link href="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/" rel="canonical"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/>
+<meta content="Miguel's Game Dev Lab" property="og:site_name"/>
+<meta content="website" property="og:type"/>
+<meta content="The Legend of Zelda: The Minish Cap — RG34XX | Miguel's Game Dev Lab" property="og:title"/>
+<meta content="The Legend of Zelda: The Minish Cap for RG34XX/muOS. Native integration, 3× integer scaling and a ~120 Hz display mode with original game timing. Source and guides available." property="og:description"/>
+<meta content="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/" property="og:url"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="The Legend of Zelda: The Minish Cap — RG34XX | Miguel's Game Dev Lab" name="twitter:title"/>
+<meta content="The Legend of Zelda: The Minish Cap for RG34XX/muOS. Native integration, 3× integer scaling and a ~120 Hz display mode with original game timing. Source and guides available." name="twitter:description"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "The Legend of Zelda: The Minish Cap - RG34XX",
+  "description": "RG34XX/H700 integration patches and documentation for Project Picori, with selected archived test records.",
+  "url": "https://raposomiguel50.github.io/projects/minish-cap-rg34xx/",
+  "codeRepository": "https://github.com/raposomiguel50/minish-cap-rg34xx",
+  "programmingLanguage": [
+    "C",
+    "C++",
+    "Shell"
+  ],
+  "runtimePlatform": "Linux ARM64 / H700 / muOS",
+  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "isBasedOn": "https://github.com/EstebanPdN/zelda-tmc-3ds",
+  "author": {
+    "@type": "Person",
+    "name": "Miguel Raposo",
+    "url": "https://raposomiguel50.github.io/"
+  }
+}</script>
+<link href="/assets/css/site.css?v=20260909" rel="stylesheet"/></head>
 <body class="project-page">
-  <a class="skip-link" href="#top">Skip to content</a>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="../../" aria-label="Miguel's Game Dev Lab home"><span class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a>
-      <nav aria-label="Primary navigation"><a href="../../#projects">Projects</a><a href="#philosophy">Philosophy</a><a href="knowledge/">Knowledge</a><a href="reproduce/">Reproduce</a><a href="#portmaster">PortMaster</a><a href="../../method/">Method</a></nav>
-    </div>
-  </header>
-  <main id="top" tabindex="-1">
-    <section class="project-hero"><div class="container">
-      <p class="breadcrumbs"><a href="../../#projects">Projects</a> / The Minish Cap</p>
-      <div class="project-meta project-meta-large"><span>NATIVE PORT</span><span>RG34XX</span><span>muOS</span><span>~120 Hz DISPLAY MODE</span></div>
-      <h1>The Minish Cap — RG34XX</h1>
-      <p class="project-lede">An unofficial native port of The Minish Cap for the RG34XX handheld, running muOS.</p>
-      <p>Built on EstebanPdN's Project Picori-derived source. The reference preserves the game's artwork, controls and proportions.</p>
-      <div class="status-line"><span class="status-badge">SOURCE AND GUIDES AVAILABLE</span><span>No public game download</span></div>
-      <div class="hero-actions"><a class="button" href="#overview">Explore the handheld setup</a><a class="button button-secondary" href="knowledge/">Learn from the work</a></div>
-    </div></section>
-    <nav class="project-section-nav" aria-label="Page sections" id="project-index"><div class="container">
-      <div class="project-section-nav-heading"><span class="section-kicker">ON THIS PAGE</span><span class="project-section-nav-hint">Start with a question</span></div>
-      <div class="project-section-links"><a href="#overview"><span>01</span>Handheld setup</a><a href="#philosophy"><span>02</span>Why this approach</a><a href="#learn"><span>03</span>Learn</a><a href="#validation"><span>04</span>Results</a><a href="#publication"><span>05</span>Availability</a><a href="#portmaster"><span>06</span>PortMaster</a></div>
-    </div></nav>
-    <section class="section project-section" id="overview"><div class="container">
-      <div class="section-title-row"><div><p class="section-kicker">01 / HANDHELD SETUP</p><h2>How is the game presented on the RG34XX?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <div class="content-grid"><div class="content-card"><h3>Original image, integer scale</h3><p>The reference presents the game's 240 × 160 image at 3× scale. Port instructions stay off the game image.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/EVIDENCE_AUDIT.md#3-presentation-and-controls">Check presentation and controls</a></p></div><div class="content-card"><h3>Settings when needed</h3><p>Press <code>MENU+R2</code> to open port settings. GBA buttons remain assigned to gameplay; additional shortcuts use the handheld's extra controls.</p><p><a class="inline-link" href="knowledge/#philosophy">Learn how the controls are separated</a></p></div><div class="content-card"><h3>Return to muOS</h3><p><code>MENU+L2</code> exits the game. Port settings use the handheld's extra buttons, separate from the original GBA controls.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/EVIDENCE_AUDIT.md#2-exit-handling-a-port-defect-not-an-original-game-bug">Inspect the exit test and its limits</a></p></div></div>
-    </div></section>
-    <section class="section project-section" id="display-mode"><div class="container">
-      <h2>A ~120 Hz display mode, with the original game pace</h2>
-      <p>During play, the launcher selects a 119.455 Hz display mode on the RG34XX with muOS. Game logic stays at 59.7275 Hz.</p>
-      <p>The display rate is twice the logic rate. It does not make the game run twice as fast or turn it into 120 FPS gameplay.</p>
-      <p>The launcher restores the previous display timings on exit. It keeps the normal mode if the high-refresh check fails.</p>
-      <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/DISPLAY_MODE.md">Display setup, recorded results and fallback</a></p>
-    </div></section>
-    <section class="section alt project-section" id="philosophy"><div class="container">
-      <div class="section-title-row"><div><p class="section-kicker">02 / APPROACH</p><h2>Why this approach?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <h3>A personal link to the GBA</h3>
-      <p>I grew up with PC games. My father gave me my first console, a Game Boy Advance. I chose the RG34XX for its close physical resemblance to that handheld.</p>
-      <p>Its 720 × 480 display also fits the game's 240 × 160 image at exactly 3× scale. Each original pixel becomes a 3 × 3 block.</p>
-      <h3>Restoration, not new content</h3>
-      <p>The aim is to preserve the content, artwork, music, mechanics and original controls. Technical changes should help that same work run reliably.</p>
-      <p>Painting restoration is the guiding analogy: retain the image rather than add new details. A demonstrated technical defect can be addressed without redesigning the work.</p>
-      <h3>A curated starting point</h3>
-      <p>The player should not need dozens of adjustments. The reference policy favours original imagery, unobstructed gameplay and accessible menus.</p>
-      <p>Native execution supports the handheld integration. Spare capacity can remain a reserve instead of being spent on extra effects.</p>
-      <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PHILOSOPHY.md">Read the complete principles and their scope</a></p>
-    </div></section>
-    <section class="section project-section" id="learn"><div class="container">
-      <div class="section-title-row"><div><p class="section-kicker">03 / LEARN</p><h2>What can you learn here?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <div class="content-grid"><div class="content-card"><h3>Understand a decision</h3><p>Short explanations connect a player need or engineering question to the decision and its evidence.</p><p><a class="inline-link" href="knowledge/">Start with the learning guide</a></p></div><div class="content-card"><h3>Check the evidence</h3><p>Read the measurements, source files and limits behind a claim.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/TECHNICAL_REPORT.md">Choose a level of technical detail</a></p></div><div class="content-card"><h3>Study a rebuild</h3><p>See what is available and what a complete rebuild still needs.</p><p><a class="inline-link" href="reproduce/">Read reconstruction status</a></p></div></div><p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/GLOSSARY.md">New to the terms? Open the short glossary.</a></p>
-    </div></section>
-    <section class="section alt project-section" id="validation"><div class="container">
-      <div class="section-title-row"><div><p class="section-kicker">04 / RESULTS</p><h2>What did the tests show?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <p>The results below come from archived device sessions. The timing statistics were recalculated on 7 September 2026.</p>
-      <div class="content-grid"><div class="content-card"><h3>Timing: lower typical lateness</h3><p>The p95 tick lateness fell from 5.791 to 0.028 ms in two archived captures. This means about 95% of recorded values were at or below those thresholds.</p><p>Delays still occurred. The largest presentation-call duration increased from 46.451 to 60.917 ms.</p></div><div class="content-card"><h3>Audio: two different observations</h3><p>An earlier machine test reported an audio regression. The later manual session received audio <code>OK</code>.</p><p>Both observations remain in the report. Listening acceptance does not erase the earlier result.</p></div><div class="content-card"><h3>Lower clocks: a selected configuration</h3><p>The accepted record uses CPU/GPU ceilings of 936/420 MHz. Lower energy use was a goal, not a measured result.</p><p>The final session has 874 monitor samples. Its highest recorded temperature was 52.6 °C.</p></div></div>
-      <p>Testing covers the listed sessions on the RG34XX with muOS, rather than a complete playthrough.</p>
-      <details><summary>Read sample sizes, exact values and open diagnostic questions</summary>
-        <p>The timing pair contains 10,203 and 10,449 ticks, with one capture per variant. The observations are not independent test runs.</p>
-        <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/VALIDATION.md">Tests, units and complete results</a> · <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/AUDIT_SUPPLEMENT_2026-09-07.md">Unresolved log questions</a></p>
-      </details>
-    </div></section>
-    <section class="section project-section" id="publication"><div class="container">
-      <div class="section-title-row"><div><p class="section-kicker">05 / AVAILABILITY</p><h2>What is available now?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <p><strong>Public:</strong> 15 historical integration patches, a launcher, selected test records and learning guides.</p>
-      <p><strong>Not included:</strong> the game ROM, extracted Nintendo assets, saves or the private V1 executable. There is no public game download.</p>
-      <p>The patches record different stages. They are not one ready-to-apply build recipe.</p>
-      <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx">Browse the repository</a> · <a class="inline-link" href="reproduce/">Understand the rebuild requirements</a></p>
-      <details><summary>Source and evidence details</summary>
-        <p id="source-code"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/90fd77a82d579de9460f2de1167a95ec264e57c3">Fixed integration source and launcher</a></p>
-        <p id="source-runtime"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07">Archived records and log excerpts</a></p>
-        <p id="source-analysis"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07/REANALYSIS.json">Timing and monitor calculations</a></p>
-        <p>Full raw traces remain in the private archive. Selected public records do not reproduce every statistic alone.</p>
-      </details>
-    </div></section>
-    <section class="section alt project-section" id="portmaster"><div class="container">
-      <div class="section-title-row"><div><p class="section-kicker">06 / PORTMASTER</p><h2>Why no PortMaster package yet?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <p>The recorded VirtuaAPU distribution restriction is unresolved. A package also needs its own preparation and target testing.</p>
-      <p>The integration source and learning material are available independently of that package.</p>
-      <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PORTMASTER_STATUS.md">Read the current packaging requirements</a></p>
-    </div></section>
-    <section class="section project-section" id="references"><div class="container">
-      <h2>Start with one lesson</h2>
-      <p>How can a screen refresh faster without making the game run faster?</p>
-      <p><a class="inline-link" href="knowledge/#timing">Learn why game speed and screen refresh are different</a></p>
-    </div></section>
-  </main>
-  <footer><div class="container footer-wrap"><span>Miguel's Game Dev Lab</span><span class="legal">Human-directed, AI-assisted development. No proprietary game data is distributed by this site.</span></div></footer>
-  <script src="/assets/js/music-player.js" defer></script>
+<a class="skip-link" href="#top">Skip to content</a>
+<header class="site-header"><div class="container nav-wrap"><a aria-label="Miguel's Game Dev Lab home" class="brand" href="/"><span aria-hidden="true" class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a><nav aria-label="Primary navigation" class="global-nav"><a href="/">Home</a><a aria-current="page" href="/#projects">Projects</a><a href="/coverage/">Coverage</a><a href="/method/">Method</a><a href="/#contact">Contact</a></nav></div></header>
+<main id="top" tabindex="-1">
+<section class="project-hero"><div class="container">
+<p class="breadcrumbs"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/#projects">Projects</a><span aria-hidden="true">/</span><a href="/projects/minish-cap-rg34xx/">The Legend of Zelda: The Minish Cap — RG34XX</a></p>
+<p class="eyebrow">RG34XX / muOS <span aria-hidden="true">·</span> NATIVE PORT</p><h1>The Legend of Zelda: The Minish Cap</h1>
+<p class="project-lede">An unofficial native port for the RG34XX handheld, running muOS.</p>
+<p>Built on EstebanPdN's Project Picori-derived source.</p>
+<div class="status-line"><span class="status-badge">SOURCE AND GUIDES AVAILABLE</span><span>No public game download</span><span>~120 Hz display · 119.455 Hz</span></div>
+<div class="hero-actions"><a class="button" href="#overview">Explore the handheld setup</a><a class="button button-secondary" href="knowledge/">Learn from the work</a></div>
+</div></section><nav aria-label="Project navigation" class="project-tabs"><div class="container"><a aria-current="page" href="/projects/minish-cap-rg34xx/">Overview</a><a href="/projects/minish-cap-rg34xx/knowledge/">Engineering notes</a><a href="/projects/minish-cap-rg34xx/reproduce/">Reconstruction</a><a href="https://github.com/raposomiguel50/minish-cap-rg34xx">Source</a></div></nav><nav aria-label="On this page" class="project-section-nav" id="project-index"><div class="container"><p class="section-kicker">ON THIS PAGE</p><div class="project-section-links"><a href="#overview"><span aria-hidden="true">01</span>Handheld setup</a><a href="#display-mode"><span aria-hidden="true">02</span>~120 Hz display</a><a href="#philosophy"><span aria-hidden="true">03</span>Why this approach</a><a href="#learn"><span aria-hidden="true">04</span>Learn</a><a href="#validation"><span aria-hidden="true">05</span>Results</a><a href="#publication"><span aria-hidden="true">06</span>Availability</a><a href="#portmaster"><span aria-hidden="true">07</span>PortMaster</a><a href="#references"><span aria-hidden="true">08</span>Next lesson</a></div></div></nav>
+<section class="section project-section" id="overview"><div class="container">
+<div class="section-title-row"><div><p class="section-kicker">01 / HANDHELD SETUP</p><h2>How is the game presented on the RG34XX?</h2></div></div>
+<div class="content-grid" data-columns="3"><div class="content-card"><h3>Original image, integer scale</h3><p>The reference presents the game's 240 × 160 image at 3× scale. Port instructions stay off the game image.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/EVIDENCE_AUDIT.md#3-presentation-and-controls">Check presentation and controls</a></p></div><div class="content-card"><h3>Settings when needed</h3><p>Press <code>MENU+R2</code> to open port settings. GBA buttons remain assigned to gameplay; additional shortcuts use the handheld's extra controls.</p><p><a class="inline-link" href="knowledge/#philosophy">Learn how the controls are separated</a></p></div><div class="content-card"><h3>Return to muOS</h3><p><code>MENU+L2</code> exits the game. Port settings use the handheld's extra buttons, separate from the original GBA controls.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/EVIDENCE_AUDIT.md#2-exit-handling-a-port-defect-not-an-original-game-bug">Inspect the exit test and its limits</a></p></div></div>
+</div></section>
+<section class="section project-section" id="display-mode"><div class="container">
+<div class="section-heading"><p class="section-kicker">02 / ~120 HZ DISPLAY</p><h2>A ~120 Hz display mode, with the original game pace</h2></div>
+<p>During play, the launcher selects a 119.455 Hz display mode on the RG34XX with muOS. Game logic stays at 59.7275 Hz.</p>
+<p>The display rate is twice the logic rate. It does not make the game run twice as fast or turn it into 120 FPS gameplay.</p>
+<p>The launcher restores the previous display timings on exit. It keeps the normal mode if the high-refresh check fails.</p>
+<p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/DISPLAY_MODE.md">Display setup, recorded results and fallback</a></p>
+</div></section>
+<section class="section alt project-section" id="philosophy"><div class="container">
+<div class="section-title-row"><div><p class="section-kicker">03 / WHY THIS APPROACH</p><h2>Why this approach?</h2></div></div>
+<h3>A personal link to the GBA</h3>
+<p>I grew up with PC games. My father gave me my first console, a Game Boy Advance. I chose the RG34XX for its close physical resemblance to that handheld.</p>
+<p>Its 720 × 480 display also fits the game's 240 × 160 image at exactly 3× scale. Each original pixel becomes a 3 × 3 block.</p>
+<h3>Restoration, not new content</h3>
+<p>The aim is to preserve the content, artwork, music, mechanics and original controls. Technical changes should help that same work run reliably.</p>
+<p>Painting restoration is the guiding analogy: retain the image rather than add new details. A demonstrated technical defect can be addressed without redesigning the work.</p>
+<h3>A curated starting point</h3>
+<p>The player should not need dozens of adjustments. The reference policy favours original imagery, unobstructed gameplay and accessible menus.</p>
+<p>Native execution supports the handheld integration. Spare capacity can remain a reserve instead of being spent on extra effects.</p>
+<p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PHILOSOPHY.md">Read the complete principles and their scope</a></p>
+</div></section>
+<section class="section project-section" id="learn"><div class="container">
+<div class="section-title-row"><div><p class="section-kicker">04 / LEARN</p><h2>What can you learn here?</h2></div></div>
+<div class="content-grid" data-columns="3"><div class="content-card"><h3>Understand a decision</h3><p>Short explanations connect a player need or engineering question to the decision and its evidence.</p><p><a class="inline-link" href="knowledge/">Start with the learning guide</a></p></div><div class="content-card"><h3>Check the evidence</h3><p>Read the measurements, source files and limits behind a claim.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/TECHNICAL_REPORT.md">Choose a level of technical detail</a></p></div><div class="content-card"><h3>Study a rebuild</h3><p>See what is available and what a complete rebuild still needs.</p><p><a class="inline-link" href="reproduce/">Read reconstruction status</a></p></div></div><p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/GLOSSARY.md">New to the terms? Open the short glossary.</a></p>
+</div></section>
+<section class="section alt project-section" id="validation"><div class="container">
+<div class="section-title-row"><div><p class="section-kicker">05 / RESULTS</p><h2>What did the tests show?</h2></div></div>
+<p>The results below come from archived device sessions. The timing statistics were recalculated on 7 September 2026.</p>
+<div class="content-grid" data-columns="3"><div class="content-card"><h3>Timing: lower typical lateness</h3><p>The p95 tick lateness fell from 5.791 to 0.028 ms in two archived captures. This means about 95% of recorded values were at or below those thresholds.</p><p>Delays still occurred. The largest presentation-call duration increased from 46.451 to 60.917 ms.</p></div><div class="content-card"><h3>Audio: two different observations</h3><p>An earlier machine test reported an audio regression. The later manual session received audio <code>OK</code>.</p><p>Both observations remain in the report. Listening acceptance does not erase the earlier result.</p></div><div class="content-card"><h3>Lower clocks: a selected configuration</h3><p>The accepted record uses CPU/GPU ceilings of 936/420 MHz. Lower energy use was a goal, not a measured result.</p><p>The final session has 874 monitor samples. Its highest recorded temperature was 52.6 °C.</p></div></div>
+<p>Testing covers the listed sessions on the RG34XX with muOS, rather than a complete playthrough.</p>
+<details><summary>Read sample sizes, exact values and open diagnostic questions</summary>
+<p>The timing pair contains 10,203 and 10,449 ticks, with one capture per variant. The observations are not independent test runs.</p>
+<p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/VALIDATION.md">Tests, units and complete results</a> · <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/AUDIT_SUPPLEMENT_2026-09-07.md">Unresolved log questions</a></p>
+</details>
+</div></section>
+<section class="section project-section" id="publication"><div class="container">
+<div class="section-title-row"><div><p class="section-kicker">06 / AVAILABILITY</p><h2>What is available now?</h2></div></div>
+<p><strong>Public:</strong> 15 historical integration patches, a launcher, selected test records and learning guides.</p>
+<p><strong>Not included:</strong> the game ROM, extracted Nintendo assets, saves or the private V1 executable. There is no public game download.</p>
+<p>The patches record different stages. They are not one ready-to-apply build recipe.</p>
+<p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx">Browse the repository</a> · <a class="inline-link" href="reproduce/">Understand the rebuild requirements</a></p>
+<details><summary>Source and evidence details</summary>
+<p id="source-code"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/90fd77a82d579de9460f2de1167a95ec264e57c3">Fixed integration source and launcher</a></p>
+<p id="source-runtime"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07">Archived records and log excerpts</a></p>
+<p id="source-analysis"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07/REANALYSIS.json">Timing and monitor calculations</a></p>
+<p>Full raw traces remain in the private archive. Selected public records do not reproduce every statistic alone.</p>
+</details>
+</div></section>
+<section class="section alt project-section" id="portmaster"><div class="container">
+<div class="section-title-row"><div><p class="section-kicker">07 / PORTMASTER</p><h2>Why no PortMaster package yet?</h2></div></div>
+<p>The recorded VirtuaAPU distribution restriction is unresolved. A package also needs its own preparation and target testing.</p>
+<p>The integration source and learning material are available independently of that package.</p>
+<p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PORTMASTER_STATUS.md">Read the current packaging requirements</a></p>
+</div></section>
+<section class="section project-section" id="references"><div class="container">
+<div class="section-heading"><p class="section-kicker">08 / NEXT LESSON</p><h2>Start with one lesson</h2></div>
+<p>How can a screen refresh faster without making the game run faster?</p>
+<p><a class="inline-link" href="knowledge/#timing">Learn why game speed and screen refresh are different</a></p>
+</div></section>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-top"><a class="brand" href="/"><span aria-hidden="true" class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a><nav aria-label="Footer navigation"><a href="/#projects">Projects</a><a href="/method/">Method</a><a href="/#contact">Contact</a><a href="https://github.com/raposomiguel50">GitHub</a></nav></div><p class="legal">Human-directed, AI-assisted development. No proprietary game data is distributed by this site.</p></div></footer>
+<script defer="" src="/assets/js/music-player.js"></script>
 </body>
 </html>

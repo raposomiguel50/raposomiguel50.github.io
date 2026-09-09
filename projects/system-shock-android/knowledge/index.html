@@ -1,30 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Engineering knowledge from porting System Shock to Android: SDL, ARM64, controls, audio, 4:3 presentation, reproducible builds, release signing, first-run data import, failures, fixes and reusable lessons.">
-  <title>System Shock Android Port - Engineering Knowledge | Miguel's Game Dev Lab</title>
-  <!-- SEO metadata -->
-  <link rel="canonical" href="https://raposomiguel50.github.io/projects/system-shock-android/knowledge/">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta property="og:site_name" content="Miguel's Game Dev Lab">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="System Shock Android Port - Engineering Knowledge | Miguel's Game Dev Lab">
-  <meta property="og:description" content="Engineering knowledge from porting System Shock to Android: SDL, ARM64, controls, audio, 4:3 presentation, release signing, first-run data import and reproducible builds.">
-  <meta property="og:url" content="https://raposomiguel50.github.io/projects/system-shock-android/knowledge/">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="System Shock Android Port - Engineering Knowledge | Miguel's Game Dev Lab">
-  <meta name="twitter:description" content="Engineering knowledge from porting System Shock to Android: SDL, ARM64, controls, audio, 4:3 presentation, release signing, first-run data import and reproducible builds.">
-  <script type="application/ld+json">
-{
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Engineering notes from System Shock — Android: handheld controls, audio timing, text entry, game-data import and the tests behind the integration." name="description"/>
+<title>System Shock — Engineering notes | Miguel's Game Dev Lab</title>
+<!-- SEO metadata -->
+<link href="https://raposomiguel50.github.io/projects/system-shock-android/knowledge/" rel="canonical"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/>
+<meta content="Miguel's Game Dev Lab" property="og:site_name"/>
+<meta content="article" property="og:type"/>
+<meta content="System Shock — Engineering notes | Miguel's Game Dev Lab" property="og:title"/>
+<meta content="Engineering notes from System Shock — Android: handheld controls, audio timing, text entry, game-data import and the tests behind the integration." property="og:description"/>
+<meta content="https://raposomiguel50.github.io/projects/system-shock-android/knowledge/" property="og:url"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="System Shock — Engineering notes | Miguel's Game Dev Lab" name="twitter:title"/>
+<meta content="Engineering notes from System Shock — Android: handheld controls, audio timing, text entry, game-data import and the tests behind the integration." name="twitter:description"/>
+<script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "TechArticle",
   "headline": "System Shock Android port engineering knowledge base",
   "description": "Resolved problems, open concerns, failed experiments, standards and reusable engineering lessons from the System Shock Android port.",
   "url": "https://raposomiguel50.github.io/projects/system-shock-android/knowledge/",
   "mainEntityOfPage": "https://raposomiguel50.github.io/projects/system-shock-android/knowledge/",
-  "dateModified": "2026-09-08",
+  "dateModified": "2026-09-09",
   "author": {
     "@type": "Person",
     "name": "Miguel Raposo",
@@ -35,37 +35,30 @@
     "name": "System Shock - Android",
     "url": "https://raposomiguel50.github.io/projects/system-shock-android/"
   }
-}
-  </script>
-  <!-- /SEO metadata -->
-  <link rel="stylesheet" href="../../../assets/css/style.css">
-  <link rel="stylesheet" href="../../../assets/css/readability.css">
-</head>
-<body class="project-page">
-  <a class="skip-link" href="#top">Skip to content</a>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="../../../" aria-label="Miguel's Game Dev Lab home"><span class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a>
-      <nav aria-label="Primary navigation"><a href="../">Project</a><a href="../reproduce/">Reproduce</a><a href="https://github.com/raposomiguel50/system-shock-android/issues/new/choose">Feedback</a><a href="../#references">References</a><a href="../../../#contact">Contact</a></nav>
-    </div>
-  </header>
+}</script>
+<!-- /SEO metadata -->
 
-  <main id="top" tabindex="-1">
+
+<link href="/assets/css/site.css?v=20260909" rel="stylesheet"/></head>
+<body class="project-page">
+<a class="skip-link" href="#top">Skip to content</a>
+<header class="site-header"><div class="container nav-wrap"><a aria-label="Miguel's Game Dev Lab home" class="brand" href="/"><span aria-hidden="true" class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a><nav aria-label="Primary navigation" class="global-nav"><a href="/">Home</a><a aria-current="page" href="/#projects">Projects</a><a href="/coverage/">Coverage</a><a href="/method/">Method</a><a href="/#contact">Contact</a></nav></div></header>
+<main id="top" tabindex="-1">
 <section class="project-hero"><div class="container">
-<p class="breadcrumbs"><a href="../">System Shock — Android</a> / Learn</p>
-<h1>Learn from the Android port</h1>
+<p class="breadcrumbs"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/#projects">Projects</a><span aria-hidden="true">/</span><a href="/projects/system-shock-android/">System Shock — Android</a></p>
+<p class="eyebrow">ANDROID / ARM64 <span aria-hidden="true">·</span> ENGINEERING NOTES</p><h1>Engineering notes</h1>
 <p class="project-lede">A mouse-and-keyboard game needs more than new button bindings on a handheld. Explore the control, text-entry and audio decisions behind the port.</p>
 <p>Choose a topic below. The repository contains the full development records and their technical context.</p>
 <div class="hero-actions"><a class="button" href="#kb-ss-005">Handheld controls</a><a class="button button-secondary" href="#kb-ss-006">Music timing</a><a class="button button-secondary" href="#rel-ss-004">Game-data import</a></div>
-</div></section>
-<section class="section" id="records"><div class="container">
-<p class="section-kicker">01 / PRACTICAL LESSONS</p><h2>Problems, decisions and results</h2>
+</div></section><nav aria-label="Project navigation" class="project-tabs"><div class="container"><a href="/projects/system-shock-android/">Overview</a><a aria-current="page" href="/projects/system-shock-android/knowledge/">Engineering notes</a><a href="/projects/system-shock-android/reproduce/">Build guide</a><a href="https://github.com/raposomiguel50/system-shock-android">Source</a></div></nav><nav aria-label="On this page" class="project-section-nav" id="project-index"><div class="container"><p class="section-kicker">ON THIS PAGE</p><div class="project-section-links"><a href="#records"><span aria-hidden="true">01</span>Practical lessons</a><a href="#rel-ss-004"><span aria-hidden="true">02</span>Game-data import</a><a href="#standards"><span aria-hidden="true">03</span>Reuse the lessons</a><a href="#open"><span aria-hidden="true">04</span>Open questions</a><a href="#contribute"><span aria-hidden="true">05</span>Contribute</a></div></div></nav>
+<section class="section project-section" id="records"><div class="container">
+<div class="section-heading"><p class="section-kicker">01 / PRACTICAL LESSONS</p><h2>Problems, decisions and results</h2></div>
 <p>Entries retain their repository identifiers. Historical experiments are labelled separately from the stable release.</p>
-<div class="content-grid"><article class="content-card" id="kb-ss-001"><p class="section-kicker">KB-SS-001 / Automation</p><h3>PowerShell names are case-insensitive</h3><p>A launch helper used names that differed only by case. PowerShell treated them as the same variable and corrupted the launch component.</p><p>Use distinct variable names. Separate launcher failures from faults in the game or build.</p></article><article class="content-card" id="kb-ss-002"><p class="section-kicker">KB-SS-002 / Android lifecycle</p><h3>Check focus before changing the renderer</h3><p>Android overlays can take focus or change the SDL surface during startup. A disappearing surface therefore needs lifecycle and focus diagnostics.</p><p>Check which component owns the surface before redesigning rendering code.</p></article><article class="content-card" id="kb-ss-003"><p class="section-kicker">KB-SS-003 / Audio</p><h3>Use one audio-device owner</h3><p>Raw SDL audio and SDL_mixer competed for the same physical device. The Android design routes music, effects and other streams through one mixer-owned device.</p><p>Share the mixer instead of opening a separate device for each subsystem.</p></article><article class="content-card" id="kb-ss-004"><p class="section-kicker">KB-SS-004 / Text input</p><h3>Treat typed text separately from button presses</h3><p>Player-name fields use the Android keyboard through SDL text input. Committed characters arrive through SDL_TEXTINPUT; navigation and editing keys keep their own path.</p><p>Avoid reconstructing text from controller events. Diagnostics record state and counts, not the entered name.</p></article><article class="content-card" id="kb-ss-005"><p class="section-kicker">KB-SS-005 / Controls</p><h3>Give the right stick two clear roles</h3><p>The right stick controls camera look by default. View/Select switches to a fine cursor for the original mouse-oriented interface. Touch is optional.</p><p>Preserve both interaction modes instead of forcing one control model onto every task.</p></article><article class="content-card" id="kb-ss-006"><p class="section-kicker">KB-SS-006 / Music timing</p><h3>Keep musical intervals after a stall</h3><p>After a scheduling delay, overdue XMI events could play in a rapid burst. The Android timing path uses a monotonic clock and shifts active layer origins together.</p><p>Rebase delayed playback rather than replaying the delay at maximum speed. The subsequent manual music check passed.</p></article><article class="content-card" id="kb-ss-007"><p class="section-kicker">KB-SS-007 / Presentation</p><h3>Keep the stable image at 4:3</h3><p>Version 1.0.0 presents the game at 1024×768 in 4:3 without stretching. The widescreen prototype was not selected.</p><p>Choose presentation against the preservation goal, not simply because another layout is technically possible.</p></article><article class="content-card" id="kb-ss-008"><p class="section-kicker">KB-SS-008 / Historical research</p><h3>Match scaling to the colour model</h3><p>The renderer uses indexed colours. Scale4x can select existing palette colours; bicubic scaling creates intermediate colours that need quantisation.</p><p>Judge an image in the renderer that must display it. The HD experiments are outside version 1.0.0.</p></article><article class="content-card" id="kb-ss-009"><p class="section-kicker">KB-SS-009 / Resource identity</p><h3>Keep the resource file in the identifier</h3><p>A resource reference can recur in separate files. Matching therefore needs the relevant file or namespace, plus type and geometry where required.</p><p>Check where an identifier is unique before using it as a global key. Ambiguous matches retain original resources.</p></article><article class="content-card" id="kb-ss-010"><p class="section-kicker">KB-SS-010 / Build checks</p><h3>Inspect the APK, not just the exit code</h3><p>The verifier checks package identity, architecture, native libraries, signing and obvious embedded commercial data. Device behaviour is tested separately.</p><p>Match each check to its purpose: producing an APK does not test its controls, image or sound.</p></article><article class="content-card" id="kb-ss-011"><p class="section-kicker">KB-SS-011 / Dependency setup</p><h3>Fetch a tag before checking it out</h3><p>The first clean pre-release bootstrap cloned SDL_mixer with --no-tags, then tried to check out release-2.8.1. The tag was unavailable locally.</p><p>The helper now fetches unresolved tags explicitly. A fresh v0.1.0-pre.2 checkout completed dependency bootstrap without an existing cache.</p></article><article class="content-card" id="kb-ss-012"><p class="section-kicker">KB-SS-012 / Preservation scope</p><h3>Define the stable release around its purpose</h3><p>Version 1.0.0 retains original content and 4:3 presentation. Android-specific work covers access, input, audio, data import and release operation.</p><p>Keep HD, widescreen and font experiments separate from the preservation release. A full Retroid Pocket 5 playthrough was accepted before release.</p></article></div>
+<div class="content-grid" data-columns="2"><article class="content-card knowledge-card" id="kb-ss-001"><p class="section-kicker">KB-SS-001 / Automation</p><h3>PowerShell names are case-insensitive</h3><p>A launch helper used names that differed only by case. PowerShell treated them as the same variable and corrupted the launch component.</p><p>Use distinct variable names. Separate launcher failures from faults in the game or build.</p></article><article class="content-card knowledge-card" id="kb-ss-002"><p class="section-kicker">KB-SS-002 / Android lifecycle</p><h3>Check focus before changing the renderer</h3><p>Android overlays can take focus or change the SDL surface during startup. A disappearing surface therefore needs lifecycle and focus diagnostics.</p><p>Check which component owns the surface before redesigning rendering code.</p></article><article class="content-card knowledge-card" id="kb-ss-003"><p class="section-kicker">KB-SS-003 / Audio</p><h3>Use one audio-device owner</h3><p>Raw SDL audio and SDL_mixer competed for the same physical device. The Android design routes music, effects and other streams through one mixer-owned device.</p><p>Share the mixer instead of opening a separate device for each subsystem.</p></article><article class="content-card knowledge-card" id="kb-ss-004"><p class="section-kicker">KB-SS-004 / Text input</p><h3>Treat typed text separately from button presses</h3><p>Player-name fields use the Android keyboard through SDL text input. Committed characters arrive through SDL_TEXTINPUT; navigation and editing keys keep their own path.</p><p>Avoid reconstructing text from controller events. Diagnostics record state and counts, not the entered name.</p></article><article class="content-card knowledge-card" id="kb-ss-005"><p class="section-kicker">KB-SS-005 / Controls</p><h3>Give the right stick two clear roles</h3><p>The right stick controls camera look by default. View/Select switches to a fine cursor for the original mouse-oriented interface. Touch is optional.</p><p>Preserve both interaction modes instead of forcing one control model onto every task.</p></article><article class="content-card knowledge-card" id="kb-ss-006"><p class="section-kicker">KB-SS-006 / Music timing</p><h3>Keep musical intervals after a stall</h3><p>After a scheduling delay, overdue XMI events could play in a rapid burst. The Android timing path uses a monotonic clock and shifts active layer origins together.</p><p>Rebase delayed playback rather than replaying the delay at maximum speed. The subsequent manual music check passed.</p></article><article class="content-card knowledge-card" id="kb-ss-007"><p class="section-kicker">KB-SS-007 / Presentation</p><h3>Keep the stable image at 4:3</h3><p>Version 1.0.0 presents the game at 1024×768 in 4:3 without stretching. The widescreen prototype was not selected.</p><p>Choose presentation against the preservation goal, not simply because another layout is technically possible.</p></article><article class="content-card knowledge-card" id="kb-ss-008"><p class="section-kicker">KB-SS-008 / Historical research</p><h3>Match scaling to the colour model</h3><p>The renderer uses indexed colours. Scale4x can select existing palette colours; bicubic scaling creates intermediate colours that need quantisation.</p><p>Judge an image in the renderer that must display it. The HD experiments are outside version 1.0.0.</p></article><article class="content-card knowledge-card" id="kb-ss-009"><p class="section-kicker">KB-SS-009 / Resource identity</p><h3>Keep the resource file in the identifier</h3><p>A resource reference can recur in separate files. Matching therefore needs the relevant file or namespace, plus type and geometry where required.</p><p>Check where an identifier is unique before using it as a global key. Ambiguous matches retain original resources.</p></article><article class="content-card knowledge-card" id="kb-ss-010"><p class="section-kicker">KB-SS-010 / Build checks</p><h3>Inspect the APK, not just the exit code</h3><p>The verifier checks package identity, architecture, native libraries, signing and obvious embedded commercial data. Device behaviour is tested separately.</p><p>Match each check to its purpose: producing an APK does not test its controls, image or sound.</p></article><article class="content-card knowledge-card" id="kb-ss-011"><p class="section-kicker">KB-SS-011 / Dependency setup</p><h3>Fetch a tag before checking it out</h3><p>The first clean pre-release bootstrap cloned SDL_mixer with --no-tags, then tried to check out release-2.8.1. The tag was unavailable locally.</p><p>The helper now fetches unresolved tags explicitly. A fresh v0.1.0-pre.2 checkout completed dependency bootstrap without an existing cache.</p></article><article class="content-card knowledge-card" id="kb-ss-012"><p class="section-kicker">KB-SS-012 / Preservation scope</p><h3>Define the stable release around its purpose</h3><p>Version 1.0.0 retains original content and 4:3 presentation. Android-specific work covers access, input, audio, data import and release operation.</p><p>Keep HD, widescreen and font experiments separate from the preservation release. A full Retroid Pocket 5 playthrough was accepted before release.</p></article></div>
 <p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/blob/main/docs/KNOWLEDGE_BASE.md">Read the full knowledge records</a> · <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/blob/main/docs/DEVELOPMENT_HISTORY.md">Follow the development history</a></p>
 </div></section>
-<section class="section alt" id="rel-ss-004"><div class="container">
-<p class="section-kicker">02 / GAME-DATA IMPORT</p><h2>Make installation work without developer tools</h2>
+<section class="section alt project-section" id="rel-ss-004"><div class="container">
+<div class="section-heading"><p class="section-kicker">02 / GAME-DATA IMPORT</p><h2>Make installation work without developer tools</h2></div>
 <p>The early data-copy process needed Android debugging tools. A normal signed APK needed a user-facing installation path.</p>
 <p>The importer opens Android's folder picker. Players select their own compatible <code>res</code> folder; the app copies it into private storage.</p>
 <p>A staging directory keeps incomplete copies separate. If activation fails, the importer attempts to restore the previous data.</p>
@@ -74,28 +67,27 @@
 <p>The test installation was then removed without changing the baseline installation.</p>
 <p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/blob/main/docs/KNOWN_ISSUES.md">REL-SS-004: importer record</a> · <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/blob/main/docs/GAME_DATA.md">Folder layout and import process</a></p>
 </details></div></section>
-<section class="section" id="standards"><div class="container">
-<p class="section-kicker">03 / REUSE THE LESSONS</p><h2>Apply the idea to the right problem</h2>
+<section class="section project-section" id="standards"><div class="container">
+<div class="section-heading"><p class="section-kicker">03 / REUSE THE LESSONS</p><h2>Apply the idea to the right problem</h2></div>
 <p>Check the platform, source revision and test conditions before adapting a change. Use a separate working copy and retain the earlier result for comparison.</p>
 <p>Keep ownership clear: Android manages the physical surface, one mixer owns the audio device, and committed text follows the text-input path.</p>
 <p>Build checks and hands-on testing answer different questions. Record what was exercised and what remains untested.</p>
 <p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/blob/main/docs/LESSONS_LEARNED.md">Engineering guidelines</a> · <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/blob/main/docs/kb/COMM_CELL_TEMPLATE.md">Knowledge-record template</a></p>
 </div></section>
-<section class="section alt" id="open"><div class="container">
-<p class="section-kicker">04 / COMPATIBILITY AND RESEARCH</p><h2>What remains open?</h2>
+<section class="section alt project-section" id="open"><div class="container">
+<div class="section-heading"><p class="section-kicker">04 / OPEN QUESTIONS</p><h2>What remains open?</h2></div>
 <p>Retroid Pocket 5 is the tested reference device. Other Android 13+ ARM64 devices still need their own control, display, audio and installation checks.</p>
 <p>HD graphics and font work are historical research, not pending features of version 1.0.0. That font research covered 36 fonts and 5,696 glyphs.</p>
 <p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/blob/main/docs/COMPATIBILITY.md">Compatibility matrix</a> · <a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/blob/main/docs/KNOWN_ISSUES.md">Issues and release history</a></p>
 </div></section>
-<section class="section"><div class="container">
-<p class="section-kicker">05 / CONTRIBUTE</p><h2>Help make the next test more useful</h2>
+<section class="section project-section" id="contribute"><div class="container">
+<div class="section-heading"><p class="section-kicker">05 / CONTRIBUTE</p><h2>Help make the next test more useful</h2></div>
 <p>Report the device, Android version, release and steps used. Mark unchecked behaviour as “not tested”.</p>
 <p>For a documentation correction, include the article ID and the unclear passage. Do not attach commercial game data or personal information.</p>
 <p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/issues/new/choose">Send feedback</a> · <a class="inline-link" href="../reproduce/">Build and test the port</a></p>
 </div></section>
 </main>
-
-  <footer><div class="container footer-wrap"><span>Miguel's Game Dev Lab</span><span class="legal">Open engineering notes from an unofficial development project. Commercial System Shock game data is not distributed.</span></div></footer>
-  <script src="/assets/js/music-player.js" defer></script>
+<footer class="site-footer"><div class="container"><div class="footer-top"><a class="brand" href="/"><span aria-hidden="true" class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a><nav aria-label="Footer navigation"><a href="/#projects">Projects</a><a href="/method/">Method</a><a href="/#contact">Contact</a><a href="https://github.com/raposomiguel50">GitHub</a></nav></div><p class="legal">Human-directed, AI-assisted development. No proprietary game data is distributed by this site.</p></div></footer>
+<script defer="" src="/assets/js/music-player.js"></script>
 </body>
 </html>

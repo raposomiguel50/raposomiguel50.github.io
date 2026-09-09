@@ -1,105 +1,99 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Build and verify System Shock - Android v1.0.0 from public source with pinned SDL dependencies, JDK 17, Android NDK and separately owned game data.">
-  <title>Reproduce System Shock - Android v1.0.0 | Miguel's Game Dev Lab</title>
-  <link rel="canonical" href="https://raposomiguel50.github.io/projects/system-shock-android/reproduce/">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta property="og:site_name" content="Miguel's Game Dev Lab">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="Reproduce System Shock - Android v1.0.0 | Miguel's Game Dev Lab">
-  <meta property="og:description" content="Public build and verification guide for the stable Android/ARM64 v1.0.0 release.">
-  <meta property="og:url" content="https://raposomiguel50.github.io/projects/system-shock-android/reproduce/">
-  <link rel="stylesheet" href="../../../assets/css/style.css">
-  <link rel="stylesheet" href="../../../assets/css/readability.css">
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Build and verify System Shock — Android v1.0.0. Pinned dependencies, Windows toolchain, separate QA installation and release identity." name="description"/>
+<title>System Shock — Build guide | Miguel's Game Dev Lab</title>
+<link href="https://raposomiguel50.github.io/projects/system-shock-android/reproduce/" rel="canonical"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/>
+<meta content="Miguel's Game Dev Lab" property="og:site_name"/>
+<meta content="article" property="og:type"/>
+<meta content="System Shock — Build guide | Miguel's Game Dev Lab" property="og:title"/>
+<meta content="Build and verify System Shock — Android v1.0.0. Pinned dependencies, Windows toolchain, separate QA installation and release identity." property="og:description"/>
+<meta content="https://raposomiguel50.github.io/projects/system-shock-android/reproduce/" property="og:url"/>
+
+
+<meta content="System Shock — Build guide | Miguel's Game Dev Lab" name="twitter:title"/><meta content="Build and verify System Shock — Android v1.0.0. Pinned dependencies, Windows toolchain, separate QA installation and release identity." name="twitter:description"/><link href="/assets/css/site.css?v=20260909" rel="stylesheet"/></head>
 <body class="project-page">
-  <a class="skip-link" href="#top">Skip to content</a>
-  <header class="site-header"><div class="container nav-wrap"><a class="brand" href="../../../" aria-label="Miguel's Game Dev Lab home"><span class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a><nav aria-label="Primary navigation"><a href="../">Project</a><a href="../knowledge/">Knowledge Base</a><a href="https://github.com/raposomiguel50/system-shock-android">Source</a></nav></div></header>
+<a class="skip-link" href="#top">Skip to content</a>
+<header class="site-header"><div class="container nav-wrap"><a aria-label="Miguel's Game Dev Lab home" class="brand" href="/"><span aria-hidden="true" class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a><nav aria-label="Primary navigation" class="global-nav"><a href="/">Home</a><a aria-current="page" href="/#projects">Projects</a><a href="/coverage/">Coverage</a><a href="/method/">Method</a><a href="/#contact">Contact</a></nav></div></header>
+<main id="top" tabindex="-1">
+<section class="project-hero">
+<div class="container">
+<p class="breadcrumbs"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/#projects">Projects</a><span aria-hidden="true">/</span><a href="/projects/system-shock-android/">System Shock — Android</a></p>
 
-  <main id="top" tabindex="-1">
-    <section class="project-hero">
-      <div class="container">
-        <p class="breadcrumbs"><a href="../">System Shock - Android</a> / Reproduce</p>
-        <div class="project-meta project-meta-large"><span>REPRODUCTION</span><span>WINDOWS</span><span>POWERSHELL 7</span><span>ANDROID / ARM64</span><span>v1.0.0</span></div>
-        <h1>Build and verify v1.0.0</h1>
-        <p class="project-lede">The public source, dependency baselines, build scripts, commercial-data boundary and release evidence are documented so the Android port can be inspected and reproduced without access to the private development workspace.</p>
-        <div class="status-line"><span class="status-badge">STABLE RELEASE</span><span>Release: v1.0.0</span><span>Fresh dependency bootstrap: PASS</span><span>Signed release gate: PASS</span><span>Reference target: Retroid Pocket 5</span></div>
-        <div class="hero-actions"><a class="button" href="https://github.com/raposomiguel50/system-shock-android/releases/download/v1.0.0/SystemShock-Android-v1.0.0-arm64-v8a.apk">Download APK</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/releases/tag/v1.0.0">Release evidence</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android">Source repository</a><a class="button button-secondary" href="../knowledge/">Engineering knowledge</a></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <p class="section-kicker">01 / RELEASE IDENTITY</p><h2>Exact stable baseline</h2>
-        <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table 1"><table class="spec-table"><tbody>
-          <tr><th scope="row">Release</th><td><code>v1.0.0</code></td></tr>
-          <tr><th scope="row">Release source commit</th><td><code>d40e02b00e5e59b956b18fdd2a13a41672090b2c</code></td></tr>
-          <tr><th scope="row">Package</th><td><code>io.github.raposomiguel50.systemshock</code></td></tr>
-          <tr><th scope="row">APK SHA-256</th><td><code>a6dcb7f76374dd7d4f7e39f0ecc08446f2956a33bda7655d699d5ba639b8526f</code></td></tr>
-          <tr><th scope="row">Signing certificate SHA-256</th><td><code>806d9cb061de67aa6953cdac573bd917da6aa17625964c2898d23e226bd5323b</code></td></tr>
-          <tr><th scope="row">Shockolate baseline</th><td><code>4cc3d07dfff2d11b6d3a0a9960a51cf4ca253690</code></td></tr>
-          <tr><th scope="row">SDL</th><td>2.32.10 — <code>5d249570393f7a37e037abf22cd6012a4cc56a71</code></td></tr>
-          <tr><th scope="row">SDL_mixer</th><td>2.8.1 — <code>171eb2d420d5643e4ee11514a06e04a41a463bbd</code></td></tr>
-          <tr><th scope="row">ABI</th><td><code>arm64-v8a</code></td></tr>
-        </tbody></table></div>
-      </div>
-    </section>
-
-    <section class="section alt" id="build">
-      <div class="container">
-        <p class="section-kicker">02 / TOOLCHAIN</p><h2>Windows / PowerShell 7 build path</h2>
-        <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table 2"><table class="spec-table"><tbody>
-          <tr><th scope="row">JDK</th><td>17</td></tr>
-          <tr><th scope="row">Gradle</th><td>8.1.1 via included wrapper</td></tr>
-          <tr><th scope="row">Android SDK</th><td>Platform 34 + Build Tools 34.0.0</td></tr>
-          <tr><th scope="row">NDK</th><td>29.0.14206865</td></tr>
-          <tr><th scope="row">CMake</th><td>3.22.1 from the Android SDK</td></tr>
-        </tbody></table></div>
-        <div class="content-grid">
-          <div class="content-card"><h3>1. Get the source</h3><p>Clone <code>https://github.com/raposomiguel50/system-shock-android.git</code> and check out tag <code>v1.0.0</code>. The build helpers need the clone's Git metadata; a source ZIP is not equivalent.</p></div>
-          <div class="content-card"><h3>2. Bootstrap dependencies</h3><p>Run <code>pwsh -File .\scripts\bootstrap-deps.ps1</code>. The helper obtains SDL and SDL_mixer at the exact pinned commits into the ignored <code>.deps</code> directory.</p></div>
-          <div class="content-card"><h3>3. QA build</h3><p>Run <code>pwsh -File .\scripts\qa-gate.ps1</code>. This builds the isolated QA variant and runs semantic APK verification.</p></div>
-          <div class="content-card"><h3>4. Signed build</h3><p>Independent builders can configure their own release signing environment as documented in <code>docs/RELEASE.md</code> and run <code>pwsh -File .\scripts\release-gate.ps1</code>. Their certificate will naturally differ from the official release identity.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="game-data">
-      <div class="container">
-        <p class="section-kicker">03 / GAME DATA</p><h2>Bring your own compatible resources</h2>
-        <p class="section-intro">The repository and APK deliberately exclude System Shock commercial resources.</p>
-        <div class="content-grid">
-          <div class="content-card"><h3>Expected layout</h3><p>Prepare a legally obtained compatible <code>res</code> folder containing both <code>data</code> and <code>sound</code>.</p></div>
-          <div class="content-card"><h3>Public first-run path</h3><p>Install the stable APK, launch it, choose <strong>Select res folder</strong>, select the compatible folder and approve access. The importer stages the copy before activation.</p></div>
-          <div class="content-card"><h3>Private storage</h3><p>The imported resources are stored in the application's private Android files area. Keep your original lawful game data separately; uninstalling an app may remove its private storage.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section alt">
-      <div class="container">
-        <p class="section-kicker">04 / RELEASE GATES</p><h2>Evidence completed for v1.0.0</h2>
-        <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table 3"><table class="spec-table"><tbody>
-          <tr><th scope="row">Public CI</th><td><strong>PASS.</strong> PowerShell validation, pinned dependency bootstrap, QA build and QA APK verification completed.</td></tr>
-          <tr><th scope="row">Clean local final gate</th><td><strong>PASS.</strong> <code>V1_FINAL_LOCAL_GATE=PASS</code>.</td></tr>
-          <tr><th scope="row">Signed release</th><td><strong>PASS.</strong> Non-debuggable ARM64 release APK built with the stable certificate.</td></tr>
-          <tr><th scope="row">Release manifest</th><td><strong>PASS.</strong> Package, version, source commit, certificate and APK hash agree.</td></tr>
-          <tr><th scope="row">Public download verification</th><td><strong>PASS.</strong> Re-downloaded GitHub APK SHA-256 matches <code>a6dcb7f7…8526f</code>.</td></tr>
-          <tr><th scope="row">Commercial data boundary</th><td><strong>PASS.</strong> No System Shock commercial game data is bundled.</td></tr>
-        </tbody></table></div>
-        <p class="note">The official release's private signing key is intentionally not reproducible or public. Reproducibility applies to source, pinned dependencies, documented toolchain and build behavior; the signing key is an identity credential.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container"><p class="section-kicker">05 / NEXT STEPS</p><h2>Independent compatibility reports</h2><p>Retroid Pocket 5 is the validated reference device. Other Android 13+ ARM64 devices may be compatible, but are only added to the validated matrix after independent testing.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/issues/new/choose">Open a structured compatibility or bug report</a></p></div>
-    </section>
-  </main>
-
-  <footer><div class="container footer-wrap"><span>Miguel's Game Dev Lab</span><span class="legal">No proprietary System Shock game data is distributed by this site.</span></div></footer>
-  <script src="/assets/js/music-player.js" defer></script>
+<p class="eyebrow">ANDROID / ARM64 <span aria-hidden="true">·</span> BUILD GUIDE</p><h1>Build and verify v1.0.0</h1>
+<p class="project-lede">Build the Android port from a Git checkout with pinned dependencies. Use a separate QA application to test without replacing the stable installation.</p>
+<div class="status-line"><span class="status-badge">STABLE RELEASE</span><span>Release: v1.0.0</span><span>Fresh dependency bootstrap: PASS</span><span>Signed release gate: PASS</span><span>Reference target: Retroid Pocket 5</span></div>
+<div class="hero-actions"><a class="button" href="#build">Start with the toolchain</a><a class="button button-secondary" href="https://github.com/raposomiguel50/system-shock-android/blob/main/docs/BUILD.md">Full build instructions</a></div>
+</div>
+</section><nav aria-label="Project navigation" class="project-tabs"><div class="container"><a href="/projects/system-shock-android/">Overview</a><a href="/projects/system-shock-android/knowledge/">Engineering notes</a><a aria-current="page" href="/projects/system-shock-android/reproduce/">Build guide</a><a href="https://github.com/raposomiguel50/system-shock-android">Source</a></div></nav><nav aria-label="On this page" class="project-section-nav" id="project-index"><div class="container"><p class="section-kicker">ON THIS PAGE</p><div class="project-section-links"><a href="#release-identity"><span aria-hidden="true">01</span>Release identity</a><a href="#build"><span aria-hidden="true">02</span>Toolchain</a><a href="#game-data"><span aria-hidden="true">03</span>Game data</a><a href="#release-checks"><span aria-hidden="true">04</span>Release checks</a><a href="#compatibility"><span aria-hidden="true">05</span>Compatibility</a></div></div></nav>
+<section class="section project-section" id="release-identity">
+<div class="container">
+<div class="section-heading"><p class="section-kicker">01 / RELEASE IDENTITY</p><h2>Exact stable baseline</h2></div>
+<div aria-label="Exact stable baseline — scrollable table" class="table-wrap" role="region" tabindex="0"><table class="spec-table"><tbody>
+<tr><th scope="row">Release</th><td><code>v1.0.0</code></td></tr>
+<tr><th scope="row">Release source commit</th><td><code>d40e02b00e5e59b956b18fdd2a13a41672090b2c</code></td></tr>
+<tr><th scope="row">Package</th><td><code>io.github.raposomiguel50.systemshock</code></td></tr>
+<tr><th scope="row">APK SHA-256</th><td><code>a6dcb7f76374dd7d4f7e39f0ecc08446f2956a33bda7655d699d5ba639b8526f</code></td></tr>
+<tr><th scope="row">Signing certificate SHA-256</th><td><code>806d9cb061de67aa6953cdac573bd917da6aa17625964c2898d23e226bd5323b</code></td></tr>
+<tr><th scope="row">Shockolate baseline</th><td><code>4cc3d07dfff2d11b6d3a0a9960a51cf4ca253690</code></td></tr>
+<tr><th scope="row">SDL</th><td>2.32.10 — <code>5d249570393f7a37e037abf22cd6012a4cc56a71</code></td></tr>
+<tr><th scope="row">SDL_mixer</th><td>2.8.1 — <code>171eb2d420d5643e4ee11514a06e04a41a463bbd</code></td></tr>
+<tr><th scope="row">ABI</th><td><code>arm64-v8a</code></td></tr>
+</tbody></table></div>
+</div>
+</section>
+<section class="section alt project-section" id="build">
+<div class="container">
+<div class="section-heading"><p class="section-kicker">02 / TOOLCHAIN</p><h2>Windows / PowerShell 7 build path</h2></div>
+<div aria-label="Windows / PowerShell 7 build path — scrollable table" class="table-wrap" role="region" tabindex="0"><table class="spec-table"><tbody>
+<tr><th scope="row">JDK</th><td>17</td></tr>
+<tr><th scope="row">Gradle</th><td>8.1.1 via included wrapper</td></tr>
+<tr><th scope="row">Android SDK</th><td>Platform 34 + Build Tools 34.0.0</td></tr>
+<tr><th scope="row">NDK</th><td>29.0.14206865</td></tr>
+<tr><th scope="row">CMake</th><td>3.22.1 from the Android SDK</td></tr>
+</tbody></table></div>
+<div class="content-grid" data-columns="2">
+<div class="content-card"><h3>1. Get the source</h3><p>Clone <code>https://github.com/raposomiguel50/system-shock-android.git</code> and check out tag <code>v1.0.0</code>. The build helpers need the clone's Git metadata; a source ZIP is not equivalent.</p></div>
+<div class="content-card"><h3>2. Bootstrap dependencies</h3><p>Run <code>pwsh -File .\scripts\bootstrap-deps.ps1</code>. The helper obtains SDL and SDL_mixer at the exact pinned commits into the ignored <code>.deps</code> directory.</p></div>
+<div class="content-card"><h3>3. QA build</h3><p>Run <code>pwsh -File .\scripts\qa-gate.ps1</code>. This builds the isolated QA variant and runs semantic APK verification.</p></div>
+<div class="content-card"><h3>4. Signed build</h3><p>Independent builders can configure their own release signing environment as documented in <code>docs/RELEASE.md</code> and run <code>pwsh -File .\scripts\release-gate.ps1</code>. Their certificate will naturally differ from the official release identity.</p></div>
+</div>
+</div>
+</section>
+<section class="section project-section" id="game-data">
+<div class="container">
+<div class="section-heading"><p class="section-kicker">03 / GAME DATA</p><h2>Bring your own compatible resources</h2></div>
+<p class="section-intro">The repository and APK deliberately exclude System Shock commercial resources.</p>
+<div class="content-grid" data-columns="3">
+<div class="content-card"><h3>Expected layout</h3><p>Prepare a legally obtained compatible <code>res</code> folder containing both <code>data</code> and <code>sound</code>.</p></div>
+<div class="content-card"><h3>Public first-run path</h3><p>Install the stable APK, launch it, choose <strong>Select res folder</strong>, select the compatible folder and approve access. The importer stages the copy before activation.</p></div>
+<div class="content-card"><h3>Private storage</h3><p>The imported resources are stored in the application's private Android files area. Keep your original lawful game data separately; uninstalling an app may remove its private storage.</p></div>
+</div>
+</div>
+</section>
+<section class="section alt project-section" id="release-checks">
+<div class="container">
+<div class="section-heading"><p class="section-kicker">04 / RELEASE CHECKS</p><h2>Evidence completed for v1.0.0</h2></div>
+<div aria-label="Evidence completed for v1.0.0 — scrollable table" class="table-wrap" role="region" tabindex="0"><table class="spec-table"><tbody>
+<tr><th scope="row">Public CI</th><td><strong>PASS.</strong> PowerShell validation, pinned dependency bootstrap, QA build and QA APK verification completed.</td></tr>
+<tr><th scope="row">Clean local final gate</th><td><strong>PASS.</strong> <code>V1_FINAL_LOCAL_GATE=PASS</code>.</td></tr>
+<tr><th scope="row">Signed release</th><td><strong>PASS.</strong> Non-debuggable ARM64 release APK built with the stable certificate.</td></tr>
+<tr><th scope="row">Release manifest</th><td><strong>PASS.</strong> Package, version, source commit, certificate and APK hash agree.</td></tr>
+<tr><th scope="row">Public download verification</th><td><strong>PASS.</strong> Re-downloaded GitHub APK SHA-256 matches <code>a6dcb7f7…8526f</code>.</td></tr>
+<tr><th scope="row">Commercial data boundary</th><td><strong>PASS.</strong> No System Shock commercial game data is bundled.</td></tr>
+</tbody></table></div>
+<p class="note">The official release's private signing key is intentionally not reproducible or public. Reproducibility applies to source, pinned dependencies, documented toolchain and build behavior; the signing key is an identity credential.</p>
+</div>
+</section>
+<section class="section project-section" id="compatibility">
+<div class="container"><div class="section-heading"><p class="section-kicker">05 / COMPATIBILITY</p><h2>Independent compatibility reports</h2></div><p>Retroid Pocket 5 is the validated reference device. Other Android 13+ ARM64 devices may be compatible, but are only added to the validated matrix after independent testing.</p><p><a class="inline-link" href="https://github.com/raposomiguel50/system-shock-android/issues/new/choose">Open a structured compatibility or bug report</a></p></div>
+</section>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-top"><a class="brand" href="/"><span aria-hidden="true" class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a><nav aria-label="Footer navigation"><a href="/#projects">Projects</a><a href="/method/">Method</a><a href="/#contact">Contact</a><a href="https://github.com/raposomiguel50">GitHub</a></nav></div><p class="legal">Human-directed, AI-assisted development. No proprietary game data is distributed by this site.</p></div></footer>
+<script defer="" src="/assets/js/music-player.js"></script>
 </body>
 </html>

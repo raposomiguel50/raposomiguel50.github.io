@@ -1,91 +1,93 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="What you can use to study or rebuild the Minish Cap RG34XX port, and which source, testing and distribution steps remain open.">
-  <title>The Minish Cap RG34XX - Reproduce | Miguel's Game Dev Lab</title>
-  <link rel="canonical" href="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/reproduce/">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta property="og:site_name" content="Miguel's Game Dev Lab">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="The Minish Cap RG34XX - Reconstruction status">
-  <meta property="og:description" content="Historical traceability is not a complete functional reconstruction or bit-for-bit rebuild.">
-  <meta property="og:url" content="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/reproduce/">
-  <link rel="stylesheet" href="../../../assets/css/style.css">
-  <link rel="stylesheet" href="../../../assets/css/project-nav.css">
-  <link rel="stylesheet" href="../../../assets/css/readability.css">
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Reconstruction guide for The Legend of Zelda: The Minish Cap on RG34XX. Available source, historical patches, reference build and remaining requirements." name="description"/>
+<title>The Legend of Zelda: The Minish Cap — Reconstruction | Miguel's Game Dev Lab</title>
+<link href="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/reproduce/" rel="canonical"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/>
+<meta content="Miguel's Game Dev Lab" property="og:site_name"/>
+<meta content="article" property="og:type"/>
+<meta content="The Legend of Zelda: The Minish Cap — Reconstruction | Miguel's Game Dev Lab" property="og:title"/>
+<meta content="Reconstruction guide for The Legend of Zelda: The Minish Cap on RG34XX. Available source, historical patches, reference build and remaining requirements." property="og:description"/>
+<meta content="https://raposomiguel50.github.io/projects/minish-cap-rg34xx/reproduce/" property="og:url"/>
+<link href="/assets/css/site.css?v=20260909" rel="stylesheet"/><meta content="The Legend of Zelda: The Minish Cap — Reconstruction | Miguel's Game Dev Lab" name="twitter:title"/><meta content="Reconstruction guide for The Legend of Zelda: The Minish Cap on RG34XX. Available source, historical patches, reference build and remaining requirements." name="twitter:description"/><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "The Legend of Zelda: The Minish Cap — Reconstruction",
+  "url": "https://raposomiguel50.github.io/projects/minish-cap-rg34xx/reproduce/",
+  "dateModified": "2026-09-09",
+  "about": {
+    "@type": "SoftwareSourceCode",
+    "name": "The Legend of Zelda: The Minish Cap — RG34XX",
+    "codeRepository": "https://github.com/raposomiguel50/minish-cap-rg34xx"
+  }
+}</script></head>
 <body class="project-page">
-  <a class="skip-link" href="#top">Skip to content</a>
-  <header class="site-header"><div class="container nav-wrap">
-    <a class="brand" href="../../../" aria-label="Miguel's Game Dev Lab home"><span class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a>
-    <nav aria-label="Primary navigation"><a href="../">Project</a><a href="../knowledge/">Knowledge</a><a href="../../../method/">Method</a><a href="https://github.com/raposomiguel50/minish-cap-rg34xx" target="_blank" rel="noopener noreferrer">Source</a></nav>
-  </div></header>
-  <main id="top" tabindex="-1">
-    <section class="project-hero"><div class="container">
-      <p class="breadcrumbs"><a href="../">The Minish Cap</a> / Rebuild</p>
-      <h1>Can I rebuild the port?</h1>
-      <p class="project-lede">Not from a complete, validated recipe yet. The public files are a starting point for study, not a ready-to-build copy of private V1.</p>
-      <p>This page explains what exists and what a new build still needs.</p>
-      <div class="hero-actions"><a class="button" href="#baseline">See available inputs</a><a class="button button-secondary" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/REPRODUCTION.md">Read the technical requirements</a></div>
-    </div></section>
-    <nav class="project-section-nav" aria-label="Page sections" id="project-index"><div class="container">
-      <div class="project-section-nav-heading"><span class="section-kicker">ON THIS PAGE</span><span class="project-section-nav-hint">Check the scope before building</span></div>
-      <div class="project-section-links"><a href="#claims"><span>01</span>What is proven</a><a href="#baseline"><span>02</span>Inputs</a><a href="#v1"><span>03</span>Reference build</a><a href="#start"><span>04</span>Safe starting point</a><a href="#gates"><span>05</span>Missing steps</a><a href="#license"><span>06</span>Distribution</a></div>
-    </div></nav>
-    <section class="section project-section" id="claims"><div class="container">
-      <div class="section-title-row"><div><p class="section-kicker">01 / EVIDENCE</p><h2>What is proven?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <div class="content-grid"><div class="content-card"><h3>Traceable work</h3><p>You can inspect named patches, selected logs and source revisions.</p></div><div class="content-card"><h3>A working rebuild</h3><p>A new executable needs its own device tests. A validated public rebuild recipe is still needed.</p></div><div class="content-card"><h3>Identical rebuilt bytes</h3><p>Reproducing the private file exactly requires a complete build environment. Its hash alone is not that recipe.</p></div></div>
-    </div></section>
-    <section class="section alt project-section" id="baseline"><div class="container">
-      <div class="section-title-row"><div><p class="section-kicker">02 / INPUTS</p><h2>What inputs are available?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <p>The repository contains 15 historical patches, a launcher, source identifiers and selected test records.</p>
-      <p>The foundation is EstebanPdN's Project Picori-derived source. The exact revision is recorded in the source baseline.</p>
-      <p>Four retained source snapshots do not form a complete final build environment. The full upstream tree is not included here.</p>
-      <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/SOURCE_BASELINE.json">Inspect the source baseline</a> · <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PATCH_SERIES.md">Find a patch by purpose</a></p>
-    </div></section>
-    <section class="section project-section" id="v1"><div class="container">
-      <div class="section-title-row"><div><p class="section-kicker">03 / REFERENCE BUILD</p><h2>Which build is the reference?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <p>The acceptance record identifies an 8,858,736-byte private executable. It records one manual session with visual/audio <code>OK</code>, plus two preceding automated soaks.</p>
-      <p>Recorded settings include CPU/GPU ceilings of 936/420 MHz, an audio request of 1600 frames and three rendering threads.</p>
-      <p>These identify a tested private configuration. They do not establish a full playthrough or a successful public rebuild.</p>
-      <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/REPRODUCTION.md#what-identifies-private-v1">View its fingerprint and source records</a></p>
-    </div></section>
-    <section class="section alt project-section" id="start"><div class="container">
-      <div class="section-title-row"><div><p class="section-kicker">04 / STARTING POINT</p><h2>Where should reconstruction start?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <p><strong>Use a separate worktree.</strong> Leave private V1, saves and earlier evidence untouched.</p>
-      <p>Inspect the pinned upstream and each patch's purpose. Some patches overlap; some only add diagnostics.</p>
-      <p><strong>Do not apply every patch in filename order.</strong> Select compatible changes, then build and test each stage.</p>
-      <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PATCH_SERIES.md">Read the patch map before changing source</a></p>
-    </div></section>
-    <section class="section project-section" id="gates"><div class="container">
-      <div class="section-title-row"><div><p class="section-kicker">05 / REQUIREMENTS</p><h2>What is still needed?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <ol>
-        <li>A complete source, dependency and toolchain list.</li>
-        <li>A compatible patch order and exact build settings.</li>
-        <li>Generated inputs, final processing steps and build logs.</li>
-        <li>The new executable's fingerprint and fresh device tests.</li>
-      </ol>
-      <p>Recalculating statistics is a different task. The analysis script is public, but the full raw traces remain in the private archive.</p>
-      <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/REPRODUCTION.md">Read rebuild and data-access limits</a></p>
-    </div></section>
-    <section class="section alt project-section" id="license"><div class="container">
-      <div class="section-title-row"><div><p class="section-kicker">06 / DISTRIBUTION</p><h2>Can a rebuilt package be shared?</h2></div><a class="back-to-index" href="#project-index">↑ Index</a></div>
-      <p>Distribution needs a separate review. The recorded VirtuaAPU restriction remains unresolved for the private executable.</p>
-      <p>No ROM, extracted Nintendo assets, saves or private executable are included in this repository.</p>
-      <p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/LEGAL_STATUS.md">Recorded legal status</a> · <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PORTMASTER_STATUS.md">PortMaster requirements</a></p>
-    </div></section>
-    <section class="section project-section" id="references"><div class="container">
-      <h2>Prefer to understand the work first?</h2>
-      <p><a class="inline-link" href="../knowledge/">Read the short engineering lessons</a></p>
-      <details><summary>Fixed source and test records</summary>
-        <p id="source-code"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/90fd77a82d579de9460f2de1167a95ec264e57c3">Integration source and launcher</a></p>
-        <p id="source-runtime"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07">Archived runtime records</a></p>
-      </details>
-    </div></section>
-  </main>
-  <footer><div class="container footer-wrap"><span>Miguel's Game Dev Lab</span><span class="legal">Human-directed, AI-assisted development. No proprietary game data is distributed by this site.</span></div></footer>
-  <script src="/assets/js/music-player.js" defer></script>
+<a class="skip-link" href="#top">Skip to content</a>
+<header class="site-header"><div class="container nav-wrap"><a aria-label="Miguel's Game Dev Lab home" class="brand" href="/"><span aria-hidden="true" class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a><nav aria-label="Primary navigation" class="global-nav"><a href="/">Home</a><a aria-current="page" href="/#projects">Projects</a><a href="/coverage/">Coverage</a><a href="/method/">Method</a><a href="/#contact">Contact</a></nav></div></header>
+<main id="top" tabindex="-1">
+<section class="project-hero"><div class="container">
+<p class="breadcrumbs"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/#projects">Projects</a><span aria-hidden="true">/</span><a href="/projects/minish-cap-rg34xx/">The Legend of Zelda: The Minish Cap — RG34XX</a></p>
+<p class="eyebrow">RG34XX / muOS <span aria-hidden="true">·</span> RECONSTRUCTION</p><h1>Reconstruction guide</h1>
+<p class="project-lede">A complete, validated public build recipe is not yet available. The files provide a starting point for studying and reconstructing the private V1.</p>
+<p>This page explains what exists and what a new build still needs.</p>
+<div class="hero-actions"><a class="button" href="#baseline">See available inputs</a><a class="button button-secondary" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/REPRODUCTION.md">Read the technical requirements</a></div>
+</div></section><nav aria-label="Project navigation" class="project-tabs"><div class="container"><a href="/projects/minish-cap-rg34xx/">Overview</a><a href="/projects/minish-cap-rg34xx/knowledge/">Engineering notes</a><a aria-current="page" href="/projects/minish-cap-rg34xx/reproduce/">Reconstruction</a><a href="https://github.com/raposomiguel50/minish-cap-rg34xx">Source</a></div></nav><nav aria-label="On this page" class="project-section-nav" id="project-index"><div class="container"><p class="section-kicker">ON THIS PAGE</p><div class="project-section-links"><a href="#claims"><span aria-hidden="true">01</span>What is proven</a><a href="#baseline"><span aria-hidden="true">02</span>Inputs</a><a href="#v1"><span aria-hidden="true">03</span>Reference build</a><a href="#start"><span aria-hidden="true">04</span>Safe starting point</a><a href="#gates"><span aria-hidden="true">05</span>Missing steps</a><a href="#license"><span aria-hidden="true">06</span>Distribution</a><a href="#references"><span aria-hidden="true">07</span>Further reading</a></div></div></nav>
+<section class="section project-section" id="claims"><div class="container">
+<div class="section-title-row"><div><p class="section-kicker">01 / WHAT IS PROVEN</p><h2>What is proven?</h2></div></div>
+<div class="content-grid" data-columns="3"><div class="content-card"><h3>Traceable work</h3><p>You can inspect named patches, selected logs and source revisions.</p></div><div class="content-card"><h3>A working rebuild</h3><p>A new executable needs its own device tests. A validated public rebuild recipe is still needed.</p></div><div class="content-card"><h3>Identical rebuilt bytes</h3><p>Reproducing the private file exactly requires a complete build environment. Its hash alone is not that recipe.</p></div></div>
+</div></section>
+<section class="section alt project-section" id="baseline"><div class="container">
+<div class="section-title-row"><div><p class="section-kicker">02 / INPUTS</p><h2>What inputs are available?</h2></div></div>
+<p>The repository contains 15 historical patches, a launcher, source identifiers and selected test records.</p>
+<p>The foundation is EstebanPdN's Project Picori-derived source. The exact revision is recorded in the source baseline.</p>
+<p>Four retained source snapshots do not form a complete final build environment. The full upstream tree is not included here.</p>
+<p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/SOURCE_BASELINE.json">Inspect the source baseline</a> · <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PATCH_SERIES.md">Find a patch by purpose</a></p>
+</div></section>
+<section class="section project-section" id="v1"><div class="container">
+<div class="section-title-row"><div><p class="section-kicker">03 / REFERENCE BUILD</p><h2>Which build is the reference?</h2></div></div>
+<p>The acceptance record identifies an 8,858,736-byte private executable. It records one manual session with visual/audio <code>OK</code>, plus two preceding automated soaks.</p>
+<p>Recorded settings include CPU/GPU ceilings of 936/420 MHz, an audio request of 1600 frames and three rendering threads.</p>
+<p>These identify a tested private configuration. They do not establish a full playthrough or a successful public rebuild.</p>
+<p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/REPRODUCTION.md#what-identifies-private-v1">View its fingerprint and source records</a></p>
+</div></section>
+<section class="section alt project-section" id="start"><div class="container">
+<div class="section-title-row"><div><p class="section-kicker">04 / SAFE STARTING POINT</p><h2>Where should reconstruction start?</h2></div></div>
+<p><strong>Use a separate worktree.</strong> Leave private V1, saves and earlier evidence untouched.</p>
+<p>Inspect the pinned upstream and each patch's purpose. Some patches overlap; some only add diagnostics.</p>
+<p><strong>Do not apply every patch in filename order.</strong> Select compatible changes, then build and test each stage.</p>
+<p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PATCH_SERIES.md">Read the patch map before changing source</a></p>
+</div></section>
+<section class="section project-section" id="gates"><div class="container">
+<div class="section-title-row"><div><p class="section-kicker">05 / MISSING STEPS</p><h2>What is still needed?</h2></div></div>
+<ol>
+<li>A complete source, dependency and toolchain list.</li>
+<li>A compatible patch order and exact build settings.</li>
+<li>Generated inputs, final processing steps and build logs.</li>
+<li>The new executable's fingerprint and fresh device tests.</li>
+</ol>
+<p>Recalculating statistics is a different task. The analysis script is public, but the full raw traces remain in the private archive.</p>
+<p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/REPRODUCTION.md">Read rebuild and data-access limits</a></p>
+</div></section>
+<section class="section alt project-section" id="license"><div class="container">
+<div class="section-title-row"><div><p class="section-kicker">06 / DISTRIBUTION</p><h2>Can a rebuilt package be shared?</h2></div></div>
+<p>Distribution needs a separate review. The recorded VirtuaAPU restriction remains unresolved for the private executable.</p>
+<p>No ROM, extracted Nintendo assets, saves or private executable are included in this repository.</p>
+<p><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/LEGAL_STATUS.md">Recorded legal status</a> · <a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/blob/main/docs/PORTMASTER_STATUS.md">PortMaster requirements</a></p>
+</div></section>
+<section class="section project-section" id="references"><div class="container">
+<div class="section-heading"><p class="section-kicker">07 / FURTHER READING</p><h2>Prefer to understand the work first?</h2></div>
+<p><a class="inline-link" href="../knowledge/">Read the short engineering lessons</a></p>
+<details><summary>Fixed source and test records</summary>
+<p id="source-code"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/90fd77a82d579de9460f2de1167a95ec264e57c3">Integration source and launcher</a></p>
+<p id="source-runtime"><a class="inline-link" href="https://github.com/raposomiguel50/minish-cap-rg34xx/tree/e0f8c056bb94e8112a4b142b6addce78c9deb53b/docs/evidence/2026-09-07">Archived runtime records</a></p>
+</details>
+</div></section>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-top"><a class="brand" href="/"><span aria-hidden="true" class="brand-mark">M&gt;</span><span>Miguel's Game Dev Lab</span></a><nav aria-label="Footer navigation"><a href="/#projects">Projects</a><a href="/method/">Method</a><a href="/#contact">Contact</a><a href="https://github.com/raposomiguel50">GitHub</a></nav></div><p class="legal">Human-directed, AI-assisted development. No proprietary game data is distributed by this site.</p></div></footer>
+<script defer="" src="/assets/js/music-player.js"></script>
 </body>
 </html>
