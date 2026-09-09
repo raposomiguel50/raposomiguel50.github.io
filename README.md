@@ -10,7 +10,7 @@ Game ports, retro development and lessons from working with hardware.
 
 [Project](https://raposomiguel50.github.io/projects/system-shock-android/) · [Release](https://github.com/raposomiguel50/system-shock-android/releases/tag/v1.0.0) · [Source](https://github.com/raposomiguel50/system-shock-android)
 
-**The Minish Cap — RG34XX:** a native muOS integration based on EstebanPdN's Project Picori-derived source. Integration patches and guides are public; there is no public game executable.
+**The Legend of Zelda: The Minish Cap — RG34XX:** a native muOS integration based on EstebanPdN's Project Picori-derived source. Integration patches and guides are public; there is no public game executable.
 
 [Project](https://raposomiguel50.github.io/projects/minish-cap-rg34xx/) · [Source](https://github.com/raposomiguel50/minish-cap-rg34xx) · [Upstream](https://github.com/EstebanPdN/zelda-tmc-3ds)
 
