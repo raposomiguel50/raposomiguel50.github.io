@@ -10,6 +10,20 @@ from urllib.parse import urlsplit
 GAME_TITLE = 'The Legend of Zelda: The Minish Cap'
 ORIGIN = 'https://raposomiguel50.github.io/'
 
+RETRO_DESIGN_FRAGMENTS = {
+    'RETRO_GAMING_IDENTITY_R1': 'retro identity marker',
+    '--term-green: #7ee787;': 'green terminal accent',
+    '--term-cyan: #79c0ff;': 'cyan terminal accent',
+    '--term-magenta: #d2a8ff;': 'magenta terminal accent',
+    '--term-yellow: #f2cc60;': 'yellow terminal accent',
+    'background-size: 28px 28px, 28px 28px, auto;': '28 px retro grid',
+    '.tagline::before': 'terminal prompt',
+    'content: "$ ";': 'terminal prompt glyph',
+    '.project-meta span:nth-child(6n + 4)': 'yellow metadata accent',
+    'main strong { color: var(--term-yellow); }': 'yellow keyword emphasis',
+    'main code { color: var(--term-magenta); }': 'magenta code emphasis',
+}
+
 class Document(HTMLParser):
     def __init__(self, text):
         super().__init__(convert_charrefs=True)
@@ -59,6 +73,14 @@ def component(text, tag, class_name):
 def check(root):
     root = root.resolve()
     errors, headers, footers, styles, tabs = [], set(), set(), set(), {}
+    css_path = root / 'assets/css/site.css'
+    if not css_path.is_file():
+        errors.append('Missing shared assets/css/site.css')
+    else:
+        css_text = css_path.read_text(encoding='utf-8')
+        for fragment, label in RETRO_DESIGN_FRAGMENTS.items():
+            if fragment not in css_text:
+                errors.append('site.css: missing ' + label)
     files = [p for p in sorted(root.rglob('*.html'))
              if not p.name.startswith('google')
              and not any(part.startswith('.') for part in p.relative_to(root).parts)]
